@@ -1,0 +1,31 @@
+﻿
+<div class="header-cart" ng-controller="HomeController">
+    <a href="" ng-click="GetCart()">
+        <span class="icon-start">
+            <img src="~/img/icon-cart.png" alt="">
+        </span>
+        <span class="cart-number">0</span>
+    </a>
+    <div class="form_holder">
+        <div class="cart-block">
+            <div class="cart-block-content">
+                <div class="cart-block-list">
+                    <div class="shop_cart">
+                        <table class="shop_table">
+                            <tr>
+                                <th>Mã sã phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                            </tr>
+                            <tr ng-repeat="d in dsDonHang">
+                                <td>{{d.MaSP}}</td>
+                                <td>{{d.SoLuong}}</td>
+                                <td>{{d.DonGia}} VND</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
