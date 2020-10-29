@@ -1,0 +1,13 @@
+﻿<div class="col-md -12 col-sm-4 Search">
+    <div class="search-bar">
+        <div class="">
+            <form action="/search">
+                <input type="hidden" name="type" value="product">
+                <input type="text" name="q" placeholder="Tìm kiếm..." autocomplete="off" ng-model="searchName">
+            </form>
+            <button type="button" class="pull-right btn-search" ng-click="GetSanPhamList(pageIndex)">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+</div>

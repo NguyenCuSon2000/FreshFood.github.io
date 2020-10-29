@@ -1,5 +1,7 @@
 ﻿/// <reference path="../angular.js" />
-var app = angular.module("myApp", [])
+var homeapp = angular.module("HomeApp", ['angularUtils.directives.dirPagination']);
+
+
 
 
 

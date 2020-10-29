@@ -1,18 +1,42 @@
 ﻿/// <reference path="../angular.js" />
-var app = angular.module("myApp", [])
+var app = angular.module("myApp", ['angularUtils.directives.dirPagination']);
 
-app.controller("SanPhamController", function ($scope, $http) {
+app.controller("SanPhamController", function ($scope, $rootScope, $http) {
+
+    //Danh sách sản phẩm
     $http.get('/SanPham/GetSanPham').then(function (d) {
-        $scope.ListSanPham = d.data;
-    }, function (error) { alert('Failed'); })
+        $rootScope.ListSanPham = d.data;
+    }, function (error) { alert('Failed'); });
+
+    //Sắp xếp dữ liệu
+    $rootScope.sortcolumn = "DonGia";
+    $rootScope.reverse = true;
+    $rootScope.dr = "Ascending";
+
+    $rootScope.Chon = function (d) {
+        if ($rootScope.dr == "Ascending") {
+            $rootScope.reverse = false;
+            $rootScope.dr = "Descreasing";
+        }
+        else {
+            $rootScope.reverse = true;
+            $rootScope.dr = "Ascending";
+        }
+    };
+
+    
 });
 
-app.controller("MenuController", function ($scope, $http) {
+
+//Menu 
+app.controller("MenuController", function ($scope, $rootScope, $http) {
     $http.get('/Home/GetLoaiSanPham').then(function (d) {
-        $scope.listloai = d.data;
+        $rootScope.listloai = d.data;
     }, function (e) { alert("Lỗi lấy loại"); })
 });
 
+
+//Giỏ hàng
 app.controller("GioHangController", function ($rootScope, $scope, $http) {
     $rootScope.AddCart = function (s) {
         $http({
@@ -32,7 +56,7 @@ app.controller("GioHangController", function ($rootScope, $scope, $http) {
                 }
             }
             $rootScope.SoLuong = d.data.sl;
-        }, function () { alert("Lỗi"); });
+        }, function (e) { alert("Lỗi"); });
     }
 });
 
@@ -46,7 +70,37 @@ app.controller("HomeController", function ($rootScope, $scope, $http) {
             $rootScope.dsDonHang = d.data.DSDonHang;
             $rootScope.SoLuong = d.data.soluong;
             $rootScope.ThanhTien = d.data.ThanhTien;
-        }, function () { })
+        }, function (e) { })
     }
 
 });
+
+//Phân trang và tim kiếm
+app.controller("SearchController", function ($scope, $rootScope, $http) {
+    $rootScope.maxSize = 3;
+    $rootScope.totalConut = 0;
+    $rootScope.pageIndex = 1;
+    $rootScope.pageSize = 9;
+    $rootScope.searchName = "";
+    $rootScope.GetSanPhamList = function (index) {
+        $htpp.get('/Administrator/QLSanPham/GetSanPhamPT', {
+            params: {
+                pageIndex: index,
+                pageSize: $rootScope.pageSize, productName: $rootScope.searchName
+            }
+        }).then(
+            function (response) {
+                $rootScope.ListSanPham = response.data.SanPhams;
+                $rootScope.totalCount = response.data.totalCount;
+            },
+            function (e) {
+                alert(e);
+            });
+    };
+    $rootScope.GetSanPhamList($rootScope.pageIndex);
+    
+});
+
+
+
+

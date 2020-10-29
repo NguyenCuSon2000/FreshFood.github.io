@@ -40,25 +40,24 @@ namespace WebsiteFreshFood.DataAccess
             }
             return l;
         }
-        //public SanPhamList GetSanPham(int pageIndex, int pageSize)
-        //{
-        //    SanPhamList spl = new SanPhamList(
-        //    List<SanPham> l = new List<SanPham>();
-        //    SqlDataReader dr = dc.StoreReaders("GetSanPhams", pageIndex, pageSize);
-        //    while (dr.Read())
-        //    {
-        //        SanPham s = new SanPham(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
-        //        l.Add(s);
+        public SanPhamList GetSanPham(int pageIndex, int pageSize)
+        {
+            SanPhamList spl = new SanPhamList(); List<SanPham> l = new List<SanPham>();
+            SqlDataReader dr = dc.StoreReaders("GetSanPhams", pageIndex, pageSize);
+            while (dr.Read())
+            {
+                SanPham s = new SanPham(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(),int.Parse(dr[6].ToString()), int.Parse(dr[7].ToString()), int.Parse(dr[8].ToString()), int.Parse(dr[9].ToString()), float.Parse(dr[10].ToString()));
+                l.Add(s);
 
-        //    }
-        //    spl.SanPhams = l;
-        //    dr.NextResult();
-        //    while (dr.Read())
-        //    {
-        //        spl.totalCount = dr["totalCount"].ToString();
-        //    }
-        //    return spl;
-        //}
+            }
+            spl.SanPhams = l;
+            dr.NextResult();
+            while (dr.Read())
+            {
+                spl.totalCount = dr["totalCount"].ToString();
+            }
+            return spl;
+        }
         public string ThemSanPham(SanPham sp)
         {
             string sql = "INSERT into SanPham values('" + sp.MaSP + "','" + sp.TenSP + "','" + sp.MaLoaiSP + "','" +

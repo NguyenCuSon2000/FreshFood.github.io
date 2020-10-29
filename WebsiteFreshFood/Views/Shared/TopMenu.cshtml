@@ -23,16 +23,7 @@
                     <li><a href="LienHe.html" title="Liên hệ">Liên hệ</a></li>
                 </ul>
             </div>
-            <div class="col-md -12 col-sm-4 Search">
-                <div class="search-bar">
-                    <div class="">
-                        <form action="/search">
-                            <input type="hidden" name="type" value="product">
-                            <input type="text" name="q" placeholder="Tìm kiếm..." autocomplete="off">
-                        </form>
-                    </div>
-                </div>
-            </div>
+          @{ Html.RenderAction("Header_Search", "Home");}
         </div>
     </div>
 </nav>

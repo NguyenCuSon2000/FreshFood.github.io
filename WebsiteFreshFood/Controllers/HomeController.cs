@@ -16,6 +16,11 @@ namespace WebsiteFreshFood.Controllers
             return View();
         }
 
+        public PartialViewResult Header_Search()
+        {
+            return PartialView("Header_Search");
+        }
+
         public PartialViewResult TopMenu()
         {
             return PartialView("TopMenu");
@@ -30,6 +35,8 @@ namespace WebsiteFreshFood.Controllers
         {
             return PartialView("GioHang");
         }
+
+       
 
         public JsonResult GetLoaiSanPham()
         {

@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<section class="container content" ng-controller="SanPhamController">
+<section class="container content" >
     <div class="row">
         <div class="col-md-3 col-sm-12 col-xs-12 leftsidebar-col">
             <div class="group_sidebar">
@@ -90,37 +90,35 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9 col-sm-12 col-xs-12">
+        <div class="col-md-9 col-sm-12 col-xs-12" ng-controller="SanPhamController">
             <div class="row">
-                <div class="main-content">
+                <div class="main-content" >
                     <div class="col-md-12 hidden-sm hidden-xs">
                         <div class="sort-collection">
-                            <div class="row">
+                            <div class="row" style="height:65px">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 title">
                                     <h1>Tất cả sản phẩm</h1>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 sort">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 sort">
                                     <div class="browse-tags">
                                         <span>Sắp xếp theo:</span>
                                         <span class="custom-dropdown custom-dropdown--white">
-                                            <select class="sort-by custom-dropdown__select custom-dropdown__select--white">
-                                                <option value="price-ascending">Giá: Tăng dần</option>
-                                                <option value="price-descending">Giá: Giảm dần</option>
-                                                <option value="title-ascending">Tên: A-Z</option>
-                                                <option value="title-descending">Tên: Z-A</option>
-                                                <option value="created-ascending">Cũ nhất</option>
-                                                <option value="created-descending">Mới nhất</option>
-                                                <option value="best-selling">Bán chạy nhất</option>
+                                            <select ng-model="sortcolumn" class="sort-by custom-dropdown__select custom-dropdown__select--white">
+                                                <option value="TenSP">Tên sản phẩm</option>
+                                                <option value="DonGia" selected="selected">Giá bán</option>
                                             </select>
                                         </span>
                                     </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 sort">
+                                    <input type="button" class="btn btn-info" value="{{dr}}" ng-click="Chon(dr)" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 content-product-list">
                         <div class="row product-list">
-                            <div class="col-md-4 col-sm-6 col-xs-12 pro-loop" ng-repeat="s in ListSanPham">
+                            <div class="col-md-4 col-sm-6 col-xs-12 pro-loop" dir-paginate="s in ListSanPham|orderBy:sortcolumn:reverse|itemsPerPage:pageSize" total-items="totalCount">
                                 <div class=" product-img">
                                     <a href=""><img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" title="{{s.TenSP}}"></a>
                                     <div class="actionss">
@@ -141,12 +139,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p><a href="">{{s.TenSP}}</a></p>
-                                <p><span>{{s.DonGia}} VND</span></p>
+                                <p><a href="">{{s.TenSP}} - {{s.DonVi}}</a></p>
+                                <p><span>{{s.DonGia}} VNĐ</span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="col-md-12 col-sm-12 col-xs-12 " ng-controller="SearchController">
+                        <dir-pagination-controls max-size="maxSize"
+                                                 direction-links="true"
+                                                 boundary-links="true"
+                                                 on-page-change="GetSanPhamList(newPageNumber)">
+                        </dir-pagination-controls>
+                    </div>
+                    @*<div class="col-md-12 col-sm-12 col-xs-12 ">
                         <div id="pagination" class="mt-5">
                             <span class="page-node current">1</span>
                             <a href="ThucDonMonBanh2.html" class="page-node">2</a>
@@ -157,7 +162,7 @@
                                 </span>
                             </a>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
@@ -171,4 +176,6 @@
 </section>
 
 <div class="clear-fix"></div>
+
+<script src="~/Scripts/dirPagination.js"></script>
 
