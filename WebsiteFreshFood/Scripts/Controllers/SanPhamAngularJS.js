@@ -1,15 +1,55 @@
-﻿/// <reference path="../angular.js" />
+/// <reference path="../angular.js" />
 var app = angular.module("myApp", ['angularUtils.directives.dirPagination']);
 
-app.controller("SanPhamController", function ($scope, $rootScope, $http) {
 
+//Phân trang và tìm kiếm
+app.controller("PhanTrangController", PhanTrangController);
+function PhanTrangController($scope, $rootScope, $http) {
+
+    $rootScope.maxSize = 3;
+    $rootScope.totalCount = 0;
+    $rootScope.pageIndex = 1;
+    $rootScope.pageSize = 5;
+    $rootScope.searchName = "";
+
+    $rootScope.GetSanPhamList = function (index) {
+        $http.get('/SanPham/GetSanPhamPTLoai', {
+            params: {
+                pageIndex: index,
+                pageSize: $rootScope.pageSize, productName: $rootScope.searchName
+            }
+        }).then(
+            function (response) {
+                $rootScope.ListSanPham = response.data.SanPhams;
+                $rootScope.totalCount = response.data.totalCount;
+            },
+            function (e) {
+                alert(e);
+            });
+    };
+
+    $rootScope.GetSanPhamList($rootScope.pageIndex);
+
+}
+
+//Menu 
+app.controller("MenuController", MenuController);
+function MenuController($scope, $rootScope, $http) {
+    $http.get('/Home/GetLoaiSanPham').then(function (d) {
+        $rootScope.listloai = d.data;
+    }, function (e) { alert("Lỗi lấy loại"); });
+}
+
+
+app.controller("SanPhamController", SanPhamController);
+function SanPhamController($scope, $rootScope, $http) {
     //Danh sách sản phẩm
     $http.get('/SanPham/GetSanPham').then(function (d) {
         $rootScope.ListSanPham = d.data;
     }, function (error) { alert('Failed'); });
 
     //Sắp xếp dữ liệu
-    $rootScope.sortcolumn = "DonGia";
+    $rootScope.sortcolumn = "TenSP";
     $rootScope.reverse = true;
     $rootScope.dr = "Ascending";
 
@@ -24,20 +64,17 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http) {
         }
     };
 
-    
-});
+   
+}
 
 
-//Menu 
-app.controller("MenuController", function ($scope, $rootScope, $http) {
-    $http.get('/Home/GetLoaiSanPham').then(function (d) {
-        $rootScope.listloai = d.data;
-    }, function (e) { alert("Lỗi lấy loại"); })
-});
+
+
 
 
 //Giỏ hàng
-app.controller("GioHangController", function ($rootScope, $scope, $http) {
+app.controller("GioHangController", GioHangController);
+function GioHangController($rootScope, $scope, $http) {
     $rootScope.AddCart = function (s) {
         $http({
             method: 'POST',
@@ -58,10 +95,10 @@ app.controller("GioHangController", function ($rootScope, $scope, $http) {
             $rootScope.SoLuong = d.data.sl;
         }, function (e) { alert("Lỗi"); });
     }
-});
+}
 
-
-app.controller("HomeController", function ($rootScope, $scope, $http) {
+app.controller("HomeController", HomeController);
+function HomeController($rootScope, $scope, $http) {
     $rootScope.dsDonHang = null;
     $http.get("/Home/GetLoaiSanPham").then(function (d) { }, function (e) { });
 
@@ -73,34 +110,7 @@ app.controller("HomeController", function ($rootScope, $scope, $http) {
         }, function (e) { })
     }
 
-});
-
-//Phân trang và tim kiếm
-app.controller("SearchController", function ($scope, $rootScope, $http) {
-    $rootScope.maxSize = 3;
-    $rootScope.totalConut = 0;
-    $rootScope.pageIndex = 1;
-    $rootScope.pageSize = 9;
-    $rootScope.searchName = "";
-    $rootScope.GetSanPhamList = function (index) {
-        $htpp.get('/Administrator/QLSanPham/GetSanPhamPT', {
-            params: {
-                pageIndex: index,
-                pageSize: $rootScope.pageSize, productName: $rootScope.searchName
-            }
-        }).then(
-            function (response) {
-                $rootScope.ListSanPham = response.data.SanPhams;
-                $rootScope.totalCount = response.data.totalCount;
-            },
-            function (e) {
-                alert(e);
-            });
-    };
-    $rootScope.GetSanPhamList($rootScope.pageIndex);
-    
-});
-
+}
 
 
 

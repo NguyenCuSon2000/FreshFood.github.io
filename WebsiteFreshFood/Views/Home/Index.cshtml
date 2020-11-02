@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript" src="~/Scripts/dirPagination.js"></script>
+
 @{Html.RenderAction("SlideShow", "Home"); }
 
 <!-- PHẦN NỘI DUNG -->
@@ -332,7 +334,9 @@
                 </div>
             </article>
             <article class="XemThem">
-                <a href=""><button class="btn-outline-success btn-lg">Xem Thêm</button></a>
+                <a href="">
+                <button class="btn-outline-success btn-lg">Xem Thêm</button>
+                </a>
             </article>
         </div>
 
@@ -463,7 +467,7 @@
     </div>
     <!-- SCROLL TO TOP -->
     <div class="Scroll">
-        <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop();return false">
+        <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop(); return false">
             <i class="fas fa-arrow-alt-circle-up"></i>
         </a>
     </div>

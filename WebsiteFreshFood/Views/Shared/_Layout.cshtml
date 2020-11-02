@@ -9,8 +9,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="~/Content/Site.css">
-
     <link rel="stylesheet" href="~/font/fontawesome-free-5.13.0/css/all.min.css">
+    <script src="~/Scripts/script.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/Controllers/SanPhamAngularJS.js"></script>
+    <script src="~/Scripts/dirPagination.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <script async type="text/javascript" src="https://panel.chatcompose.com/static/EN/global/export/js\main.dec259c7.js" user="SonNguyen"></script>
 </head>
@@ -35,6 +38,8 @@
             </div>
         </div>
         <div style="border-bottom: 1px solid #ebebeb; width: 100%;"></div>
+
+        
 
         @{ Html.RenderAction("TopMenu", "Home");}
 
@@ -193,10 +198,7 @@
         </div>
     </footer>
 
-    <script src="~/Scripts/script.js"></script>
-    <script src="~/Scripts/angular.min.js"></script>
-    <script src="~/Scripts/Controllers/SanPhamAngularJS.js"></script>
-    <script src="~/Scripts/dirPagination.js"></script>
+   
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

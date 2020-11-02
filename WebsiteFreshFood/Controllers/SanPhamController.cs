@@ -25,5 +25,15 @@ namespace WebsiteFreshFood.Controllers
             //List<SanPham> lsp = spbus.LaySP("Lẩu");
             return Json(lsp, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetSanPhamPTLoai(int pageIndex, int pageSize, string productName)
+        {
+            if (Session["maloai"] == null)
+            {
+                Session.Add("maloai", "FreshFood");
+            }
+            SanPhamList spl = spbus.LaySanPhamPT(Session["maloai"].ToString(), pageIndex, pageSize, productName);
+            return Json(spl, JsonRequestBehavior.AllowGet);
+        }
     }
 }
