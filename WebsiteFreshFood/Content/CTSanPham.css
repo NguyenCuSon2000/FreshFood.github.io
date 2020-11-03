@@ -38,7 +38,7 @@
     max-width: 100%;
     overflow: hidden;
     margin-left: 2px;
-    border-radius: 0px;
+    /*border-radius: 0px;*/
 }
 
     .custom-dropdown::after {
@@ -249,7 +249,7 @@ p {
 .content .list-like .actionss {
     width: 100%;
     position: absolute;
-    text-align: top;
+    /*text-align: ;*/
     top: 140px;
     display: flex;
     display: flex;

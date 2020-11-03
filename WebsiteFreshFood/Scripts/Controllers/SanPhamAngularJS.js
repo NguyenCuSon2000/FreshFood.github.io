@@ -9,7 +9,7 @@ function PhanTrangController($scope, $rootScope, $http) {
     $rootScope.maxSize = 3;
     $rootScope.totalCount = 0;
     $rootScope.pageIndex = 1;
-    $rootScope.pageSize = 5;
+    $rootScope.pageSize = 9;
     $rootScope.searchName = "";
 
     $rootScope.GetSanPhamList = function (index) {
@@ -63,8 +63,17 @@ function SanPhamController($scope, $rootScope, $http) {
             $rootScope.dr = "Ascending";
         }
     };
+}
 
-   
+
+
+app.controller("CTSanPhamController", CTSanPhamController);
+function CTSanPhamController($scope, $rootScope, $http) {
+    //Danh sách sản phẩm
+    $http.get('/CTSanPham/GetCTSanPham').then(function (d) {
+        $rootScope.CTSanPham = d.data;
+    }, function (error) { alert('Failed'); });
+
 }
 
 

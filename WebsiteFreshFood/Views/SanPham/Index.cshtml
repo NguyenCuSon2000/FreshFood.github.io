@@ -117,9 +117,11 @@
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 content-product-list">
                         <div class="row product-list">
-                            <div class="col-md-4 col-sm-6 col-xs-12 pro-loop" dir-paginate="s in ListSanPham|orderBy:sortcolumn:reverse|itemsPerPage:pageSize" total-items="totalCount">
+                            <div class="col-md-4 col-sm-6 col-xs-12 pro-loop" ng-repeat="s in ListSanPham|orderBy:sortcolumn:reverse">
                                 <div class=" product-img">
-                                    <a href=""><img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" title="{{s.TenSP}}"></a>
+                                    <a href="/CTSanPham/Index?masp={{s.MaSP}}">
+                                         <img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" title="{{s.TenSP}}">
+                                    </a>
                                     <div class="actionss">
                                         <div class="btn-cart-products" ng-click="AddCart(s)">
                                             <a href="#" title="Add to Cart" data-name="{{s.TenSP}} - {{s.DonVi}}" data-price="{{s.DonGia}}" data-image="{{s.MaLoaiSP}}/{{s.HinhAnh}}">
@@ -138,7 +140,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p><a href="">{{s.TenSP}} - {{s.DonVi}}</a></p>
+                                <p><a href="/CTSanPham/Index?masp={{s.MaSP}}" title="{{s.TenSP}}">{{s.TenSP}} - {{s.DonVi}}</a></p>
                                 <p><span>{{s.DonGia}} VNĐ</span></p>
                             </div>
                         </div>
@@ -159,7 +161,7 @@
             </div>
         </div>
     </div>
-    <div class="row" ng-controller="PhanTrangController">
+    <div class="row" >
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div id="pagination" class="mt-5">
                 <dir-pagination-controls max-size="maxSize"

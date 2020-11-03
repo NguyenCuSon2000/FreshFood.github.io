@@ -124,6 +124,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Bussiness\QLLoaiSanPhamBus.cs" />
     <Compile Include="Bussiness\QLSanPhamBus.cs" />
+    <Compile Include="Controllers\CTSanPhamController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
@@ -4560,6 +4561,7 @@
     <Content Include="Views\GioHang\Index.cshtml" />
     <Content Include="Views\Shared\Header_Search.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\CTSanPham\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
