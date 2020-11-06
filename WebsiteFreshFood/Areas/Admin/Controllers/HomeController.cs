@@ -14,6 +14,9 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             return View();
         }
 
-
+        public PartialViewResult LeftMenu()
+        {
+            return PartialView("LeftMenu");
+        }
     }
 }

@@ -21,13 +21,13 @@ namespace WebsiteFreshFood.Models
 
         public float SoLuong { get; set; }
 
-        public float DonGia { get; set; }
+        public double DonGia { get; set; }
 
         public float GiamGia { get; set; }
 
         public CTDonHang() { }
         
-        public CTDonHang(int maCTDonDatHang, string maDonHang, string maSP, float soLuong, float donGia, float giamGia)
+        public CTDonHang(int maCTDonDatHang, string maDonHang, string maSP, float soLuong, double donGia, float giamGia)
         {
             this.MaCTDonDatHang = maCTDonDatHang;
             this.MaDonHang = maDonHang;

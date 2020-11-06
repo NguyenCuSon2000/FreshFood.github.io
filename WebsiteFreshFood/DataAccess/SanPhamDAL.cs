@@ -49,26 +49,33 @@ namespace WebsiteFreshFood.DataAccess
             }
             return l;
         }
-        //public SanPhamList GetSanPham(string maloai, int pageIndex, int pageSize, string productName)
-        //{
-        //    SanPhamList spl = new SanPhamList();
-        //    List<SanPham> l = new List<SanPham>();
-        //    SqlDataReader dr = dc.StoreReaders("GetSanPhams", maloai, pageIndex, pageSize, productName);
-        //    while (dr.Read())
-        //    {
-        //        SanPham s = new SanPham(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
-        //            dr[4].ToString(), dr[5].ToString(), int.Parse(dr[6].ToString()), int.Parse(dr[7].ToString()),
-        //            int.Parse(dr[8].ToString()), int.Parse(dr[9].ToString()), float.Parse(dr[10].ToString()));
-        //        l.Add(s);
-        //    }
-        //    spl.SanPhams = l;
-        //    dr.NextResult();
-        //    while (dr.Read())
-        //    {
-        //        spl.totalCount = dr["totalCount"].ToString();
-        //    }
-        //    return spl;
-        //}
+        public SanPhamList GetSanPham(string maloai, int pageIndex, int pageSize, string productName)
+        {
+            SanPhamList spl = new SanPhamList();
+            List<SanPham> l = new List<SanPham>();
+            SqlDataReader dr = dc.StoreReaders("GetSanPhams", maloai, pageIndex, pageSize, productName);
+            while (dr.Read())
+            {
+                SanPham s = new SanPham(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
+                    dr[4].ToString(), dr[5].ToString(), int.Parse(dr[6].ToString()), int.Parse(dr[7].ToString()),
+                    int.Parse(dr[8].ToString()), int.Parse(dr[9].ToString()), double.Parse(dr[10].ToString()));
+                l.Add(s);
+            }
+            spl.SanPhams = l;
+            dr.NextResult();
+            while (dr.Read())
+            {
+                spl.totalCount = dr["totalCount"].ToString();
+            }
+            return spl;
+        }
+      
+        public List<SanPham> GetAllSanPham()
+        {
+            DataTable dt = dc.GetDataTable("select * from SanPham");
+            return ToList(dt);
+        }
+
         public string ThemSanPham(SanPham sp)
         {
             string sql = "INSERT into SanPham values('" + sp.MaSP + "','" + sp.TenSP + "','" + sp.MaLoaiSP + "','" +
@@ -77,11 +84,6 @@ namespace WebsiteFreshFood.DataAccess
             return dc.ExcuteNonQuery(sql);
         }
 
-        public List<SanPham> GetAllSanPham()
-        {
-            DataTable dt = dc.GetDataTable("select * from SanPham");
-            return ToList(dt);
-        }
         public string XoaSanPham(string id)
         {
             string st = "delete from SanPham where masp='" + id + "'";

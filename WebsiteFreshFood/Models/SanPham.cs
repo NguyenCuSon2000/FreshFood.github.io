@@ -37,11 +37,11 @@ namespace WebsiteFreshFood.Models
 
         public int SoLanMua { get; set; }
 
-        public float DonGia { get; set; }
+        public double DonGia { get; set; }
 
 
         public SanPham() { }
-        public SanPham(string masp, string tensp, string maloaisp, string donvi, string mota, string hinhanh, int soluongton, int luotxem, int luotbinhluan, int solanmua, float dongia)
+        public SanPham(string masp, string tensp, string maloaisp, string donvi, string mota, string hinhanh, int soluongton, int luotxem, int luotbinhluan, int solanmua, double dongia)
         {
             this.MaSP = masp; this.TenSP = tensp; this.MaLoaiSP = maloaisp;
             this.DonVi = donvi; this.MoTa = mota; this.HinhAnh = hinhanh;
