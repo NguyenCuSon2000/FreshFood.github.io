@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebsiteFreshFood.Bussiness;
 using WebsiteFreshFood.Models;
+using System.IO;
 
 namespace WebsiteFreshFood.Areas.Admin.Controllers
 {
@@ -51,6 +52,21 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             return Json(st, JsonRequestBehavior.AllowGet);
         }
 
-        
+        public JsonResult Upload(string maloai)
+        {
+            List<string> l = new List<string>();
+            string path = Server.MapPath("~/img/" + maloai + "/");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            foreach(string key in Request.Files)
+            {
+                HttpPostedFileBase pf = Request.Files[key];
+                pf.SaveAs(path + pf.FileName);
+                l.Add(pf.FileName);
+            }
+            return Json(l, JsonRequestBehavior.AllowGet);
+        }
     }
 }

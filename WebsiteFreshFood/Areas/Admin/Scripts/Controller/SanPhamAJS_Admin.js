@@ -1,5 +1,5 @@
 ﻿/// <reference path="../angular.js" />
-var app = angular.module("myApp", ['angularUtils.directives.dirPagination']);
+var app = angular.module("myApp", ['angularUtils.directives.dirPagination','ngFileUpload']);
 
 // Hiển thị sản phẩm và phân trang
 app.controller("SanPhamController", function ($scope,$rootScope, $http) {
@@ -33,7 +33,8 @@ app.controller("SanPhamController", function ($scope,$rootScope, $http) {
             }).then(function (d) {
                 if (d.data == "") {
                     var index = $scope.ListSanPham;
-                    for (var i = 0; i < $scope.ListSanPham.length; i++) { //Sửa thành công thì tiến hành sửa trên $scope
+                    for (var i = 0; i < $scope.ListSanPham.length; i++)
+                    { //Sửa thành công thì tiến hành sửa trên $scope
                         if ($scope.ListSanPham[i].MaSP == $scope.s.MaSP) {
                             $scope.ListSanPham[i].TenSP == $scope.s.TenSP;
                             $scope.ListSanPham[i].MaLoaiSP == $scope.s.MaLoaiSP;
@@ -70,7 +71,18 @@ app.controller("SanPhamController", function ($scope,$rootScope, $http) {
         }
     };
 
-
+    $scope.UploadFiles = function (file, kieu) {
+        $scope.SelectedFiles = file;
+        if ($scope.SelectedFiles && $scope.SelectedFiles.length) {
+            Upload.upload({
+                url: 'Admin/QLSanPham/Upload',
+                data: { file: $scope.SelectedFiles, maloai: $scope.s.MaLoaiSP }
+            }).then(function (d) {
+                if (kieu == 'Anh') { $scope.s.HinhAnh = d.data[0]; }
+                else { $scope.s.HinhAnh = d.data[0]; }
+            }, function (e) { alert("Lỗi"); });
+        }
+    }
     //$scope.totalCount = 0;
     //$scope.maxSize = 3;
     //$scope.pageIndex = 1;
