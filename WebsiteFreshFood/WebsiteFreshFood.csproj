@@ -122,23 +122,37 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QLHoaDonNhapController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QLKhachHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QLNhaCungCapController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLSanPhamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QLTinTucController.cs" />
+    <Compile Include="Bussiness\QLKhachHangBus.cs" />
     <Compile Include="Bussiness\QLLoaiSanPhamBus.cs" />
+    <Compile Include="Bussiness\QLNhaCungCapBus.cs" />
     <Compile Include="Bussiness\QLSanPhamBus.cs" />
     <Compile Include="Controllers\CTSanPhamController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="DataAccess\DataHelper.cs" />
+    <Compile Include="DataAccess\HoaDonNhapDAL.cs" />
+    <Compile Include="DataAccess\KhachHangDAL.cs" />
     <Compile Include="DataAccess\LoaiSanPhamDAL.cs" />
+    <Compile Include="DataAccess\NhaCungCapDAL.cs" />
     <Compile Include="DataAccess\SanPhamDAL.cs" />
+    <Compile Include="DataAccess\TinTucDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CTDonHang.cs" />
+    <Compile Include="Models\HoaDonNhap.cs" />
+    <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\LoaiSanPham.cs" />
+    <Compile Include="Models\NhaCungCap.cs" />
     <Compile Include="Models\SanPham.cs" />
     <Compile Include="Models\SanPhamList.cs" />
+    <Compile Include="Models\TinTuc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -3788,6 +3802,8 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Areas\Admin\Views\QLSanPham\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\LeftMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\QLKhachHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QLNhaCungCap\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\FileAPI.flash.swf" />
     <Content Include="Scripts\FileAPI.js" />
@@ -4580,6 +4596,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\QLHoaDonNhap\" />
+    <Folder Include="Areas\Admin\Views\QLTinTuc\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

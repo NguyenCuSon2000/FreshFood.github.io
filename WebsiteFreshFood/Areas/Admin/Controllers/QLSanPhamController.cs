@@ -41,17 +41,19 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             string res = qlsp.ThemSanPham(s);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
         public JsonResult Update(SanPham s)
         {
             string res = qlsp.SuaSanPham(s);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
         public JsonResult Delete(string id)
         {
             string st = qlsp.XoaSanPham(id);
             return Json(st, JsonRequestBehavior.AllowGet);
         }
-
+        [HttpPost]
         public JsonResult Upload(string maloai)
         {
             List<string> l = new List<string>();

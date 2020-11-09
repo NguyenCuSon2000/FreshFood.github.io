@@ -2,7 +2,7 @@
 var app = angular.module("myApp", ['angularUtils.directives.dirPagination','ngFileUpload']);
 
 // Hiển thị sản phẩm và phân trang
-app.controller("SanPhamController", function ($scope,$rootScope, $http) {
+app.controller("SanPhamController", function ($scope,$rootScope, $http, Upload, $timeout, $document) {
 
     //Danh sách sản phẩm
     $http.get('/Admin/QLSanPham/GetSanPham').then(function (d) {
@@ -36,12 +36,12 @@ app.controller("SanPhamController", function ($scope,$rootScope, $http) {
                     for (var i = 0; i < $scope.ListSanPham.length; i++)
                     { //Sửa thành công thì tiến hành sửa trên $scope
                         if ($scope.ListSanPham[i].MaSP == $scope.s.MaSP) {
-                            $scope.ListSanPham[i].TenSP == $scope.s.TenSP;
-                            $scope.ListSanPham[i].MaLoaiSP == $scope.s.MaLoaiSP;
-                            $scope.ListSanPham[i].DonVi == $scope.s.DonVi;
-                            $scope.ListSanPham[i].MoTa == $scope.s.MoTa;
-                            $scope.ListSanPham[i].HinhAnh == $scope.s.HinhAnh;
-                            $scope.ListSanPham[i].DonGia == $scope.s.DonGia;
+                            $scope.ListSanPham[i].TenSP = $scope.s.TenSP;
+                            $scope.ListSanPham[i].MaLoaiSP = $scope.s.MaLoaiSP;
+                            $scope.ListSanPham[i].DonVi = $scope.s.DonVi;
+                            $scope.ListSanPham[i].MoTa = $scope.s.MoTa;
+                            $scope.ListSanPham[i].HinhAnh = $scope.s.HinhAnh;
+                            $scope.ListSanPham[i].DonGia = $scope.s.DonGia;
                             break;
                         }
                     }
@@ -106,6 +106,23 @@ app.controller("SanPhamController", function ($scope,$rootScope, $http) {
     //};
     //$scope.GetSanPhamList($scope.pageIndex);
 });
+
+
+app.controller("KhachHangController", KhachHangController);
+function KhachHangController($scope, $rootScope, $http, Upload, $timeout, $document) {
+    //Danh sách khách hàng
+    $http.get('/Admin/QLKhachHang/GetKhachHang').then(function (d) {
+        $rootScope.ListKhachHang = d.data;
+    }, function (error) { alert('Failed'); });
+}
+
+app.controller("NCCController", NCCController);
+function NCCController($scope, $rootScope, $http, Upload, $timeout, $document) {
+    //Danh sách nhà cung cấp
+    $http.get('/Admin/QLNhaCungCap/GetNhaCungCap').then(function (d) {
+        $rootScope.ListNhaCungCap = d.data;
+    }, function (error) { alert('Failed'); });
+}
 
 
 

@@ -160,6 +160,29 @@ Insert into SanPham values('SP023',N'Xoài Tứ Quý', 'Rau',N'1 hộp', N'Trong
 Insert into SanPham values('SP024',N'Thanh Long Ruột Đỏ', 'Rau',N'1 quả', N'Thanh long là một loại trái cây mềm, có vị ngon ngọt, mát bổ, được nhiều người yêu thích. Thực phẩm thường được dùng làm món tráng miệng, mời khách hay làm sinh tố, nước giải khát uống hàng ngày. ','ThanhLongRuotDo.jpg.jpg',10,20,30,10,10000)
 Insert into SanPham values('SP026',N'Ớt Sừng Đà Lạt', 'Rau',N'1 hộp', N'Ớt sừng đỏ Đà Lạt là loại quả làm gia vị cũng như loại quả được trồng phổ biến tại Đà Lạt do khí hậu thích hợp. Quả ớt sừng tròn dài, có màu sắc tươi và có vị cay đặc trưng. ','OtSungDaLat.jpg',10,20,30,10,50000)
 
+Insert into KhachHang values('KH01',N'Nguyễn Thị Mai',N'Văn Lâm - Hưng Yên','0987675645','mainguyen@gmail.com')
+Insert into KhachHang values('KH02',N'Nguyễn Văn Anh',N'Yên Mỹ - Hưng Yên','0986545674','anhnguyen@gmail.com')
+Insert into KhachHang values('KH03',N'Trần Thế Thái',N'Kim Động - Hưng Yên','0987321456','thethai2k@gmail.com')
+Insert into KhachHang values('KH04',N'Cao Văn Linh',N'Văn Lâm - Hưng Yên','0956456763','linhhy@gmail.com')
+Insert into KhachHang values('KH05',N'Đinh Trọng Nghĩa',N'Ân Thi - Hưng Yên','0985453456','trongnghia@gmail.com')
+Insert into KhachHang values('KH06',N'Trần Thị Yến Ninh',N'Văn Lâm - Hưng Yên','0876785465','yenninh@gmail.com')
+Insert into KhachHang values('KH07',N'Ngô Văn Thịnh',N'Gia Lộc - Hải Dương','0987675432','ngothinh@gmail.com')
+Insert into KhachHang values('KH08',N'Khúc Chí Thiện',N'Trâu Quỳ - Hà Nội','0987678546','chithien@gmail.com')
+Insert into KhachHang values('KH09',N'Lý Cao Thượng',N'Thái Thụy - Thái Bình','0987867542','lythuong@gmail.com')
+Insert into KhachHang values('KH010',N'Triệu Thái Sơn',N'Từ Sơn - Bắc Ninh','0978654321','thaison@gmail.com')
+
+Insert into NhaCungCap values('NCC01',N'Nguyễn Thị Mai',N'Văn Lâm - Hưng Yên','0943243546','mainguyen@gmail.com','+84 (8) 3823 3318')
+Insert into NhaCungCap values('NCC02',N'Nguyễn Văn Anh',N'Yên Mỹ - Hưng Yên','0986678674','anhnguyen@gmail.com','+84 (8) 4745 3320')
+Insert into NhaCungCap values('NCC03',N'Trần Thế Thái',N'Kim Động - Hưng Yên','0956221456','thethai2k@gmail.com','+84 (4) 3213 4018')
+Insert into NhaCungCap values('NCC04',N'Cao Văn Linh',N'Văn Lâm - Hưng Yên','0989256763','linhhy@gmail.com','+84 (2) 3123 8318')
+Insert into NhaCungCap values('NCC05',N'Đinh Trọng Nghĩa',N'Ân Thi - Hưng Yên','0945853456','trongnghia@gmail.com','+84 (2) 3833 3328')
+Insert into NhaCungCap values('NCC06',N'Trần Thị Yến Ninh',N'Văn Lâm - Hưng Yên','0876788905','yenninh@gmail.com','+84 (8) 3123 3318')
+Insert into NhaCungCap values('NCC07',N'Ngô Văn Thịnh',N'Gia Lộc - Hải Dương','0981235432','ngothinh@gmail.com','0981235432')
+Insert into NhaCungCap values('NCC08',N'Khúc Chí Thiện',N'Trâu Quỳ - Hà Nội','0984578546','chithien@gmail.com','+84 (8) 1825 3318')
+Insert into NhaCungCap values('NCC09',N'Lý Cao Thượng',N'Thái Thụy - Thái Bình','0987477542','lythuong@gmail.com','+84 (8) 3824 3918')
+Insert into NhaCungCap values('NCC010',N'Triệu Thái Sơn',N'Từ Sơn - Bắc Ninh','0974554321','thaison@gmail.com','+84 (8) 3424 3318')
+
+
 USE [DA3_QuanLyFreshFood]
 Go
 Create PROCEDURE GetSanPhams(

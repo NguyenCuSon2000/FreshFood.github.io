@@ -30,7 +30,7 @@ function PhanTrangController($scope, $rootScope, $http) {
 
     $rootScope.GetSanPhamList($rootScope.pageIndex);
 
-}
+};
 
 //Menu 
 app.controller("MenuController", MenuController);
