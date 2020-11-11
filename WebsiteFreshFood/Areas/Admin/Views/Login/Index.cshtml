@@ -1,0 +1,80 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/assets/admin/dist/css/Login.css">
+    <script>
+        // Kiểm tra email
+        function checkEmail_Onblur() {
+            mail = formLogin.email.value;
+            var loiEmail = document.getElementById("IDemail");
+            var filter = /^([a-zA-Z0-9_\.\-])+\(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            kq = filter.test(mail);
+            if (mail == "") {
+                loiEmail.innerHTML = "Email không được bỏ trống !";
+                formLogin.email.focus();
+                return;
+            }
+            loiEmail.innerHTML = "";
+
+            if (!kq) {
+                loiEmail.innerHTML = "Hãy nhập địa chỉ email hợp lệ.\nExample@gmail.com";
+                formLienHe.email.focus();
+                return;
+            }
+            loiEmail.innerHTML = "";
+
+        }
+    </script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Areas/Admin/Scripts/Controller/LoginAJS.js"></script>
+    <script src=" https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body ng-app="myLogin">
+    <div class="bg-img" ng-controller="LoginController">
+        <div class="content">
+            <header>Login Form</header>
+            <form action="#" name="formLogin" id="formLogin">
+                <div class="field">
+                    <span class="fa fa-user"></span>
+                    <input ng-model="US" type="text" required="" id="email" name="email" placeholder="Email" onblur="checkEmail_Onblur();">
+                </div>
+                <span id="IDemail" style="color:#FF0000; font-size:18px"></span>
+                <div class="field space">
+                    <span class="fa fa-lock"></span>
+                    <input ng-model="PW" type="password" id="password" class="pass-key" required="" placeholder="Password">
+                </div>
+                <div class="pass">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <div class="field">
+                    <input ng-click="Login(US,PW)" type="submit" value="LOGIN">
+                </div>
+            </form>
+            <div class="login">
+                Or login with
+            </div>
+            <div class="links">
+                <div class="facebook">
+                    <i class="fab fa-facebook-f"><span>Facebook</span></i>
+                </div>
+                <div class="google">
+                    <i class="fab fa-google"><span>Google</span></i>
+                </div>
+            </div>
+            <div class="signup">
+                Don't have account?
+                <a href="SignUp.html">Signup Now</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

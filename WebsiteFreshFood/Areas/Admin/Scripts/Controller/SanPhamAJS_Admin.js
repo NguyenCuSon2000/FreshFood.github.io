@@ -9,17 +9,20 @@ app.controller("SanPhamController", function ($scope,$rootScope, $http, Upload, 
         $rootScope.ListSanPham = d.data;
     }, function (error) { alert('Failed'); });
 
+    $http.get('/Admin/QLSanPham/GetLoaiSanPham').then(function (d) {
+        $rootScope.listloai = d.data;
+    }, function (e) { alert("Lỗi lấy loại"); });
+     
+    $scope.Them = function () {
+        $scope._function = "Thêm sản phẩm";
+        $scope.buttext = "Save";
+        $scope.s = null;
+    };
 
-    $scope.XoaSanPham = function (s) {
-        $http({
-            method: 'Post',
-            url: '/Admin/QLSanPham/Delete',
-            datatype: 'Json',
-            data: { id: s.MaSP }
-        }).then(function (d) {
-            var vt = $scope.ListSanPham.indexOf(s);
-            $scope.ListSanPham.splice(vt, 1);
-        }, function (e) { alert(e) });
+    $scope.Sua = function (s) {
+        $scope._function = "Sửa sản phẩm";
+        $scope.buttext = "Save changes";
+        $scope.sp = s;
     };
 
     $scope.Save = function () {
@@ -69,6 +72,18 @@ app.controller("SanPhamController", function ($scope,$rootScope, $http, Upload, 
                 alert("Lỗi nhập...!");
             });
         }
+    };
+
+    $scope.XoaSanPham = function (s) {
+        $http({
+            method: 'Post',
+            url: '/Admin/QLSanPham/Delete',
+            datatype: 'Json',
+            data: { id: s.MaSP }
+        }).then(function (d) {
+            var vt = $scope.ListSanPham.indexOf(s);
+            $scope.ListSanPham.splice(vt, 1);
+        }, function (e) { alert(e) });
     };
 
     $scope.UploadFiles = function (file, kieu) {
@@ -123,6 +138,9 @@ function NCCController($scope, $rootScope, $http, Upload, $timeout, $document) {
         $rootScope.ListNhaCungCap = d.data;
     }, function (error) { alert('Failed'); });
 }
+
+
+
 
 
 

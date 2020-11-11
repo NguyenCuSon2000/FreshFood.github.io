@@ -36,7 +36,7 @@
                                     <div class="col-md-4">
                                         <button type="submit" class="btn btn-success">Tìm kiếm</button>
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
+                                        <button ng-click="Them()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
                                             Thêm mới
                                         </button>
                                     </div>
@@ -68,7 +68,7 @@
                                         <td><img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" /></td>
                                         <td>{{s.DonGia}} VNĐ</td>
                                         <td>
-                                            <a ng-click="Save()" data-toggle="modal" data-target="#modelId" href="">Sửa</a>
+                                            <a ng-click="Sua(s)" data-toggle="modal" data-target="#modelId" href="">Sửa</a>
                                             |
                                             <a ng-click="XoaSanPham(s)" href="">Xoá</a>
                                         </td>
@@ -102,36 +102,34 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Thêm sản phẩm</h5>
+                    <h5 class="modal-title" ng-model="_function">{{_function}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="">Mã sản phẩm</label>
-                        <input type="text" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="">Tên sản phẩm</label>
-                        <input type="text" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <label for="ma">Mã sản phẩm</label>
+                        <input ng-model="s.MaSP" type="text" id="ma" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <label for="name">Tên sản phẩm</label>
+                        <input ng-model="s.TenSP" type="text" id="name" class="form-control" name="" aria-describedby="helpId" placeholder="">
                         <label for="">Mã loại</label>
-                        <select class="form-control" name="" id="">
-                            <option>FreshFood</option>
-                            <option>Rau</option>
-                            <option></option>
+                        <select ng-model="s.MaLoaiSP" class="form-control" name="" id="">
+                            <option ng-repeat="s in listloai">{{s.TenLoai}}</option>
                         </select>
-                        <label for="">Đơn vị</label>
-                        <input type="text" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="">Mô tả</label>
-                        <input type="text" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="">Hình ảnh</label>
-                        <input type="file" class="form-control" name=""  aria-describedby="helpId" placeholder="" ng-select="UploadFiles($files,'HinhAnh')">
-                        <label for="">Đơn giá</label>
-                        <input type="text" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <label for="Unit">Đơn vị</label>
+                        <input ng-model="s.DonVi" type="text" id="Unit" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <label for="Describe">Mô tả</label>
+                        <input ng-model="s.MoTa" type="text" id="Describe" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <label for="image">Hình ảnh</label>
+                        <input type="file" id="image" class="form-control" name=""  aria-describedby="helpId" placeholder="" ng-select="UploadFiles($files,'HinhAnh')">
+                        <label for="price">Đơn giá</label>
+                        <input ng-model="s.DonGia" type="number" id="price" class="form-control" name="" aria-describedby="helpId" placeholder="">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button ng-click="Save()" type="button" value="Save" class="btn btn-primary">Save</button>
+                    <button ng-click="Save()" type="button" class="btn btn-primary">{{buttext}}</button>
                 </div>
             </div>
         </div>

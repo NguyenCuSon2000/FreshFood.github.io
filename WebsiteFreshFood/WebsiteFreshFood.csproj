@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLHoaDonNhapController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLKhachHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLNhaCungCapController.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Bussiness\QLLoaiSanPhamBus.cs" />
     <Compile Include="Bussiness\QLNhaCungCapBus.cs" />
     <Compile Include="Bussiness\QLSanPhamBus.cs" />
+    <Compile Include="Bussiness\LoginBus.cs" />
     <Compile Include="Controllers\CTSanPhamController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -142,6 +144,7 @@
     <Compile Include="DataAccess\NhaCungCapDAL.cs" />
     <Compile Include="DataAccess\SanPhamDAL.cs" />
     <Compile Include="DataAccess\TinTucDAL.cs" />
+    <Compile Include="DataAccess\UserDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -153,10 +156,12 @@
     <Compile Include="Models\SanPham.cs" />
     <Compile Include="Models\SanPhamList.cs" />
     <Compile Include="Models\TinTuc.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Scripts\angular.js" />
+    <Content Include="Areas\Admin\Scripts\Controller\LoginAJS.js" />
     <Content Include="Areas\Admin\Scripts\Controller\SanPhamAJS_Admin.js" />
     <Content Include="assets\admin\bower_components\bootstrap-social\.gitignore" />
     <Content Include="assets\admin\bower_components\bootstrap-social\bootstrap-social.css" />
@@ -590,6 +595,7 @@
     <Content Include="assets\admin\bower_components\raphael\raphael-min.js" />
     <Content Include="assets\admin\bower_components\raphael\raphael.js" />
     <Content Include="assets\admin\dist\css\FreshFood_Admin.css" />
+    <Content Include="assets\admin\dist\css\Login.css" />
     <Content Include="assets\admin\dist\css\timeline.css" />
     <Content Include="assets\admin\dist\js\sb-admin-2.js" />
     <Content Include="assets\admin\js\controller\userController.js" />
@@ -3804,6 +3810,7 @@
     <Content Include="Areas\Admin\Views\Shared\LeftMenu.cshtml" />
     <Content Include="Areas\Admin\Views\QLKhachHang\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QLNhaCungCap\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\FileAPI.flash.swf" />
     <Content Include="Scripts\FileAPI.js" />

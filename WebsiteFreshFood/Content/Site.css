@@ -465,7 +465,7 @@ section.content article div.KhuyenMai p {
         font-weight: 700;
     }
 
-.content input[type="button"] {
+/*.content input[type="button"] {
     width: 100px;
     height: 50px;
     margin: 10px 5px 60px;
@@ -477,12 +477,12 @@ section.content article div.KhuyenMai p {
     font-weight: 700;
     font-size: 16px;
     outline: none;
-}
+}*/
 
-.button input:hover {
+/*.button input:hover {
     background-color: red;
     cursor: pointer;
-}
+}*/
 
 section.content article div.San-Pham p span,
 section.content article div.Moi p span,

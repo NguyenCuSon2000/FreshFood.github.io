@@ -25,6 +25,13 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             return Json(lsp, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetLoaiSanPham()
+        {
+            QLLoaiSanPhamBus bl = new QLLoaiSanPhamBus();
+            List<LoaiSanPham> ll = bl.LayLoaiSanPham();
+            return Json(ll, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetSanPhamPT(int pageIndex, int pageSize, string productName)
         {
             if (Session["maloai"] == null)
