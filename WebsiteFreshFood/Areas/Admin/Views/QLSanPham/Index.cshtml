@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -102,7 +101,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" ng-model="_function">{{_function}}</h5>
+                    <h5 class="modal-title">{{_function}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -115,14 +114,14 @@
                         <input ng-model="s.TenSP" type="text" id="name" class="form-control" name="" aria-describedby="helpId" placeholder="">
                         <label for="">Mã loại</label>
                         <select ng-model="s.MaLoaiSP" class="form-control" name="" id="">
-                            <option ng-repeat="s in listloai">{{s.TenLoai}}</option>
+                            <option ng-repeat="s in listloai">{{s.MaLoaiSP}}</option>
                         </select>
                         <label for="Unit">Đơn vị</label>
                         <input ng-model="s.DonVi" type="text" id="Unit" class="form-control" name="" aria-describedby="helpId" placeholder="">
                         <label for="Describe">Mô tả</label>
                         <input ng-model="s.MoTa" type="text" id="Describe" class="form-control" name="" aria-describedby="helpId" placeholder="">
                         <label for="image">Hình ảnh</label>
-                        <input type="file" id="image" class="form-control" name=""  aria-describedby="helpId" placeholder="" ng-select="UploadFiles($files,'HinhAnh')">
+                        <input type="file" id="image" class="form-control" name="" aria-describedby="helpId" placeholder="" ngf-select="UploadFiles($files)">
                         <label for="price">Đơn giá</label>
                         <input ng-model="s.DonGia" type="number" id="price" class="form-control" name="" aria-describedby="helpId" placeholder="">
                     </div>
@@ -137,7 +136,3 @@
     <!--End Modal-->
 </div>
 <!-- /#page-wrapper -->
-
-
-
-

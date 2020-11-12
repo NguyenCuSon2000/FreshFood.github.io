@@ -37,7 +37,7 @@ namespace WebsiteFreshFood.DataAccess
 
         public string ThemNhaCungCap(NhaCungCap ncc)
         {
-            string sql = "INSERT into NhaCungCap values('" + ncc.MaNCC + "','" + ncc.TenNCC + "','" + ncc.DiaChi + "','" +
+            string sql = "INSERT into NhaCungCap values('" + ncc.MaNCC + "',N'" + ncc.TenNCC + "',N'" + ncc.DiaChi + "','" +
                 ncc.SDT + "','" + ncc.Email + "','" + ncc.Fax + "')";
 
             return dc.ExcuteNonQuery(sql);
@@ -51,7 +51,7 @@ namespace WebsiteFreshFood.DataAccess
         }
         public string SuaNhaCungCap(NhaCungCap ncc)
         {
-            string st = "UPDATE NhaCungCap set TenNCC='" + ncc.TenNCC + "', DiaChi='" + ncc.DiaChi + "', SDT='" +
+            string st = "UPDATE NhaCungCap set TenNCC=N'" + ncc.TenNCC + "', DiaChi=N'" + ncc.DiaChi + "', SDT='" +
                 ncc.SDT + "',kh.Email='" + ncc.Email + "',kh.Fax='" + ncc.Fax + "' where MaNCC='" + ncc.MaNCC + "'";
             return dc.ExcuteNonQuery(st);
         }

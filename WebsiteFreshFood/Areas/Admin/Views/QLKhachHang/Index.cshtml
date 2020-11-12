@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -34,7 +33,7 @@
                                     <div class="col-md-4">
                                         <button type="submit" class="btn btn-success">Tìm kiếm</button>
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
+                                        <button ng-click="Them()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
                                             Thêm mới
                                         </button>
                                     </div>
@@ -47,8 +46,8 @@
                                     <tr>
                                         <th>Mã khách hàng</th>
                                         <th>Tên khách hàng</th>
-                                        <th>Địa chỉ</th>
                                         <th>Số điện thoại</th>
+                                        <th>Địa chỉ</th>
                                         <th>Email</th>
                                         <th>#</th>
                                     </tr>
@@ -58,13 +57,13 @@
                                         ng-class-even="even" ng-class-odd="odd" id="tr_{{k.MaKH}}">
                                         <td>{{k.MaKH}}</td>
                                         <td>{{k.TenKH}}</td>
-                                        <td>{{k.DiaChi}}</td>
                                         <td>{{k.SDT}}</td>
+                                        <td>{{k.DiaChi}}</td>
                                         <td>{{k.Email}}</td>
                                         <td>
-                                            <a data-toggle="modal" data-target="#modelId" href="">Sửa</a>
+                                            <a ng-click="Sua(k)" data-toggle="modal" data-target="#modelId" href="">Sửa</a>
                                             |
-                                            <a data-ajax="true" data-ajax-complete="$('#row_21}').remove()" data-ajax-confirm="Bạn có muốn xoá bản ghi này?" data-ajax-method="Delete" href="/Admin/User/Delete/21">Xoá</a>
+                                            <a  ng-click="XoaKhachHang(k)">Xoá</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -84,7 +83,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Khách hàng</h5>
+                    <h5 class="modal-title">{{_function}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -92,20 +91,20 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="ma">Mã khách hàng</label>
-                        <input type="text" id="ma" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <input ng-model="k.MaKH" type="text" id="ma" class="form-control" name="" aria-describedby="helpId" placeholder="">
                         <label for="name">Tên khách hàng</label>
-                        <input type="text" id="name" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="address">Địa chỉ</label>
-                        <input type="text" id="address" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <input ng-model="k.TenKH" type="text" id="name" class="form-control" name="" aria-describedby="helpId" placeholder="">
                         <label for="tel">Số điện thoại</label>
-                        <input type="text" id="tel" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <input ng-model="k.SDT" type="text" id="tel" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <label for="address">Địa chỉ</label>
+                        <input ng-model="k.DiaChi" type="text" id="address" class="form-control" name="" aria-describedby="helpId" placeholder="">
                         <label for="email">Email</label>
-                        <input type="email" id="email" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <input ng-model="k.Email" type="email" id="email" class="form-control" name="" aria-describedby="helpId" placeholder="">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button ng-click="Save()" type="button" value="Save" class="btn btn-primary">Save</button>
+                    <button ng-click="Save()" type="button"  class="btn btn-primary">{{buttext}}</button>
                 </div>
             </div>
         </div>

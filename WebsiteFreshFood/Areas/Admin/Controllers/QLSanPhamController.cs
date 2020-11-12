@@ -60,6 +60,7 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             string st = qlsp.XoaSanPham(id);
             return Json(st, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public JsonResult Upload(string maloai)
         {

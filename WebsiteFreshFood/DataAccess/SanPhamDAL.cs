@@ -40,11 +40,7 @@ namespace WebsiteFreshFood.DataAccess
                 s.DonVi = Convert.ToString(dr[3]);
                 s.MoTa = Convert.ToString(dr[4]);
                 s.HinhAnh = Convert.ToString(dr[5]);
-                s.SoLuongTon = Convert.ToInt32(dr[6]);
-                s.LuotXem = Convert.ToInt32(dr[7]);
-                s.LuotBinhLuan = Convert.ToInt32(dr[8]);
-                s.SoLanMua = Convert.ToInt32(dr[9]);
-                s.DonGia = Convert.ToInt32(dr[10]);
+                s.DonGia = Convert.ToInt32(dr[6]);
                 l.Add(s);
             }
             return l;
@@ -57,8 +53,7 @@ namespace WebsiteFreshFood.DataAccess
             while (dr.Read())
             {
                 SanPham s = new SanPham(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
-                    dr[4].ToString(), dr[5].ToString(), int.Parse(dr[6].ToString()), int.Parse(dr[7].ToString()),
-                    int.Parse(dr[8].ToString()), int.Parse(dr[9].ToString()), double.Parse(dr[10].ToString()));
+                    dr[4].ToString(), dr[5].ToString(), double.Parse(dr[6].ToString()));
                 l.Add(s);
             }
             spl.SanPhams = l;
@@ -78,8 +73,8 @@ namespace WebsiteFreshFood.DataAccess
 
         public string ThemSanPham(SanPham sp)
         {
-            string sql = "INSERT into SanPham values('" + sp.MaSP + "','" + sp.TenSP + "','" + sp.MaLoaiSP + "','" +
-                sp.DonVi + "','" + sp.MoTa + "','" + sp.HinhAnh + "','" + sp.SoLuongTon + "','" + sp.LuotXem + "','" + sp.LuotBinhLuan + "','" + sp.SoLanMua + "'','" + sp.DonGia + "')";
+            string sql = "INSERT into SanPham values('" + sp.MaSP + "',N'" + sp.TenSP + "','" + sp.MaLoaiSP + "',N'" +
+                sp.DonVi + "',N'" + sp.MoTa + "','" + sp.HinhAnh + "','" + sp.DonGia + "')";
 
             return dc.ExcuteNonQuery(sql);
         }
@@ -92,8 +87,8 @@ namespace WebsiteFreshFood.DataAccess
         }
         public string SuaSanPham(SanPham s)
         {
-            string st = "update sanpham set TenSP='" + s.TenSP + "', MaLoai='" + s.MaLoaiSP + "', donvi='" +
-                s.DonVi + "',mota='" + s.MoTa + "', HinhAnh='" + s.HinhAnh + "', soluongton='" + s.SoLuongTon + "', luotxem = '" + s.LuotXem + "', luobingluan ='" + s.LuotBinhLuan + "', solanmua ='" + s.SoLanMua + "', dongia = '" + s.DonGia + "' where MaSP='" + s.MaSP + "'";
+            string st = "update sanpham set TenSP=N'" + s.TenSP + "', MaLoai='" + s.MaLoaiSP + "', donvi=N'" +
+                s.DonVi + "',mota=N'" + s.MoTa + "', HinhAnh='" + s.HinhAnh + "', dongia = '" + s.DonGia + "' where MaSP='" + s.MaSP + "'";
             return dc.ExcuteNonQuery(st);
         }
         public List<SanPham> Search(string maloaisp, string tenSP)

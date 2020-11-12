@@ -35,8 +35,7 @@ namespace WebsiteFreshFood.DataAccess
 
         public string ThemKhachHang(KhachHang kh)
         {
-            string sql = "INSERT into KhachHang values('" + kh.MaKH + "','" + kh.TenKH + "','" + kh.DiaChi + "','" +
-                kh.SDT + "','" + kh.Email + "')";
+            string sql = "INSERT into KhachHang values('" + kh.MaKH + "',N'" + kh.TenKH + "','" + kh.SDT + "',N'" + kh.DiaChi + "','" + kh.Email + "')";
 
             return dc.ExcuteNonQuery(sql);
         }
@@ -49,8 +48,7 @@ namespace WebsiteFreshFood.DataAccess
         }
         public string SuaKhachHang(KhachHang kh)
         {
-            string st = "UPDATE KhachHang set TenKH='" + kh.TenKH + "', DiaChi='" + kh.DiaChi + "', SDT='" +
-                kh.SDT + "',kh.Email='" + kh.Email + "' where MaKH='" + kh.MaKH + "'";
+            string st = "UPDATE KhachHang set TenKH=N'" + kh.TenKH + "', SDT='" + kh.SDT + "', DiaChi=N'" + kh.DiaChi + "',kh.Email='" + kh.Email + "' where MaKH='" + kh.MaKH + "'";
             return dc.ExcuteNonQuery(st);
         }
         public List<KhachHang> Search(string MaKH, string tenKH)

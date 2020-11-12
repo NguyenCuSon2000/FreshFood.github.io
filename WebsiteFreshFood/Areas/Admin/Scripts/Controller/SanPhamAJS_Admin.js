@@ -1,5 +1,5 @@
 ﻿/// <reference path="../angular.js" />
-var app = angular.module("myApp", ['angularUtils.directives.dirPagination','ngFileUpload']);
+var app = angular.module("myApp", ['ngFileUpload']);
 
 // Hiển thị sản phẩm và phân trang
 app.controller("SanPhamController", function ($scope,$rootScope, $http, Upload, $timeout, $document) {
@@ -22,7 +22,7 @@ app.controller("SanPhamController", function ($scope,$rootScope, $http, Upload, 
     $scope.Sua = function (s) {
         $scope._function = "Sửa sản phẩm";
         $scope.buttext = "Save changes";
-        $scope.sp = s;
+        $scope.s = s;
     };
 
     $scope.Save = function () {
@@ -86,15 +86,14 @@ app.controller("SanPhamController", function ($scope,$rootScope, $http, Upload, 
         }, function (e) { alert(e) });
     };
 
-    $scope.UploadFiles = function (file, kieu) {
+    $scope.UploadFiles = function (file) {
         $scope.SelectedFiles = file;
         if ($scope.SelectedFiles && $scope.SelectedFiles.length) {
             Upload.upload({
                 url: 'Admin/QLSanPham/Upload',
-                data: { file: $scope.SelectedFiles, maloai: $scope.s.MaLoaiSP }
+                data: { files: $scope.SelectedFiles, maloai: $scope.s.MaLoaiSP }
             }).then(function (d) {
-                if (kieu == 'Anh') { $scope.s.HinhAnh = d.data[0]; }
-                else { $scope.s.HinhAnh = d.data[0]; }
+                $scope.s.HinhAnh = d.data[0]; 
             }, function (e) { alert("Lỗi"); });
         }
     }
@@ -123,13 +122,89 @@ app.controller("SanPhamController", function ($scope,$rootScope, $http, Upload, 
 });
 
 
+// KHÁCH HÀNG
+
 app.controller("KhachHangController", KhachHangController);
-function KhachHangController($scope, $rootScope, $http, Upload, $timeout, $document) {
+function KhachHangController($scope, $rootScope, $http) {
     //Danh sách khách hàng
     $http.get('/Admin/QLKhachHang/GetKhachHang').then(function (d) {
         $rootScope.ListKhachHang = d.data;
     }, function (error) { alert('Failed'); });
+
+    $scope.Them = function () {
+        $scope._function = "Thêm khách hàng";
+        $scope.buttext = "Save";
+        $scope.k = null;
+    };
+
+    $scope.Sua = function (kh) {
+        $scope._function = "Sửa khách hàng";
+        $scope.buttext = "Save changes";
+        $scope.k = kh;
+    };
+
+    $scope.Save = function () {
+        //Sửa khách hàng
+        if ($scope.buttext != "Save") {
+            $http({
+                method: 'Post',
+                datatype: 'Json',
+                data: JSON.stringify($scope.k),
+                url: '/Admin/QLKhachHang/Update'
+            }).then(function (d) {
+                if (d.data == "") {
+                    var index = $scope.ListKhachHang;
+                    for (var i = 0; i < $scope.ListKhachHang.length; i++) {
+                        //Sửa thành công thì tiến hành sửa trên $scope
+                        if ($scope.ListKhachHang[i].MaKH == $scope.k.MaKH) {
+                            $scope.ListKhachHang[i].TenKH = $scope.k.TenKH;
+                            $scope.ListKhachHang[i].SDT = $scope.k.SDT;
+                            $scope.ListKhachHang[i].DiaChi = $scope.k.DiaChi;
+                            $scope.ListKhachHang[i].Email = $scope.k.Email;
+                            break;
+                        }
+                        alert("Update Success...!");
+                    }
+                }
+            }, function (e) { alert(e); });
+        }
+        else //Thêm khách hàng
+        {
+            $http({
+                method: 'POST',
+                datatype: 'json',
+                url: '/Admin/QLKhachHang/Insert',
+                data: JSON.stringify($scope.k)
+            }).then(function (d) {
+                alert($scope.k.MaKH);
+                if (d.data == "") {
+                    $scope.ListKhachHang.push($scope.k);
+                    $scope.k = null;
+                    alert("Data Submitted...!");
+                }
+                else {
+                    alert(d.data);
+                }
+            }, function (e) {
+                alert("Lỗi nhập...!");
+            });
+        }
+    };
+
+    $scope.XoaKhachHang = function (k) {
+        $http({
+            method: 'Post',
+            url: '/Admin/QLKhachHang/Delete',
+            datatype: 'Json',
+            data: { id: k.MaKH }
+        }).then(function (d) {
+            var vt = $scope.ListKhachHang.indexOf(k);
+            $scope.ListKhachHang.splice(vt, 1);
+        }, function (e) { alert(e) });
+    };
 }
+
+// NHÀ CUNG CẤP
 
 app.controller("NCCController", NCCController);
 function NCCController($scope, $rootScope, $http, Upload, $timeout, $document) {
@@ -137,10 +212,80 @@ function NCCController($scope, $rootScope, $http, Upload, $timeout, $document) {
     $http.get('/Admin/QLNhaCungCap/GetNhaCungCap').then(function (d) {
         $rootScope.ListNhaCungCap = d.data;
     }, function (error) { alert('Failed'); });
+
+    $scope.Them = function () {
+        $scope._function = "Thêm nhà cung cấp";
+        $scope.buttext = "Save";
+        $scope.n = null;
+    };
+
+    $scope.Sua = function (ncc) {
+        $scope._function = "Sửa nhà cung cấp";
+        $scope.buttext = "Save changes";
+        $scope.n = ncc;
+    };
+
+    $scope.Save = function () {
+        //Sửa nhà cung cấp
+        if ($scope.buttext != "Save") {
+            $http({
+                method: 'Post',
+                datatype: 'Json',
+                data: JSON.stringify($scope.n),
+                url: '/Admin/QLNhaCungCap/Update'
+            }).then(function (d) {
+                if (d.data == "") {
+                    var index = $scope.ListNhaCungCap;
+                    for (var i = 0; i < $scope.ListNhaCungCap.length; i++) {
+                        //Sửa thành công thì tiến hành sửa trên $scope
+                        if ($scope.ListNhaCungCap[i].MaKH == $scope.n.MaNCC) {
+                            $scope.ListNhaCungCap[i].TenKH = $scope.n.TenNCC;
+                            $scope.ListNhaCungCap[i].DiaChi = $scope.n.DiaChi;
+                            $scope.ListNhaCungCap[i].SDT = $scope.n.SDT;
+                            $scope.ListNhaCungCap[i].Email = $scope.n.Email;
+                            $scope.ListNhaCungCap[i].Fax = $scope.n.Fax;
+                            break;
+                        }
+                        alert("Update Success...!");
+                    }
+                }
+            }, function (e) { alert(e); });
+        }
+        else //Thêm nhà cung cấp
+        {
+            $http({
+                method: 'POST',
+                datatype: 'json',
+                url: '/Admin/QLNhaCungCap/Insert',
+                data: JSON.stringify($scope.n)
+            }).then(function (d) {
+                alert($scope.n.MaNCC);
+                if (d.data == "") {
+                    $scope.ListNhaCungCap.push($scope.n);
+                    $scope.n = null;
+                    alert("Data Submitted...!");
+                }
+                else {
+                    alert(d.data);
+                }
+            }, function (e) {
+                alert("Lỗi nhập...!");
+            });
+        }
+    };
+
+    $scope.XoaNhaCungCap = function (n) {
+        $http({
+            method: 'Post',
+            url: '/Admin/QLNhaCungCap/Delete',
+            datatype: 'Json',
+            data: { id: n.MaNCC }
+        }).then(function (d) {
+            var vt = $scope.ListNhaCungCap.indexOf(n);
+            $scope.ListNhaCungCap.splice(vt, 1);
+        }, function (e) { alert(e) });
+    };
 }
-
-
-
 
 
 

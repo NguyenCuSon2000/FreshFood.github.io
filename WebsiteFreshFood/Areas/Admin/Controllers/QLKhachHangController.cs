@@ -23,5 +23,24 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             List<KhachHang> lsp = qlkh.LayAllKhachHang();
             return Json(lsp, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult Insert(KhachHang k)
+        {
+            string res = qlkh.ThemKhachHang(k);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult Update(KhachHang k)
+        {
+            string res = qlkh.SuaKhachHang(k);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult Delete(string id)
+        {
+            string st = qlkh.XoaKhachHang(id);
+            return Json(st, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace WebsiteFreshFood.Bussiness
             return nccDAL.GetAllNhaCungCap();
         }
 
-        public string ThemKhachHang(NhaCungCap n)
+        public string ThemNhaCungCap(NhaCungCap n)
         {
             return nccDAL.ThemNhaCungCap(n);
         }
@@ -24,7 +24,7 @@ namespace WebsiteFreshFood.Bussiness
         {
             return nccDAL.XoaNhaCungCap(id);
         }
-        public string SuaKhachHang(NhaCungCap n)
+        public string SuaNhaCungCap(NhaCungCap n)
         {
             return nccDAL.SuaNhaCungCap(n);
         }

@@ -23,5 +23,24 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             List<NhaCungCap> lsp = qlncc.LayAllNhaCungCap();
             return Json(lsp, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult Insert(NhaCungCap n)
+        {
+            string res = qlncc.ThemNhaCungCap(n);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult Update(NhaCungCap n)
+        {
+            string res = qlncc.SuaNhaCungCap(n);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult Delete(string id)
+        {
+            string st = qlncc.XoaNhaCungCap(id);
+            return Json(st, JsonRequestBehavior.AllowGet);
+        }
     }
 }
