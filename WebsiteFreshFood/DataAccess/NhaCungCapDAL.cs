@@ -51,8 +51,8 @@ namespace WebsiteFreshFood.DataAccess
         }
         public string SuaNhaCungCap(NhaCungCap ncc)
         {
-            string st = "UPDATE NhaCungCap set TenNCC=N'" + ncc.TenNCC + "', DiaChi=N'" + ncc.DiaChi + "', SDT='" +
-                ncc.SDT + "',kh.Email='" + ncc.Email + "',kh.Fax='" + ncc.Fax + "' where MaNCC='" + ncc.MaNCC + "'";
+            string st = "UPDATE NhaCungCap set TenNCC=N'" + ncc.TenNCC + "', SDT='" +
+                ncc.SDT + "', DiaChi=N'" + ncc.DiaChi + "',Email='" + ncc.Email + "',Fax='" + ncc.Fax + "' where MaNCC='" + ncc.MaNCC + "'";
             return dc.ExcuteNonQuery(st);
         }
         public List<NhaCungCap> Search(string MaNCC, string TenNCC)

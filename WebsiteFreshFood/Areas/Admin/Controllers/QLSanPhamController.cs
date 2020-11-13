@@ -61,7 +61,7 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             return Json(st, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+       
         public JsonResult Upload(string maloai)
         {
             List<string> l = new List<string>();

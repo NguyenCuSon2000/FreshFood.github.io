@@ -87,8 +87,8 @@ namespace WebsiteFreshFood.DataAccess
         }
         public string SuaSanPham(SanPham s)
         {
-            string st = "update sanpham set TenSP=N'" + s.TenSP + "', MaLoai='" + s.MaLoaiSP + "', donvi=N'" +
-                s.DonVi + "',mota=N'" + s.MoTa + "', HinhAnh='" + s.HinhAnh + "', dongia = '" + s.DonGia + "' where MaSP='" + s.MaSP + "'";
+            string st = "Update SANPHAM SET TenSP=N'" + s.TenSP + "', MaLoaiSP='" + s.MaLoaiSP + "', DonVi=N'" +
+                s.DonVi + "',MoTa=N'" + s.MoTa + "', HinhAnh='" + s.HinhAnh + "', dongia = '" + s.DonGia + "' where MaSP='" + s.MaSP + "'";
             return dc.ExcuteNonQuery(st);
         }
         public List<SanPham> Search(string maloaisp, string tenSP)
@@ -96,7 +96,7 @@ namespace WebsiteFreshFood.DataAccess
             string st;
             if (maloaisp != "")
             {
-                st = "select * from SanPham where (MaLoai='" + maloaisp + "') and (TenSP like '%" + tenSP + "%')";
+                st = "select * from SanPham where (MaLoaiSP='" + maloaisp + "') and (TenSP like '%" + tenSP + "%')";
             }
             else
             { st = "select * from SanPham where (TenSP like '%" + tenSP + "%')"; }

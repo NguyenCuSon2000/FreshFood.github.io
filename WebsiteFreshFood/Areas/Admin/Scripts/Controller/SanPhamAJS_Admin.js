@@ -2,8 +2,19 @@
 var app = angular.module("myApp", ['ngFileUpload']);
 
 // Hiển thị sản phẩm và phân trang
-app.controller("SanPhamController", function ($scope,$rootScope, $http, Upload, $timeout, $document) {
+app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload, $timeout, $document) {
 
+    $scope.UploadFiles = function (files) {
+        $scope.SelectedFiles = files;
+        if ($scope.SelectedFiles && $scope.SelectedFiles.length) {
+            Upload.upload({
+                url: '/Admin/QLSanPham/Upload',
+                data: { files: $scope.SelectedFiles, maloaisp: $scope.s.MaLoaiSP }
+            }).then(function (d) {
+                 $scope.s.HinhAnh = d.data[0];
+            }, function (e) { alert("Lỗi"); });
+        }
+    }
     //Danh sách sản phẩm
     $http.get('/Admin/QLSanPham/GetSanPham').then(function (d) {
         $rootScope.ListSanPham = d.data;
@@ -48,6 +59,7 @@ app.controller("SanPhamController", function ($scope,$rootScope, $http, Upload, 
                             break;
                         }
                     }
+                    alert("Update success...!")
                 }
             }, function (e) { alert(e); });
         }
@@ -86,17 +98,7 @@ app.controller("SanPhamController", function ($scope,$rootScope, $http, Upload, 
         }, function (e) { alert(e) });
     };
 
-    $scope.UploadFiles = function (file) {
-        $scope.SelectedFiles = file;
-        if ($scope.SelectedFiles && $scope.SelectedFiles.length) {
-            Upload.upload({
-                url: 'Admin/QLSanPham/Upload',
-                data: { files: $scope.SelectedFiles, maloai: $scope.s.MaLoaiSP }
-            }).then(function (d) {
-                $scope.s.HinhAnh = d.data[0]; 
-            }, function (e) { alert("Lỗi"); });
-        }
-    }
+   
     //$scope.totalCount = 0;
     //$scope.maxSize = 3;
     //$scope.pageIndex = 1;
@@ -137,10 +139,10 @@ function KhachHangController($scope, $rootScope, $http) {
         $scope.k = null;
     };
 
-    $scope.Sua = function (kh) {
+    $scope.Sua = function (k) {
         $scope._function = "Sửa khách hàng";
         $scope.buttext = "Save changes";
-        $scope.k = kh;
+        $scope.k = k;
     };
 
     $scope.Save = function () {
@@ -163,8 +165,8 @@ function KhachHangController($scope, $rootScope, $http) {
                             $scope.ListKhachHang[i].Email = $scope.k.Email;
                             break;
                         }
-                        alert("Update Success...!");
                     }
+                    alert("Update success...!")
                 }
             }, function (e) { alert(e); });
         }
@@ -219,10 +221,10 @@ function NCCController($scope, $rootScope, $http, Upload, $timeout, $document) {
         $scope.n = null;
     };
 
-    $scope.Sua = function (ncc) {
+    $scope.Sua = function (n) {
         $scope._function = "Sửa nhà cung cấp";
         $scope.buttext = "Save changes";
-        $scope.n = ncc;
+        $scope.n = n;
     };
 
     $scope.Save = function () {
@@ -240,14 +242,14 @@ function NCCController($scope, $rootScope, $http, Upload, $timeout, $document) {
                         //Sửa thành công thì tiến hành sửa trên $scope
                         if ($scope.ListNhaCungCap[i].MaKH == $scope.n.MaNCC) {
                             $scope.ListNhaCungCap[i].TenKH = $scope.n.TenNCC;
-                            $scope.ListNhaCungCap[i].DiaChi = $scope.n.DiaChi;
                             $scope.ListNhaCungCap[i].SDT = $scope.n.SDT;
+                            $scope.ListNhaCungCap[i].DiaChi = $scope.n.DiaChi;
                             $scope.ListNhaCungCap[i].Email = $scope.n.Email;
                             $scope.ListNhaCungCap[i].Fax = $scope.n.Fax;
                             break;
                         }
-                        alert("Update Success...!");
                     }
+                    alert("Update Success...!");
                 }
             }, function (e) { alert(e); });
         }

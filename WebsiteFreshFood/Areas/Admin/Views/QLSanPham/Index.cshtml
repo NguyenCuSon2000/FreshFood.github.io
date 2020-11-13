@@ -4,6 +4,7 @@
 }
 
 <script src="~/Scripts/dirPagination.js"></script>
+<script src="~/Scripts/ng-file-upload.min.js"></script>
 
 <!-- Page Content -->
 <div id="page-wrapper" style="min-height: 223px;" ng-controller="SanPhamController">
@@ -121,7 +122,7 @@
                         <label for="Describe">Mô tả</label>
                         <input ng-model="s.MoTa" type="text" id="Describe" class="form-control" name="" aria-describedby="helpId" placeholder="">
                         <label for="image">Hình ảnh</label>
-                        <input type="file" id="image" class="form-control" name="" aria-describedby="helpId" placeholder="" ngf-select="UploadFiles($files)">
+                        <input ng-model="s.HinhAnh" multiple="multiple" type="file" id="image" class="form-control" ngf-select="UploadFiles($files)">
                         <label for="price">Đơn giá</label>
                         <input ng-model="s.DonGia" type="number" id="price" class="form-control" name="" aria-describedby="helpId" placeholder="">
                     </div>
