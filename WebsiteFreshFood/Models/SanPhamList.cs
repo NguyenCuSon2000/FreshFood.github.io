@@ -9,7 +9,9 @@
     {
         public List<SanPham> SanPhams { get; set; }
 
-        public string totalCount { get; set; }
+        //public string totalCount { get; set; }
+
+        public int totalCount { get; set; }
 
     }
 }

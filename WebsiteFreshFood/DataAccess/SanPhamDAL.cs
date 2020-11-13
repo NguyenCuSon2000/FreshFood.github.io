@@ -45,6 +45,7 @@ namespace WebsiteFreshFood.DataAccess
             }
             return l;
         }
+
         public SanPhamList GetSanPham(string maloai, int pageIndex, int pageSize, string productName)
         {
             SanPhamList spl = new SanPhamList();
@@ -60,7 +61,7 @@ namespace WebsiteFreshFood.DataAccess
             dr.NextResult();
             while (dr.Read())
             {
-                spl.totalCount = dr["totalCount"].ToString();
+                spl.totalCount = Convert.ToInt32(dr["totalCount"]);
             }
             return spl;
         }

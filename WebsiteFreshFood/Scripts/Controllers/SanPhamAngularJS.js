@@ -27,9 +27,26 @@ function PhanTrangController($scope, $rootScope, $http) {
                 alert(e);
             });
     };
-
     $rootScope.GetSanPhamList($rootScope.pageIndex);
 
+    //$rootScope.GetSanPhamList = function () {
+    //    $http.get("/SanPham/GetSanPhamPTLoai?pageindex=" + $scope.pageIndex + "&pagesize=" + $scope.pageSize).then(function (response) {
+    //        $scope.SanPhams = response.data.SanPhams;
+    //        $scope.totalCount = response.data.totalCount;
+    //    }, function (e) {
+    //        alert("Lỗi");
+    //    });
+    //};
+    //$rootScope.GetSanPhamList();
+
+    //$scope.pagechanged = function () {
+    //    $scope.GetSanPhamList();
+    //}
+
+    //$scope.changePageSize = function () {
+    //    $scope.pageIndex = 1;
+    //    $scope.GetSanPhamList();
+    //}
 };
 
 //Menu 

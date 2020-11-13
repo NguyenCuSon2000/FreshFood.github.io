@@ -1669,6 +1669,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CTSanPham.css" />
     <Content Include="Content\SanPham.css" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="font\fontawesome-free-5.13.0\css\all.css" />
     <Content Include="font\fontawesome-free-5.13.0\css\all.min.css" />
@@ -3354,6 +3355,10 @@
     <Content Include="Scripts\angular-sanitize.min.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="font\fontawesome-free-5.13.0\less\brands.less" />
