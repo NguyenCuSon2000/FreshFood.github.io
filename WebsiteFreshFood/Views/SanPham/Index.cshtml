@@ -29,21 +29,21 @@
                         <h3 class="sb-title">Danh mục</h3>
                     </div>
                     <ul class="nav" id="menu-blog">
-                        <li class="first">
-                            <a href="" title="Trang chủ"><span>Rau củ quả</span></a>
+                        <li class="current active" ng-repeat="l in listloai">
+                            <a href="/SanPham/Index?maloai={{l.MaLoaiSP}}" title="{{l.TenLoai}}"><span>{{l.TenLoai}}</span></a>
+                        </li>
+                        @*<li>
+                            <a href="" title="Thực phẩm tươi sống"><span>Thực phẩm tươi sống</span></a>
                         </li>
                         <li>
-                            <a href="" title="Giới thiệu"><span>Thực phẩm tươi sống</span></a>
-                        </li>
-                        <li>
-                            <a href="" title="Thực đơn"><span>Thực phẩm khô</span></a>
+                            <a href="" title="Thực phẩm khô"><span>Thực phẩm khô</span></a>
                         </li>
                         <li class="current active">
-                            <a href="" title="Tin tức"><span>Thực phẩm bổ dưỡng</span></a>
+                            <a href="" title="Thực phẩm bổ dưỡng"><span>Thực phẩm bổ dưỡng</span></a>
                         </li>
                         <li>
-                            <a href="" title="Đặt hàng"><span>Thực phẩm chế biến</span></a>
-                        </li>
+                            <a href="" title="Thực phẩm chế biến"><span>Thực phẩm chế biến</span></a>
+                        </li>*@
                     </ul>
                 </div>
                 <div class="list-group_l banner-left hidden-sm hidden-xs">

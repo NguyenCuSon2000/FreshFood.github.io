@@ -185,34 +185,43 @@ Insert into NhaCungCap values('NCC010',N'Triệu Thái Sơn',N'Từ Sơn - Bắc
 
 USE [DA3_QuanLyFreshFood]
 Go
-Create PROCEDURE GetSanPhams(
-@maloai varchar(20), @pageIndex int, @pageSize int, @productName nvarchar(100)
-)
-as
-Begin
-if(@maloai = '')
-  begin
-    Declare @RecordCount int;
-	select * into #Result from SanPham
-	where (TenSP='') or (TenSP like '%' + @productName + '%')
+--Create PROCEDURE GetSanPhams(
+--@maloai varchar(20), @pageIndex int, @pageSize int, @productName nvarchar(100)
+--)
+--as
+--Begin
+--if(@maloai = '')
+--  begin
+--    Declare @RecordCount int;
+--	select * into #Result from SanPham
+--	where (TenSP='') or (TenSP like '%' + @productName + '%')
 
-	select * from #Result order by MaSP offset @pageSize*(@pageIndex-1)
-	Rows Fetch Next @pageSize Rows Only;
+--	select * from #Result order by MaSP offset @pageSize*(@pageIndex-1)
+--	Rows Fetch Next @pageSize Rows Only;
 
-	select COUNT(*) as totalCount from SanPham;
-	Drop table #Result
-  end
-else
-   begin
-    select * into #Result from SanPham
-	where (MaLoaiSP = @maloai) and (TenSP='') or (TenSP like '%' + @productName + '%')
+--	select COUNT(*) as totalCount from SanPham;
+--	Drop table #Result
+--  end
+--else
+--   begin
+--    select * into #Result from SanPham
+--	where (MaLoaiSP = @maloai) and (TenSP='') or (TenSP like '%' + @productName + '%')
 
-	select * from #Result order by MaSP offset @pageSize*(@pageIndex-1)
-	Rows Fetch Next @pageSize Rows Only;
+--	select * from #Result order by MaSP offset @pageSize*(@pageIndex-1)
+--	Rows Fetch Next @pageSize Rows Only;
 
-	select COUNT(*) as totalCount from SanPham;
-	Drop table #Result
-  end
+--	select COUNT(*) as totalCount from SanPham;
+--	Drop table #Result
+--  end
+--end
+
+Alter proc Sp_get_data
+@Pageindex int,
+@Pagesize int
+as 
+begin
+select * from KhachHang order by MaKH desc Offset @Pagesize*(@Pageindex-1) rows fetch next @Pagesize rows only
+
+select COUNT(KhachHang.TenKH) as totalcount from KhachHang
 end
-
 

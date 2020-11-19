@@ -65,6 +65,10 @@ function SanPhamController($scope, $rootScope, $http) {
         $rootScope.ListSanPham = d.data;
     }, function (error) { alert('Failed'); });
 
+    $http.get('/SanPham/GetLoaiSanPham').then(function (d) {
+        $rootScope.listloai = d.data;
+    }, function (e) { alert("Lỗi lấy loại"); });
+
     //Sắp xếp dữ liệu
     $rootScope.sortcolumn = "TenSP";
     $rootScope.reverse = true;

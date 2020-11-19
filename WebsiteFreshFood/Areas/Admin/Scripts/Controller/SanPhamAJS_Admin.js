@@ -15,6 +15,7 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload,
             }, function (e) { alert("Lỗi"); });
         }
     }
+
     //Danh sách sản phẩm
     $http.get('/Admin/QLSanPham/GetSanPham').then(function (d) {
         $rootScope.ListSanPham = d.data;

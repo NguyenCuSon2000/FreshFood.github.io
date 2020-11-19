@@ -5,8 +5,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("User")]
-    public partial class User
+    [Table("Users")]
+    public partial class Users
     {
         [Key]
         public int UserID { get; set; }
@@ -29,9 +29,9 @@
         [StringLength(50)]
         public string Active { get; set; }
 
-        public User() { }
+        public Users() { }
 
-        public User(int userID, string userName, string passWord, string email, string sdt, string role, string active)
+        public Users(int userID, string userName, string passWord, string email, string sdt, string role, string active)
         {
             this.UserID = userID;
             this.UserName = userName;

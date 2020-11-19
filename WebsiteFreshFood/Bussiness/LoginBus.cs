@@ -9,9 +9,9 @@ namespace WebsiteFreshFood.Bussiness
 {
     public class LoginBus
     {
-        UserDAL ul = new UserDAL();
+        UsersDAL ul = new UsersDAL();
 
-        public User checkUser(string name, string pass)
+        public Users checkUser(string name, string pass)
         {
             return ul.CheckAccount(name, pass);
         }

@@ -101,7 +101,10 @@
     border-bottom: 1px solid #ebebeb;
 }
 
-    .leftsidebar-col ul li a:hover {
+.leftsidebar-col ul li a:hover {
+    color: #28b241;
+}
+    .leftsidebar-col ul li.active a {
         color: #28b241;
     }
 

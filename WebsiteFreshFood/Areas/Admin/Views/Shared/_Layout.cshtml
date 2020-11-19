@@ -51,7 +51,8 @@
             <ul class="nav navbar-top-links navbar-right">
                 <li>
                     <form action="/Admin/Base/ChangeCulture" method="post">
-                        <input id="returnUrl" name="returnUrl" type="hidden" value="/Admin/Home"><select id="ddlCulture" name="ddlCulture" onchange="this.form.submit();">
+                        <input id="returnUrl" name="returnUrl" type="hidden" value="/Admin/Home">
+                        <select id="ddlCulture" name="ddlCulture" onchange="this.form.submit();">
                             <option selected="selected" value="vi">Tiếng Việt</option>
                             <option value="en">Tiếng Anh</option>
                         </select>
@@ -262,7 +263,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <a href="/Admin/Login/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

@@ -8,12 +8,12 @@ using WebsiteFreshFood.Models;
 
 namespace WebsiteFreshFood.DataAccess
 {
-    public class UserDAL
+    public class UsersDAL
     {
         DataHelper db = new DataHelper();
-        public User CheckAccount(string name, string Pass)
+        public Users CheckAccount(string name, string Pass)
         {
-            string sql = "select * from [User] as u where u.UserName = '" + name + "' and u.Password = '" + Pass + "'";
+            string sql = "SELECT * FROM Users WHERE UserName = '" + name + "' AND Password = '" + Pass + "'";
             DataTable dt = db.GetDataTable(sql);
 
             if(dt.Rows.Count <= 0)
@@ -22,7 +22,7 @@ namespace WebsiteFreshFood.DataAccess
             }
             else
             {
-                User us = new User(int.Parse(dt.Rows[0][0].ToString()), dt.Rows[0][1].ToString(), dt.Rows[0][2].ToString(), 
+                Users us = new Users(int.Parse(dt.Rows[0][0].ToString()), dt.Rows[0][1].ToString(), dt.Rows[0][2].ToString(), 
                     dt.Rows[0][3].ToString(),dt.Rows[0][4].ToString(), dt.Rows[0][5].ToString(), dt.Rows[0][6].ToString());
                 return us;
             }
