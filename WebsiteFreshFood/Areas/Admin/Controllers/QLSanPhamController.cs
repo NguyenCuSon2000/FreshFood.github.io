@@ -48,6 +48,7 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             string res = qlsp.ThemSanPham(s);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public JsonResult Update(SanPham s)
         {
@@ -61,7 +62,8 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             return Json(st, JsonRequestBehavior.AllowGet);
         }
 
-       
+
+        [HttpPost]
         public JsonResult Upload(string maloai)
         {
             List<string> l = new List<string>();
@@ -70,7 +72,8 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             {
                 Directory.CreateDirectory(path);
             }
-            foreach(string key in Request.Files)
+
+            foreach (string key in Request.Files)
             {
                 HttpPostedFileBase pf = Request.Files[key];
                 pf.SaveAs(path + pf.FileName);

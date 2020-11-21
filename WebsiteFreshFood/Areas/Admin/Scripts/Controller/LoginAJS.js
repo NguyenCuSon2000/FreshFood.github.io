@@ -6,8 +6,6 @@ function LoginController($scope, $rootScope, $window, $http) {
     $rootScope.Users = null;
     $rootScope.US = "";
     $rootScope.PW = "";
-    //$rootScope.quyenAd = "";
-    //$rootScope.quyenUs = "";
    
     $rootScope.Login = function (name, pass) {
         $http({
@@ -23,25 +21,7 @@ function LoginController($scope, $rootScope, $window, $http) {
             else {
                 $rootScope.Users = d.data;
                 $window.location.href = '/Admin/Home/Index';
-                //if (da.data.Role == "admin") {
-                //    $rootScope.quyenAd = "";
-                //    $rootScope.quyenUs = "KhongQuyen";
-                //}
-                //else {
-                //    $rootScope.quyenAd = "KhongQuyen";
-                //    $rootScope.quyenUs = "";
-                //}
             }
         }, function (e) { alert("Lỗi") });
     };
-
-
-    //$rootScope.Logout = function () {
-    //    $http({
-    //        method: 'Post',
-    //        url: '/Admin/Login/Logout'
-    //    }).then(function (d) {
-
-    //    }, function (e) { alert("Lỗi") });
-    //};
 }

@@ -114,7 +114,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLHoaDonNhapController.cs" />
@@ -3315,6 +3314,7 @@
     <Content Include="img\image.jpg" />
     <Content Include="img\img_footer.png" />
     <Content Include="img\logo.png" />
+    <Content Include="img\NutritiousFood\RongNho.jpg" />
     <Content Include="img\QuangCao.png" />
     <Content Include="img\QuangCao1.png" />
     <Content Include="img\quangcao2.png" />

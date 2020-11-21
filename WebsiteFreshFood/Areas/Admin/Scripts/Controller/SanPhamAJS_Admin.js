@@ -289,9 +289,3 @@ function NCCController($scope, $rootScope, $http, Upload, $timeout, $document) {
         }, function (e) { alert(e) });
     };
 }
-
-
-
-
-
-   
