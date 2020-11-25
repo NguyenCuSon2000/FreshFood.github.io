@@ -13,7 +13,7 @@ namespace WebsiteFreshFood.DataAccess
         DataHelper db = new DataHelper();
         public Users CheckAccount(string name, string Pass)
         {
-            string sql = "SELECT * FROM Users WHERE UserName = '" + name + "' AND Password = '" + Pass + "'";
+            string sql = "SELECT * FROM Users WHERE UserName = '" + name + "' AND Pass = '" + Pass + "'";
             DataTable dt = db.GetDataTable(sql);
 
             if(dt.Rows.Count <= 0)

@@ -61,7 +61,7 @@ namespace WebsiteFreshFood.DataAccess
             dr.NextResult();
             while (dr.Read())
             {
-                spl.totalCount = Convert.ToInt32(dr["totalCount"]);
+                spl.totalCount = dr["totalCount"].ToString();
             }
             return spl;
         }

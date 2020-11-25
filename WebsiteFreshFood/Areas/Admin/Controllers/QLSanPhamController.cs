@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebsiteFreshFood.Bussiness;
-using WebsiteFreshFood.Models;
 using System.IO;
+using WebsiteFreshFood.Models;
+using WebsiteFreshFood.Bussiness;
 
 namespace WebsiteFreshFood.Areas.Admin.Controllers
 {
+    [Authorize]
     public class QLSanPhamController : Controller
     {
+        // GET: Admin/QLSanPham
         QLSanPhamBus qlsp = new QLSanPhamBus();
         // GET: Admin/QLSanPham
         public ActionResult Index()
@@ -32,15 +34,20 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             return Json(ll, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Paging and searching
+        /// </summary>
+        /// <param name="pageIndex"> current page</param>
+        /// <param name="pageSize"></param>
+        /// <param name="productName"></param>
+        /// <returns></returns>
+        [HttpGet]
         public JsonResult GetSanPhamPT(int pageIndex, int pageSize, string productName)
         {
-            if (Session["maloai"] == null)
-            {
-                Session.Add("maloai", "Rau");
-            }
-            SanPhamList spl = qlsp.LaySanPhamPT(Session["maloai"].ToString(), pageIndex, pageSize, productName);
+            SanPhamList spl = qlsp.LaySanPhamPT("", pageIndex, pageSize, productName);
             return Json(spl, JsonRequestBehavior.AllowGet);
         }
+
 
         [HttpPost]
         public JsonResult Insert(SanPham s)

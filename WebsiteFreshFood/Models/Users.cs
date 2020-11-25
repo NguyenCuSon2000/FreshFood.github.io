@@ -15,7 +15,7 @@
         public string UserName { get; set; }
 
         [StringLength(50)]
-        public string Password { get; set; }
+        public string Pass { get; set; }
 
         [StringLength(50)]
         public string Email { get; set; }
@@ -35,7 +35,7 @@
         {
             this.UserID = userID;
             this.UserName = userName;
-            this.Password = passWord;
+            this.Pass = passWord;
             this.Email = email;
             this.SDT = sdt;
             this.Role = role;

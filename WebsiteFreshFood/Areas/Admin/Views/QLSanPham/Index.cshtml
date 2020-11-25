@@ -58,8 +58,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="s in ListSanPham" total-items="totalCount"
-                                        ng-class-even="even" ng-class-odd="odd" id="tr_{{s.MaSP}}">
+                                    <tr dir-paginate="s in ListSanPham|itemsPerPage:pageSize" current-page="currentPage" total-items="totalCount">
                                         <td>{{s.MaSP}}</td>
                                         <td>{{s.TenSP}}</td>
                                         <td>{{s.MaLoaiSP}}</td>
@@ -80,13 +79,8 @@
                                                          direction-links="true"
                                                          boundary-links="true"
                                                          on-page-change="GetSanPhamList(newPageNumber)"
-                                                         template-url="~/Scripts/dirPagination.tpl.html">
+                                                         template-url="~/dirPagination.tpl.html">
                                 </dir-pagination-controls>
-                                @*<ul class="pagination">
-                                        <li class="active"><a>1</a></li>
-                                        <li><a href="/Admin/User?page=2">2</a></li>
-                                        <li class="PagedList-skipToNext"><a href="/Admin/User?page=2" rel="next">»</a></li>
-                                    </ul>*@
                             </div>
                         </div>
                         <!-- /.table-responsive -->

@@ -98,10 +98,6 @@ function CTSanPhamController($scope, $rootScope, $http) {
 }
 
 
-
-
-
-
 //Giỏ hàng
 app.controller("GioHangController", GioHangController);
 function GioHangController($rootScope, $scope, $http) {
@@ -142,5 +138,14 @@ function HomeController($rootScope, $scope, $http) {
 
 }
 
+
+ap.controller("DatHangController", function ($rootScope, $scope, $http) {
+
+    $rootScope.DatHang = function () {
+        $http.get('/DatHang/DatHang', function () {
+           
+        })
+    }
+})
 
 

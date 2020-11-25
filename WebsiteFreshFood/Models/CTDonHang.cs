@@ -7,7 +7,7 @@ namespace WebsiteFreshFood.Models
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("CTDonHang")]
-    public class CTDonHang
+    public partial class CTDonHang
     {
         [Key]
         public int MaCTDonDatHang { get; set; }
@@ -16,8 +16,10 @@ namespace WebsiteFreshFood.Models
         public string MaDonHang { get; set; }
 
         [StringLength(50)]
-
         public string MaSP { get; set; }
+
+        [StringLength(100)]
+        public string TenSP { get; set; }
 
         public float SoLuong { get; set; }
 

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebsiteFreshFood.Models;
 using WebsiteFreshFood.Bussiness;
+using WebsiteFreshFood.Models;
+using System.Web.Security;
 
 namespace WebsiteFreshFood.Areas.Admin.Controllers
 {
@@ -18,25 +19,29 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        public JsonResult Logout()
+        {
+            //Session.Remove("User_Session");
+            FormsAuthentication.SignOut();
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public JsonResult Login(string us, string pw)
         {
             LoginBus lb = new LoginBus();
-            lb.checkUser(us, pw);
-            if (us != null)
+            Users u = lb.checkUser(us, pw);
+            if (u == null) //Tài khoản không đúng
             {
-                return Json(us, JsonRequestBehavior.AllowGet);
+                return Json(u, JsonRequestBehavior.AllowGet);
             }
-            else
+            else  //Tài khoản đúng
             {
-                Session.Add("User_Session", us);
-                return Json(us, JsonRequestBehavior.AllowGet);
+                //Session.Add("User_Session", u);
+                FormsAuthentication.SetAuthCookie(us, false);
+                return Json(u, JsonRequestBehavior.AllowGet);
+                // return RedirectToAction("index", "Home");
             }
-        }
-
-        public JsonResult Logout()
-        {
-            Session.Remove("User_Session");
-            return Json(null, JsonRequestBehavior.AllowGet);
         }
     }
 }

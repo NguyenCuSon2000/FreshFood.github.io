@@ -1,8 +1,42 @@
 ﻿/// <reference path="../angular.js" />
-var app = angular.module("myApp", ['ngFileUpload']);
+var app = angular.module("SanPhamApp", ['angularUtils.directives.dirPagination', 'ngFileUpload']);
+
 
 // Hiển thị sản phẩm và phân trang
-app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload, $timeout, $document) {
+app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload) {
+
+    //Begin Paging
+    $scope.maxSize = 3;     // limit number for pagination display number.  
+    $scope.totalCount = 0;  // total number of items in all pages. initialize as a zero 
+    $scope.pageIndex = 1;   // current page number. first page is 1
+    $scope.pageSize = 5; // maximum number of items per page. 
+    $scope.searchName = "";
+
+    $scope.GetSanPhamList = function (index) {
+        $http.get('/Admin/QLSanPham/GetSanPhamPT', {
+            params: {
+                pageIndex: index,
+                pageSize: $scope.pageSize,
+                productName: $scope.searchName
+            }
+        }).then(function (response) {
+            $scope.ListSanPham = response.data.SanPhams;
+            $scope.totalCount = response.data.totalCount;
+            var sotrang = parseInt(response.data.totalCount) / parseInt($scope.pageSize);
+            if (parseInt(response.data.totalCount) > sotrang * parseInt($scope.pageSize))
+                sotrang = sotrang + 1;
+            if (sotrang < $scope.maxSize) { $scope.maxSize = sotrang; }
+            else $scope.maxSize = 5;
+        },
+            function (err) {
+                alert(err);
+            });
+    };
+
+    $scope.GetSanPhamList($scope.pageIndex);
+    //End Paging
+
+
 
     $scope.UploadFiles = function (files) {
         $scope.SelectedFiles = files;
@@ -24,7 +58,7 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload,
     $http.get('/Admin/QLSanPham/GetLoaiSanPham').then(function (d) {
         $rootScope.listloai = d.data;
     }, function (e) { alert("Lỗi lấy loại"); });
-     
+
     $scope.Them = function () {
         $scope._function = "Thêm sản phẩm";
         $scope.buttext = "Save";
@@ -48,8 +82,7 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload,
             }).then(function (d) {
                 if (d.data == "") {
                     var index = $scope.ListSanPham;
-                    for (var i = 0; i < $scope.ListSanPham.length; i++)
-                    { //Sửa thành công thì tiến hành sửa trên $scope
+                    for (var i = 0; i < $scope.ListSanPham.length; i++) { //Sửa thành công thì tiến hành sửa trên $scope
                         if ($scope.ListSanPham[i].MaSP == $scope.s.MaSP) {
                             $scope.ListSanPham[i].TenSP = $scope.s.TenSP;
                             $scope.ListSanPham[i].MaLoaiSP = $scope.s.MaLoaiSP;
@@ -98,31 +131,9 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload,
             $scope.ListSanPham.splice(vt, 1);
         }, function (e) { alert(e) });
     };
-
-   
-    //$scope.totalCount = 0;
-    //$scope.maxSize = 3;
-    //$scope.pageIndex = 1;
-    //$scope.pageISize = 5;
-    //$scope.searchName = "";
-
-    //$scope.GetSanPhamList = function (index) {
-    //    $http.get('/Admin/QLSanPham/GetSanPhamPT', {
-    //        params: { pageIndex: index, pageSize: $scope.pageISize, productName = $scope.searchName }
-    //    }).then(function (response) {
-
-    //        $scope.ListSanPham = response.data.SanPhams;
-    //        $scope.totalCount = response.data.totalCount;
-    //        var sotrang = parseInt(response.data.totalCount) / parseInt($scope.pageISize);
-    //        if (parseInt(response.data.totalCount) > sotrang * parseInt($scope.pageISize))
-    //            sotrang = sotrang + 1;
-    //        if (sotrang < $scope.maxSize) { $scope.maxSize = sotrang; }
-    //        else { $scope.maxSize = 5; }
-    //    },
-    //        function (e) { alert(e); });
-    //};
-    //$scope.GetSanPhamList($scope.pageIndex);
 });
+
+
 
 
 // KHÁCH HÀNG
