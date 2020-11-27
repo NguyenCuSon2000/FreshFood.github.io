@@ -1,13 +1,46 @@
-﻿<div class="col-md -12 col-sm-4 Search">
+﻿<script>
+    function timkiem() {
+        var x = document.getElementById('myP1');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+</script>
+<div class="col-md -12 col-sm-4 Search" ng-controller="SearchController">
     <div class="search-bar">
         <div class="">
-            <form action="" class="form-inline">
+            <form action="" method="get" class="form-inline">
                 <input type="hidden" name="type" value="product">
-                <input type="text" name="q" placeholder="Tìm kiếm..." autocomplete="off" ng-model="searchName">
+                <input type="text" name="q" placeholder="Tìm kiếm..." autocomplete="off" ng-model="TenSP">
             </form>
-            <button type="button" class="pull-right btn-search" ng-click="GetSanPhamListSearch(pageIndex)">
-                <i class="fa fa-search"></i>
-            </button>
+            <a href="">
+                <input type="button" class="pull-right btn-search" value="Search" ng-click="Search(TenSP)" onclick="timkiem()" />
+            </a>
+        </div>
+    </div>
+
+    <div id="myP1" class="form_holder" style="display: none">
+        <div class="cart-block">
+            <div class="cart-block-content">
+                <div class="cart-block-list">
+                    <div class="shop_cart">
+                        <table class="shop_table">
+                            <tr>
+                                <th>Mã sã phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Đơn giá</th>
+                            </tr>
+                            <tr ng-repeat="l in ListTimKiem">
+                                <td>{{l.MaSP}}</td>
+                                <td>{{l.TenSP}}</td>
+                                <td>{{l.DonGia}} VND</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

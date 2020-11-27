@@ -122,7 +122,7 @@
                                     <a href="/CTSanPham/Index?masp={{s.MaSP}}">
                                         <img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" title="{{s.TenSP}}">
                                     </a>
-                                    <div class="actionss">
+                                    <div class="actionss" ng-controller="GioHangController">
                                         <div class="btn-cart-products" ng-click="AddCart(s)">
                                             <a href="#" title="Add to Cart" data-name="{{s.TenSP}} - {{s.DonVi}}" data-price="{{s.DonGia}}" data-image="{{s.MaLoaiSP}}/{{s.HinhAnh}}">
                                                 <i class="fa fa-shopping-bag" aria-hidden="true"></i>
@@ -145,18 +145,6 @@
                             </div>
                         </div>
                     </div>
-                    @*<div class="col-md-12 col-sm-12 col-xs-12 ">
-                               <div id="pagination" class="mt-5">
-                                   <span class="page-node current">1</span>
-                                   <a href="ThucDonMonBanh2.html" class="page-node">2</a>
-                                   <a href="ThucDonMonBanh2.html" class="TrangSau">
-                                       <span>
-                                           Trang sau
-                                           <i class="fas fa-chevron-right"></i>
-                                       </span>
-                                   </a>
-                                </div>
-                        </div>*@
                 </div>
             </div>
         </div>
@@ -173,15 +161,6 @@
             </div>
         </div>
     </div>
-    @*<div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div id="pagination" class="mt-5">
-                <pagination total-items="totalCount" ng-change="pagechanged()" items-per-page="pageSize" 
-                             direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true"
-                            rotate="false" num-pages="numPages"></pagination>
-            </div>
-        </div>
-    </div>*@
     <!-- SCROLL TO TOP -->
     <div class="Scroll">
         <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop();return false">
@@ -191,4 +170,9 @@
 </section>
 
 <div class="clear-fix"></div>
+
+
+
+
+
 

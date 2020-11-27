@@ -20,6 +20,12 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             return View("Index");
         }
 
+        public ActionResult SearchView(string tensp)
+        {
+            Session.Add("tensp", tensp);
+            return View();
+        }
+
         [HttpGet]
         public JsonResult GetSanPham()
         {
@@ -47,7 +53,12 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             SanPhamList spl = qlsp.LaySanPhamPT("", pageIndex, pageSize, productName);
             return Json(spl, JsonRequestBehavior.AllowGet);
         }
-
+        [HttpGet]
+        public JsonResult Search(string maloaisp, string tenSP)
+        {
+            List<SanPham> lsp = qlsp.TimKiemSanPham("", tenSP);
+            return Json(lsp, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public JsonResult Insert(SanPham s)

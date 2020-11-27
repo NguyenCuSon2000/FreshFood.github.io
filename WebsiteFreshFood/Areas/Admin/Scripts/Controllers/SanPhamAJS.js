@@ -131,6 +131,24 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload)
             $scope.ListSanPham.splice(vt, 1);
         }, function (e) { alert(e) });
     };
+
+    //$rootScope.TenSP = "";
+    //$rootScope.Search = function (tenSP) {
+    //    $http({
+    //        method: 'Get',
+    //        params: { TenSP: tenSP },
+    //        url: '/Admin/QLSanPham/Search'
+    //    }).then(function (d) {
+    //        if (d.data == null) {
+    //            $rootScope.TenSP = "";
+    //            alert("Sản phẩm không tồn tại");
+    //        }
+    //        else {
+    //            $rootScope.ListTimKiem = d.data;
+    //        }
+    //    }, function (e) { });
+    //}
+
 });
 
 
@@ -216,6 +234,9 @@ function KhachHangController($scope, $rootScope, $http) {
             $scope.ListKhachHang.splice(vt, 1);
         }, function (e) { alert(e) });
     };
+
+
+
 }
 
 // NHÀ CUNG CẤP

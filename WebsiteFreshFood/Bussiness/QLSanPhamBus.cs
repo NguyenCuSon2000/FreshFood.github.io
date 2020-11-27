@@ -15,9 +15,9 @@ namespace WebsiteFreshFood.Bussiness
             return SanPhamDAL.LaySPTheoLoai(maloai);
         }
 
-        public List<SanPham> LaySPTheoTen(string masp)
+        public List<SanPham> LaySPTheoMa(string masp)
         {
-            return SanPhamDAL.LaySPTheoTen(masp);
+            return SanPhamDAL.LaySPTheoMa(masp);
         }
 
         public SanPhamList LaySanPhamPT(string maloai, int pageIndex, int pageSize, string productName)
@@ -41,6 +41,15 @@ namespace WebsiteFreshFood.Bussiness
         public string SuaSanPham(SanPham s)
         {
             return SanPhamDAL.SuaSanPham(s);
+        }
+        public List<SanPham> TimKiemSanPham(string maloaisp, string tenSP)
+        {
+            return SanPhamDAL.Search(maloaisp, tenSP);
+        }
+
+        public List<SanPham> SearchNameSP(string tensp)
+        {
+            return SanPhamDAL.SearchName(tensp);
         }
 
     }

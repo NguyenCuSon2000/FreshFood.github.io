@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿
+@{
+    ViewBag.Title = "SearchView";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -27,7 +28,7 @@
 
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <form action="/Admin/QLSanPham/SearchView?tensp={{TenSP}}" method="get">
+                        <form action="/Admin/SanPham/SearchView" method="get">
                             <div class="row form-group">
                                 <div class="col-lg-12">
                                     <div class="col-md-4">
@@ -58,7 +59,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr dir-paginate="s in ListSanPham|itemsPerPage:pageSize" current-page="currentPage" total-items="totalCount">
+                                    <tr ng-repeat="s in ListTimKiem" current-page="currentPage" total-items="totalCount">
                                         <td>{{s.MaSP}}</td>
                                         <td>{{s.TenSP}}</td>
                                         <td>{{s.MaLoaiSP}}</td>
@@ -74,14 +75,14 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="pagination-container">
+                            @*<div class="pagination-container">
                                 <dir-pagination-controls max-size="maxSize"
                                                          direction-links="true"
                                                          boundary-links="true"
                                                          on-page-change="GetSanPhamList(newPageNumber)"
                                                          template-url="~/dirPagination.tpl.html">
                                 </dir-pagination-controls>
-                            </div>
+                            </div>*@
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -91,43 +92,5 @@
         </div>
     </div>
     <!-- /.container-fluid -->
-    <!-- Modal -->
-    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{_function}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="ma">Mã sản phẩm</label>
-                        <input ng-model="s.MaSP" type="text" id="ma" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="name">Tên sản phẩm</label>
-                        <input ng-model="s.TenSP" type="text" id="name" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="">Mã loại</label>
-                        <select ng-model="s.MaLoaiSP" class="form-control" name="" id="">
-                            <option ng-repeat="s in listloai">{{s.MaLoaiSP}}</option>
-                        </select>
-                        <label for="Unit">Đơn vị</label>
-                        <input ng-model="s.DonVi" type="text" id="Unit" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="Describe">Mô tả</label>
-                        <input ng-model="s.MoTa" type="text" id="Describe" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="image">Hình ảnh</label>
-                        <input ng-model="s.HinhAnh" multiple="multiple" type="file" id="image" class="form-control" ngf-select="UploadFiles($files)">
-                        <label for="price">Đơn giá</label>
-                        <input ng-model="s.DonGia" type="number" id="price" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button ng-click="Save()" type="button" class="btn btn-primary">{{buttext}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--End Modal-->
 </div>
 <!-- /#page-wrapper -->

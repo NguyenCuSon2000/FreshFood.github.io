@@ -84,7 +84,7 @@ function SanPhamController($scope, $rootScope, $http) {
             $rootScope.dr = "Ascending";
         }
     };
-}
+};
 
 
 
@@ -97,6 +97,27 @@ function CTSanPhamController($scope, $rootScope, $http) {
 
 }
 
+
+app.controller("SearchController", SearchController);
+function SearchController($scope, $rootScope, $http) {
+    $rootScope.TenSP = "";
+    $rootScope.Search = function (tensp) {
+        $http.get('/SanPham/SearchName', {
+            params: {
+                TenSP: tensp
+            }
+        }).then(function (d) {
+            if (d.data == "") {
+                $rootScope.TenSP = "";
+                alert("Sản phẩm không tồn tại");
+            }
+            else {
+                $rootScope.ListTimKiem = d.data;
+                alert("Search success... !!!")
+            }
+        }, function (e) { });
+    }
+};
 
 //Giỏ hàng
 app.controller("GioHangController", GioHangController);
@@ -135,11 +156,10 @@ function HomeController($rootScope, $scope, $http) {
             $rootScope.ThanhTien = d.data.ThanhTien;
         }, function (e) { })
     }
-
 }
 
 
-ap.controller("DatHangController", function ($rootScope, $scope, $http) {
+app.controller("DatHangController", function ($rootScope, $scope, $http) {
 
     $rootScope.DatHang = function () {
         $http.get('/DatHang/DatHang', function () {

@@ -20,7 +20,7 @@ namespace WebsiteFreshFood.Controllers
 
         public JsonResult GetCTSanPham()
         {
-            List<SanPham> lsp = spbus.LaySPTheoTen(Session["masp"].ToString());
+            List<SanPham> lsp = spbus.LaySPTheoMa(Session["masp"].ToString());
             //List<SanPham> lsp = spbus.LaySP("Lẩu");
             return Json(lsp, JsonRequestBehavior.AllowGet);
         }

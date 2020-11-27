@@ -17,7 +17,6 @@ namespace WebsiteFreshFood.Controllers
 
 
         [HttpPost]
-
         public JsonResult AddCart(SanPham s)
         {
             if(Session["giohang"] == null)

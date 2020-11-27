@@ -33,7 +33,7 @@
         }
     </style>
 </head>
-<body ng-app="SanPhamApp">
+<body>
     <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -264,7 +264,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="/Admin/Login/Logout" ng-click="Logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <a href="" ng-click="Logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -278,9 +278,10 @@
         </nav>
     </div>
     <!-- /#wrapper -->
-
-    @RenderBody()
-  
+    <div ng-app="SanPhamApp">
+        @RenderBody()
+    </div>
+    
 
     <script src="~/assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
     @*<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@

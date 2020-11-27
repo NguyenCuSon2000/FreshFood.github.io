@@ -231,4 +231,6 @@ Begin
 
 SELECT * FROM Users u WHERE u.UserName = 'son@gmail.com' AND u.Pass = '1'
 
-Exec GetSanPhams 'Rau', 3, 10, ''
+Exec GetSanPhams 'Rau', 3, 5, ''
+
+select * from SanPham where TenSP like N'%Thịt%'

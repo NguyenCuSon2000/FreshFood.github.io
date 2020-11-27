@@ -20,7 +20,14 @@ namespace WebsiteFreshFood.DataAccess
             return ToList(dt);
         }
 
-        public List<SanPham> LaySPTheoTen(string masp)
+        public List<SanPham> SearchName(string tensp)
+        {
+            string sqlselect = "SELECT * FROM SanPham WHERE (TenSP like N'%" + tensp + "%')";
+            DataTable dt = dc.GetDataTable(sqlselect);
+            return ToList(dt);
+        }
+
+        public List<SanPham> LaySPTheoMa(string masp)
         {
             string sqlselect = "select * from SanPham where MaSP ='" + masp + "'";
             DataTable dt = dc.GetDataTable(sqlselect);
@@ -92,6 +99,7 @@ namespace WebsiteFreshFood.DataAccess
                 s.DonVi + "',MoTa=N'" + s.MoTa + "', HinhAnh='" + s.HinhAnh + "', dongia = '" + s.DonGia + "' where MaSP='" + s.MaSP + "'";
             return dc.ExcuteNonQuery(st);
         }
+
         public List<SanPham> Search(string maloaisp, string tenSP)
         {
             string st;

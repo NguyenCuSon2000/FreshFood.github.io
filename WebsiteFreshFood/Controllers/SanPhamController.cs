@@ -24,7 +24,6 @@ namespace WebsiteFreshFood.Controllers
         public JsonResult GetSanPham()
         {
             List<SanPham> lsp = spbus.LaySP(Session["maloai"].ToString());
-            //List<SanPham> lsp = spbus.LaySP("Lẩu");
             return Json(lsp, JsonRequestBehavior.AllowGet);
         }
 
@@ -45,11 +44,10 @@ namespace WebsiteFreshFood.Controllers
             return Json(spl, JsonRequestBehavior.AllowGet);
         }
 
-        //public JsonResult GetSanPhamPTLoai(string maloai, int pageIndex, int pageSize, string productName)
-        //{
-        //    SanPhamList spl = new SanPhamList();
-        //    spl = spbus.LaySanPhamPT(maloai, pageIndex, pageSize, productName);
-        //    return Json(spl, JsonRequestBehavior.AllowGet);
-        //}
+        public JsonResult SearchName(string tensp)
+        {
+            List<SanPham> lsp = spbus.SearchNameSP(tensp);
+            return Json(lsp, JsonRequestBehavior.AllowGet);
+        }
     }
 }
