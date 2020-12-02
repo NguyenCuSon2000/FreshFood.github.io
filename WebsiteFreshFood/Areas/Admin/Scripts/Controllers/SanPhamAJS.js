@@ -5,36 +5,6 @@ var app = angular.module("SanPhamApp", ['angularUtils.directives.dirPagination',
 // Hiển thị sản phẩm và phân trang
 app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload) {
 
-    //Begin Paging
-    $scope.maxSize = 3;     // limit number for pagination display number.  
-    $scope.totalCount = 0;  // total number of items in all pages. initialize as a zero 
-    $scope.pageIndex = 1;   // current page number. first page is 1
-    $scope.pageSize = 5; // maximum number of items per page. 
-    $scope.searchName = "";
-
-    $scope.GetSanPhamList = function (index) {
-        $http.get('/Admin/QLSanPham/GetSanPhamPT', {
-            params: {
-                pageIndex: index,
-                pageSize: $scope.pageSize,
-                productName: $scope.searchName
-            }
-        }).then(function (response) {
-            $scope.ListSanPham = response.data.SanPhams;
-            $scope.totalCount = response.data.totalCount;
-            var sotrang = parseInt(response.data.totalCount) / parseInt($scope.pageSize);
-            if (parseInt(response.data.totalCount) > sotrang * parseInt($scope.pageSize))
-                sotrang = sotrang + 1;
-            if (sotrang < $scope.maxSize) { $scope.maxSize = sotrang; }
-            else $scope.maxSize = 5;
-        },
-            function (err) {
-                alert(err);
-            });
-    };
-
-    $scope.GetSanPhamList($scope.pageIndex);
-    //End Paging
 
 
 
@@ -54,7 +24,22 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload)
     $http.get('/Admin/QLSanPham/GetSanPham').then(function (d) {
         $rootScope.ListSanPham = d.data;
     }, function (error) { alert('Failed'); });
-
+    $rootScope.TenSP = "";
+    $rootScope.Search = function (tensp) {
+        $rootScope.ListSanPham = null;
+        $http.get('/Admin/QLSanPham/Search', {
+            params: {
+                TenSP: tensp
+            }
+        }).then(function (d) {
+            if (d.data == "") {
+                alert("Sản phẩm không tồn tại");
+            }
+            else {
+                $rootScope.ListSanPham = d.data;
+            }
+        }, function (e) { });
+    };
     $http.get('/Admin/QLSanPham/GetLoaiSanPham').then(function (d) {
         $rootScope.listloai = d.data;
     }, function (e) { alert("Lỗi lấy loại"); });
@@ -132,27 +117,43 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload)
         }, function (e) { alert(e) });
     };
 
-    //$rootScope.TenSP = "";
-    //$rootScope.Search = function (tenSP) {
-    //    $http({
-    //        method: 'Get',
-    //        params: { TenSP: tenSP },
-    //        url: '/Admin/QLSanPham/Search'
-    //    }).then(function (d) {
-    //        if (d.data == null) {
-    //            $rootScope.TenSP = "";
-    //            alert("Sản phẩm không tồn tại");
-    //        }
-    //        else {
-    //            $rootScope.ListTimKiem = d.data;
-    //        }
-    //    }, function (e) { });
-    //}
 
+   //// Begin Paging
+   // $scope.maxSize = 3;     // limit number for pagination display number.  
+   // $scope.totalCount = 0;  // total number of items in all pages. initialize as a zero 
+   // $scope.pageIndex = 1;   // current page number. first page is 1
+   // $scope.pageSize = 5; // maximum number of items per page. 
+   // $scope.searchName = "";
+
+   // $scope.GetSanPhamList = function (index) {
+   //     $http.get('/Admin/QLSanPham/GetSanPhamPT', {
+   //         params: {
+   //             pageIndex: index,
+   //             pageSize: $scope.pageSize,
+   //             productName: $scope.searchName
+   //         }
+   //     }).then(function (response) {
+   //         $scope.ListSanPham = response.data.SanPhams;
+   //         $scope.totalCount = response.data.totalCount;
+   //         var sotrang = parseInt(response.data.totalCount) / parseInt($scope.pageSize);
+   //         if (parseInt(response.data.totalCount) > sotrang * parseInt($scope.pageSize))
+   //             sotrang = sotrang + 1;
+   //         if (sotrang < $scope.maxSize) { $scope.maxSize = sotrang; }
+   //         else $scope.maxSize = 5;
+   //     },
+   //         function (err) {
+   //             alert(err);
+   //         });
+   // };
+
+   // $scope.GetSanPhamList($scope.pageIndex);
+   //// End Paging
 });
 
 
-
+//app.controller("SanPhamController", function ($scope, $rootScope, $http) {
+//   
+//})
 
 // KHÁCH HÀNG
 
@@ -235,7 +236,23 @@ function KhachHangController($scope, $rootScope, $http) {
         }, function (e) { alert(e) });
     };
 
-
+    $scope.TenKH = "";
+    $rootScope.SearchInfo = function (tenkh) {
+        $scope.ListKhachHang = null;
+        $http.get('/Admin/QLKhachHang/Search', {
+            params: {
+                TenKH: tenkh
+            }
+        }).then(function (d) {
+            if (d.data == "") {
+                alert("Khách hàng không tồn tại");
+            }
+            else {
+                alert("Success search...!");
+                $scope.ListKhachHang = d.data;
+            }
+        }, function (e) { });
+    }
 
 }
 

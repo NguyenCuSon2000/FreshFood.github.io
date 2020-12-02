@@ -91,6 +91,7 @@ DonGia float,
 GiamGia float
 )
 
+
 CREATE TABLE BinhLuan(
 ID bigint identity(1,1) primary key,
 NoiDungBL nvarchar(500),

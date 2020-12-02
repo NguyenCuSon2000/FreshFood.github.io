@@ -102,9 +102,9 @@ a.navbar-brand{
     border-bottom: 1px solid #e7e7e7;
 }
 
-/*.sidebar ul li a.active {
+.sidebar ul li a.active {
     background-color: #eee;
-}*/
+}
 
 .sidebar .arrow {
     float: right;
@@ -363,9 +363,4 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
-}
-
-.KhongQuyen {
-    pointer-events: none;
-    background-color: aliceblue;
 }

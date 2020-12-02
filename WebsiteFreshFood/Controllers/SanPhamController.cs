@@ -46,8 +46,15 @@ namespace WebsiteFreshFood.Controllers
 
         public JsonResult SearchName(string tensp)
         {
-            List<SanPham> lsp = spbus.SearchNameSP(tensp);
-            return Json(lsp, JsonRequestBehavior.AllowGet);
+            if (tensp == "")
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                List<SanPham> lsp = spbus.SearchNameSP(tensp);
+                return Json(lsp, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

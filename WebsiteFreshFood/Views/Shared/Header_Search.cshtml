@@ -10,34 +10,39 @@
 </script>
 <div class="col-md -12 col-sm-4 Search" ng-controller="SearchController">
     <div class="search-bar">
-        <div class="">
-            <form action="" method="get" class="form-inline">
-                <input type="hidden" name="type" value="product">
-                <input type="text" name="q" placeholder="Tìm kiếm..." autocomplete="off" ng-model="TenSP">
-            </form>
-            <a href="">
-                <input type="button" class="pull-right btn-search" value="Search" ng-click="Search(TenSP)" onclick="timkiem()" />
-            </a>
-        </div>
+        <form action="" method="get">
+            <div class="row form-group">
+                <div class="col-lg-12">
+                    <div class="col-md-6">
+                        <input type="search" ng-model="TenSP" autocomplete="off" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" ng-click="Search(TenSP)" onclick="timkiem()" class="btn btn-success">Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-
     <div id="myP1" class="form_holder" style="display: none">
-        <div class="cart-block">
-            <div class="cart-block-content">
-                <div class="cart-block-list">
-                    <div class="shop_cart">
-                        <table class="shop_table">
-                            <tr>
-                                <th>Mã sã phẩm</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Đơn giá</th>
-                            </tr>
-                            <tr ng-repeat="l in ListTimKiem">
-                                <td>{{l.MaSP}}</td>
-                                <td>{{l.TenSP}}</td>
-                                <td>{{l.DonGia}} VND</td>
-                            </tr>
-                        </table>
+        <div class="search-block" style="position: absolute;top: 75px;z-index: 1;box-shadow: 0 1px 2px #271e1a;background-color: white;">
+            <div class="search-block-content">
+                <div class="search-block-list">
+                    <div class="search">
+                        <div class="table-responsive">
+                            <table class="table" style="text-align: center;">
+                                <tbody>
+                                    <tr ng-repeat="s in ListTimKiem">
+                                        <td>{{s.TenSP}}</td>
+                                        <td style="width:100px"><img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" /></td>
+                                        <td>{{s.DonGia}} VNĐ</td>
+                                        <td>
+                                            <a ng-click="XoaSanPham(s)" href="">Xoá</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
                     </div>
                 </div>
             </div>

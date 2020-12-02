@@ -122,9 +122,9 @@
                                     <a href="/CTSanPham/Index?masp={{s.MaSP}}">
                                         <img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" title="{{s.TenSP}}">
                                     </a>
-                                    <div class="actionss" ng-controller="GioHangController">
-                                        <div class="btn-cart-products" ng-click="AddCart(s)">
-                                            <a href="#" title="Add to Cart" data-name="{{s.TenSP}} - {{s.DonVi}}" data-price="{{s.DonGia}}" data-image="{{s.MaLoaiSP}}/{{s.HinhAnh}}">
+                                    <div class="actionss">
+                                        <div class="btn-cart-products">
+                                            <a href="" ng-click="AddCart(s)" title="Add to Cart" data-name="{{s.TenSP}} - {{s.DonVi}}" data-price="{{s.DonGia}}" data-image="{{s.MaLoaiSP}}/{{s.HinhAnh}}">
                                                 <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                                             </a>
                                         </div>
@@ -149,7 +149,7 @@
             </div>
         </div>
     </div>
-    <div class="row" >
+    @*<div class="row" >
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div id="pagination" class="mt-5">
                 <dir-pagination-controls max-size="maxSize"
@@ -160,7 +160,7 @@
                 </dir-pagination-controls>
             </div>
         </div>
-    </div>
+    </div>*@
     <!-- SCROLL TO TOP -->
     <div class="Scroll">
         <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop();return false">

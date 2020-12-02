@@ -42,9 +42,9 @@ namespace WebsiteFreshFood.Bussiness
         {
             return SanPhamDAL.SuaSanPham(s);
         }
-        public List<SanPham> TimKiemSanPham(string maloaisp, string tenSP)
+        public List<SanPham> TimKiemSanPham(string tenSP)
         {
-            return SanPhamDAL.Search(maloaisp, tenSP);
+            return SanPhamDAL.Search(tenSP);
         }
 
         public List<SanPham> SearchNameSP(string tensp)

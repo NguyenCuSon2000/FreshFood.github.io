@@ -19,7 +19,7 @@ namespace WebsiteFreshFood.Controllers
         [HttpPost]
         public JsonResult AddCart(SanPham s)
         {
-            if(Session["giohang"] == null)
+            if(Session["giohang"] == null) // Nếu giỏ hàng chưa được khởi tạo
             {
                 Session["giohang"] = new List<CTDonHang>();
             }
@@ -30,6 +30,7 @@ namespace WebsiteFreshFood.Controllers
             {
                 d = new CTDonHang();
                 d.MaSP = s.MaSP;
+                d.TenSP = s.TenSP;
                 d.DonGia = s.DonGia;
                 d.SoLuong = 1;
                 giohang.Add(d);

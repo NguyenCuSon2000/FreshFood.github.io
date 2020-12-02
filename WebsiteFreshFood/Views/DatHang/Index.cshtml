@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/DatHang.css"/>
+
+<div class="wrap-breadcrumb">
+    <div class="clearfix container">
+        <div class="row main-header">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5  ">
+                <ol class="breadcrumb breadcrumb-arrows">
+                    <li><a href="index.html" target="_self">Trang chủ</a></li>
+                    <li><a href="/" target="_self">Giỏ hàng</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- PHẦN GIỎ HÀNG -->
+<section class="container GioHang" ng-controller="DatHangController">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5  ">
+            <article>
+                <h4 class="title">Giỏ hàng</h4>
+            </article>
+            <article>
+                @*<form action="">
+                <table cellspacing=5 cellpadding=5>
+                    <thead>
+                        <tr> &nbsp; </tr>
+                        <tr>Tên sản phẩm</tr>
+                        <tr>Số lượng</tr>
+                        <tr>Đơn giá</tr>
+                        <tr>Thành tiền</tr>
+                        <tr>&nbsp;</tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in dsDonHang">
+                            <td class="images">
+                                <a href="">
+                                    <img src="~/img/{{d.MaLoaiSP}}/{{d.HinhAnh}}" alt="">
+                                </a>
+                            </td>
+                            <td class="item"><a href="">{{d.TenSP}}</a></td>
+                            <td class="qty">
+                                <input type="number" name="number1" id="number" size="4" value="{{d.SoLuong}}" min="1" onclick="TinhTien()">
+                            </td>
+                            <td class="price" id="price">{{d.DonGia}} VND</td>
+                            <td class="">{{d.SoLuong*d.DonGia}}</td>
+                            <td class="remove"><a href="" onclick="onclick_Delete()">Xóa</a></td>
+                        </tr>
+                        <tr>
+                            <td class="images">&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>
+                                <b>Tổng cộng: </b>
+                            </td>
+                            <td class="price">220 000 VND</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="buttons">
+                    <button type="submit" id="checkout" class="button-default" name="checkout" value="" title="Thanh toán">
+                        Thanh toán &nbsp;&nbsp;
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button type="submit" id="update-cart" class="button-default" name="update" value="">
+                        <a href="index.html" title="Quay lại"> <i class="fas fa-chevron-left"></i>&nbsp;&nbsp;  Quay lại </a>
+                    </button>
+                </div>
+            </form>*@
+            </article>
+            <!-- ../page heading-->
+            <div class="page-content page-order">
+
+                <div class="heading-counter warning">
+                    <span class="fa fa-shopping-cart"></span> Your shopping cart contains:
+                    <span id="count-cart" style="font-weight: bold">1</span> <span> Products</span>
+                </div>
+                <div class="order-detail-content">
+                    <table class="table table-bordered table-responsive cart_summary">
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th class="cart_product">Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Thành tiền</th>
+                                <th class="action"><i class="fa fa-trash-o"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="show-item-cart">
+                            <tr ng-repeat="d in dsDonHang">
+                                <td class="images">
+                                    <a href="">
+                                        <img src="~/img/{{d.MaLoaiSP}}/{{d.HinhAnh}}" alt="">
+                                    </a>
+                                </td>
+                                <td class="item"><a href="">{{d.TenSP}}</a></td>
+                                <td class="qty">
+                                    <input type="number" name="number1" id="number" size="4" value="{{d.SoLuong}}" min="1" onclick="TinhTien()">
+                                </td>
+                                <td class="price" id="price">{{d.DonGia}} VND</td>
+                                <td class="">{{d.SoLuong*d.DonGia}}</td>
+                                <th class="action"><i class="fa fa-trash-o"></i></th>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2" rowspan="1"></td>
+                                <td colspan="3"><strong>Total(tax incl.)</strong></td>
+                                <td colspan="1" id="total_price" style="font-weight: bold; color: #e84d1c; font-size: 20px;">54,000</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="cart_navigation">
+                        <a class="prev-btn" href="/Home/Index">Continue shopping</a>
+                        <a class="next-btn" href="" ng-click="DatHang()">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCROLL TO TOP -->
+    <div class="Scroll">
+        <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop();return false">
+            <i class="fas fa-arrow-alt-circle-up"></i>
+        </a>
+    </div>
+</section>
+
+<div class="clear-fix"></div>
+

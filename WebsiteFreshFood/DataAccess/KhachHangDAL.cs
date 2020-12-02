@@ -51,16 +51,22 @@ namespace WebsiteFreshFood.DataAccess
             string st = "UPDATE KhachHang SET TenKH=N'" + k.TenKH + "', SDT='" + k.SDT + "', DiaChi=N'" + k.DiaChi + "',Email='" + k.Email + "' where MaKH='" + k.MaKH + "'";
             return dc.ExcuteNonQuery(st);
         }
-        public List<KhachHang> Search(string MaKH, string tenKH)
+        //public List<KhachHang> Search(string MaKH, string tenKH)
+        //{
+        //    string st;
+        //    if (MaKH != "")
+        //    {
+        //        st = "select * from KhachHang where (MaKH='" + MaKH + "') and (TenKH like '%" + tenKH + "%')";
+        //    }
+        //    else
+        //    { st = "select * from KhachHang where (TenKH like '%" + tenKH+ "%')"; }
+        //    DataTable dt = dc.GetDataTable(st);
+        //    return ToList(dt);
+        //}
+        public List<KhachHang> SearchName(string tenkh)
         {
-            string st;
-            if (MaKH != "")
-            {
-                st = "select * from KhachHang where (MaKH='" + MaKH + "') and (TenKH like '%" + tenKH + "%')";
-            }
-            else
-            { st = "select * from KhachHang where (TenKH like '%" + tenKH+ "%')"; }
-            DataTable dt = dc.GetDataTable(st);
+            string sqlselect = "SELECT * FROM KhachHang WHERE (TenKH like N'%" + tenkh + "%')";
+            DataTable dt = dc.GetDataTable(sqlselect);
             return ToList(dt);
         }
     }

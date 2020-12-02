@@ -1,31 +1,48 @@
-﻿
+﻿<script>
+    function click() {
+        var x = document.getElementById('myP1');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+</script>
 <div class="header-cart" ng-controller="HomeController">
-    <a href="" ng-click="GetCart()">
+    <a href="" ng-click="GetCart()" onclick="click()">
         <span class="icon-start">
             <img src="~/img/icon-cart.png" alt="">
         </span>
         <span class="cart-number">0</span>
     </a>
-    <div class="form_holder">
+    <div id="myP1" class="form_holder" style=" position: absolute;right: 16px;width: 300px;height: 100px;text-align: center;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18); z-index: 1;background-color: white;">
         <div class="cart-block">
             <div class="cart-block-content">
                 <div class="cart-block-list">
                     <div class="shop_cart">
                         <table class="shop_table">
                             <tr>
-                                <th>Mã sã phẩm</th>
+                                <th>Tên sản phẩm</th>
                                 <th>Số lượng</th>
                                 <th>Đơn giá</th>
                             </tr>
                             <tr ng-repeat="d in dsDonHang">
-                                <td>{{d.MaSP}}</td>
+                                <td>{{d.TenSP}}</td>
                                 <td>{{d.SoLuong}}</td>
                                 <td>{{d.DonGia}} VND</td>
+                                <td><i class="fas fa-times"></i></td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="toal-cart">
+            <span>Total</span>
+            <span class="toal-price pull-right" id="total_price">54,000đ</span>
+        </div>
+        <div class="cart-buttons">
+            <button ng-click="KiemTraDangNhap()" class="button" type="button" data-toggle="modal" data-target="{{dathang}}">Payment</button>
         </div>
     </div>
 </div>

@@ -27,16 +27,19 @@ namespace WebsiteFreshFood.Models
 
         public float GiamGia { get; set; }
 
+        public DateTime NgayNhap { get; set; }
         public CTDonHang() { }
         
-        public CTDonHang(int maCTDonDatHang, string maDonHang, string maSP, float soLuong, double donGia, float giamGia)
+        public CTDonHang(int maCTDonDatHang, string maDonHang, string maSP,string tenSP, float soLuong, double donGia, float giamGia, DateTime ngayNhap)
         {
             this.MaCTDonDatHang = maCTDonDatHang;
             this.MaDonHang = maDonHang;
             this.MaSP = maSP;
+            this.TenSP = tenSP;
             this.SoLuong = soLuong;
             this.DonGia = donGia;
             this.GiamGia = giamGia;
+            this.NgayNhap = ngayNhap;
         }
     }
 }

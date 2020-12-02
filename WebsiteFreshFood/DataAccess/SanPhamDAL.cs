@@ -81,6 +81,17 @@ namespace WebsiteFreshFood.DataAccess
 
         public string ThemSanPham(SanPham sp)
         {
+            //WebsiteFreshFoodEntity d = new WebsiteFreshFoodEntity();
+            //try
+            //{
+            //    d.SanPhams.Add(sp);
+            //    d.SaveChanges()
+            //    return "";
+            //}
+            //catch (Exception e)
+            //{
+            //    return e.Message;
+            //}
             string sql = "INSERT into SanPham values('" + sp.MaSP + "',N'" + sp.TenSP + "','" + sp.MaLoaiSP + "',N'" +
                 sp.DonVi + "',N'" + sp.MoTa + "','" + sp.HinhAnh + "','" + sp.DonGia + "')";
 
@@ -89,6 +100,9 @@ namespace WebsiteFreshFood.DataAccess
 
         public string XoaSanPham(string id)
         {
+            //SanPham s = d.SanPhams.Find(id);
+            //d.SanPhams.Remove(s);
+            //dc.SaveChanges();
             string st = "delete from SanPham where masp='" + id + "'";
             return dc.ExcuteNonQuery(st);
 
@@ -100,15 +114,10 @@ namespace WebsiteFreshFood.DataAccess
             return dc.ExcuteNonQuery(st);
         }
 
-        public List<SanPham> Search(string maloaisp, string tenSP)
+        public List<SanPham> Search(string tenSP)
         {
             string st;
-            if (maloaisp != "")
-            {
-                st = "select * from SanPham where (MaLoaiSP='" + maloaisp + "') and (TenSP like '%" + tenSP + "%')";
-            }
-            else
-            { st = "select * from SanPham where (TenSP like '%" + tenSP + "%')"; }
+            st = "select * from SanPham where TenSP like N'%" + tenSP + "%'";
             DataTable dt = dc.GetDataTable(st);
             return ToList(dt);
         }

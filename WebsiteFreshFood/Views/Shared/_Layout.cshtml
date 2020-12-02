@@ -17,16 +17,16 @@
     <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
    @* <script async type="text/javascript" src="https://panel.chatcompose.com/static/EN/global/export/js\main.dec259c7.js" user="SonNguyen"></script>*@
-    <link href="~/assets/admin/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    @*<link href="~/assets/admin/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">*@
 </head>
 <body ng-app="myApp">
     <header>
         <div class=" container header-top">
             <div class="row">
-                <div class="col-sm-4 header-logo">
+                <div class="col-sm-7 header-logo">
                     <img src="~/img/logo.png" alt="">
                 </div>
-                <div class="col-sm-8 header-info">
+                <div class="col-sm-5 header-info">
                     @{ Html.RenderAction("GioHang", "Home");}
                     <div class="header-subnav">
                         <ul>
@@ -34,7 +34,7 @@
                             <li><a href="/Admin/Login/Index" title="Đăng ký">ĐĂNG KÝ</a></li>
                             <li><a href="/Admin/Signup/Index" title="Đăng nhập">ĐĂNG NHẬP</a></li>
                         </ul>
-                        <p>Miễn phí vận chuyển <span>ĐƠN HÀNG TRÊN 900K</span> </p>
+                        <p style=" margin-left: 0px;text-align: center;padding-left: 90px;">Miễn phí vận chuyển <span>ĐƠN HÀNG TRÊN 900K</span> </p>
                     </div>
                 </div>
             </div>

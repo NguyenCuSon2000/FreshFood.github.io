@@ -27,10 +27,17 @@ namespace WebsiteFreshFood.DataAccess
             dt.Columns.Add(c4);
             dt.Columns.Add(c5);
             dt.Columns.Add(c6);
-            //for(int i = 0; i < lct.Count; i++)
-            //{
-            //    DataRow[i] 
-            //}
+            for (int i = 0; i < lct.Count; i++)
+            {
+                DataRow dr = dt.NewRow();
+                dr[1] = lct[i].MaDonHang;
+                dr[2] = lct[i].MaSP;
+                dr[3] = lct[i].SoLuong;
+                dr[4] = lct[i].DonGia;
+                dr[5] = lct[i].NgayNhap;
+                dt.Rows.Add(dr);
+            }
+            dc.UpdateDataTabletoDataBase(dt, "CTDonHang");
         }
     }
 }

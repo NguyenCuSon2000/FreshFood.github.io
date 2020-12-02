@@ -3,6 +3,14 @@
     padding: 0px;
 }
 
+.search-block {
+    position: absolute;
+    top: 75px;
+    z-index: 1;
+    box-shadow: 0 1px 2px #271e1a;
+    background-color: white;
+}
+
 ul li {
     list-style: none;
 }
@@ -107,16 +115,17 @@ header {
     text-align: center;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
     display: none;
-    z-index: inherit;
+    z-index: 1;
+    background-color: white;
 }
 
     .header-info .form_holder table.shop_table {
         width: 100%;
     }
 
-div.header-info:hover .form_holder {
+/*div.header-cart:active .form_holder {
     display: block;
-}
+}*/
 
 
 
@@ -345,33 +354,33 @@ div.header-info:hover .form_holder {
         transform: scale(1.2);
     }
 
-.product-img .actionss a {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    height: 100%;
-    width: 100%;
-    padding: 45% 20px;
-    text-align: center;
-    background-color: rgba(0,0,0,0.4);
-    -webkit-transition: all 0.5s linear;
-    -moz-transition: all 0.5s linear;
-    -o-transition: all 0.5s linear;
-    -ms-transition: all 0.5s linear;
-    transition: all 0.5s linear;
-    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0);
-    opacity: 0;
-}
+    .product-img .actionss a {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        height: 100%;
+        width: 100%;
+        padding: 45% 20px;
+        text-align: center;
+        background-color: rgba(0,0,0,0.4);
+        -webkit-transition: all 0.5s linear;
+        -moz-transition: all 0.5s linear;
+        -o-transition: all 0.5s linear;
+        -ms-transition: all 0.5s linear;
+        transition: all 0.5s linear;
+        -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+        opacity: 0;
+    }
 
-.product-img:hover .actionss a {
-    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
-    filter: alpha(opacity=100);
-    opacity: 1;
-}
+    .product-img:hover .actionss a {
+        -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        filter: alpha(opacity=100);
+        opacity: 1;
+    }
 
 .content .actionss {
     width: 100%;
@@ -465,7 +474,7 @@ section.content article div.KhuyenMai p {
         font-weight: 700;
     }
 
-/*.content input[type="button"] {
+    /*.content input[type="button"] {
     width: 100px;
     height: 50px;
     margin: 10px 5px 60px;
@@ -479,19 +488,19 @@ section.content article div.KhuyenMai p {
     outline: none;
 }*/
 
-/*.button input:hover {
+    /*.button input:hover {
     background-color: red;
     cursor: pointer;
 }*/
 
-section.content article div.San-Pham p span,
-section.content article div.Moi p span,
-section.content article div.KhuyenMai p span {
-    color: red;
-    font-family: 'Roboto' 400;
-    font-weight: 400;
-    font-size: 16px;
-}
+    section.content article div.San-Pham p span,
+    section.content article div.Moi p span,
+    section.content article div.KhuyenMai p span {
+        color: red;
+        font-family: 'Roboto' 400;
+        font-weight: 400;
+        font-size: 16px;
+    }
 
 .XemThem button {
     margin: 20px 0;
