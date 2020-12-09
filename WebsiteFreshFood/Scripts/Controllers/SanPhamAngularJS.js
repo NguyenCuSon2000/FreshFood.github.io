@@ -60,6 +60,7 @@ function MenuController($scope, $rootScope, $http) {
 
 app.controller("SanPhamController", SanPhamController);
 function SanPhamController($scope, $rootScope, $http) {
+    $rootScope.dsDonHang = null;
     $rootScope.AddCart = function (s) {
         $http({
             method: 'POST',
@@ -109,7 +110,7 @@ function SanPhamController($scope, $rootScope, $http) {
 };
 
 
-
+//Chi tiết sản phẩm
 app.controller("CTSanPhamController", CTSanPhamController);
 function CTSanPhamController($scope, $rootScope, $http) {
     //Danh sách sản phẩm
@@ -117,13 +118,14 @@ function CTSanPhamController($scope, $rootScope, $http) {
         $rootScope.CTSanPham = d.data;
     }, function (error) { alert('Failed'); });
 
-}
+};
 
 
 app.controller("SearchController", SearchController);
-function SearchController($scope, $rootScope, $http) {
+function SearchController($scope, $rootScope, $window, $http ) {
     $rootScope.TenSP = "";
     $rootScope.Search = function (tensp) {
+        $rootScope.ListTimKiem = null;
         $http.get('/SanPham/SearchName', {
             params: {
                 TenSP: tensp
@@ -131,33 +133,33 @@ function SearchController($scope, $rootScope, $http) {
         }).then(function (d) {
             if (d.data == "") {
                 alert("Sản phẩm không tồn tại");
-                $rootScope.TenSP = "";
             }
             else {
                 $rootScope.ListTimKiem = d.data;
+                //$window.location.href = '/SanPham/Search';
             }
         }, function (e) { });
     }
 };
 
-//Giỏ hàng
-app.controller("GioHangController", GioHangController);
-function GioHangController($rootScope, $scope, $http) {
+////Giỏ hàng
+//app.controller("GioHangController", GioHangController);
+//function GioHangController($rootScope, $scope, $http) {
    
-}
+//}
 
 app.controller("HomeController", HomeController);
 function HomeController($rootScope, $scope, $http, $window) {
     $rootScope.dsDonHang = null;
-    $http.get("/Home/GetLoaiSanPham").then(function (d) { }, function (e) { });
+    //$http.get("/Home/GetLoaiSanPham").then(function (d) { }, function (e) { });
 
-    $rootScope.GetCart = function () {
-        $http.get('/GioHang/GetCarts').then(function (d) {
-            $rootScope.dsDonHang = d.data.DSDonHang;
-            $rootScope.SoLuong = d.data.soluong;
-            $rootScope.ThanhTien = d.data.ThanhTien;
-        }, function (e) { })
-    }
+    //$rootScope.GetCart = function () {
+    //    $http.get('/GioHang/GetCarts').then(function (d) {
+    //        $rootScope.dsDonHang = d.data.DSDonHang;
+    //        $rootScope.SoLuong = d.data.soluong;
+    //        $rootScope.ThanhTien = d.data.ThanhTien;
+    //    }, function (e) { })
+    //};
 
 
     $rootScope.dathang = "";
@@ -169,25 +171,25 @@ function HomeController($rootScope, $scope, $http, $window) {
                 if (d.data.login == "1") //Đã đăng nhập thì hiển thị giao diện đặt hàng
                 {
                     $rootScope.dathang = "";
-                    $rootScope.Khach = da.data.Khach;
+                    $rootScope.Khach = d.data.Khach;
                     console.log(JSON.stringify($rootScope.Khach));
                     $http.get('/GioHang/GetCarts').then(function (d) {
                         $rootScope.dsDonHang = d.data.DSDonHang;
-                        $rootScope.SoLuong = da.data.soluong;
+                        $rootScope.SoLuong = d.data.soluong;
                         $rootScope.ThanhTien = d.data.ThanhTien;
                     }, function (e) { });
                     $window.location.href = '/DatHang/Index';
                 }
                 else { //Hiển thị giao diện đăng nhập
                     $rootScope.dathang = "#myModalLogin";
+                    //$window.location.href = '/Admin/Login/Index';
                 }
             }, function (e) { })
     };
-}
+};
 
 
 app.controller("DatHangController", function ($rootScope, $scope, $http) {
-
     $rootScope.DatHang = function () {
         $rootScope.DonHang.Khach = $rootScope.Khach;
         $rootScope.DonHang.TongTien = $rootScope.ThanhTien;
@@ -199,8 +201,8 @@ app.controller("DatHangController", function ($rootScope, $scope, $http) {
             data: JSON.stringify($rootScope.DonHang)
         }).then(function (d) {
 
-            }, function (e) { })
-    }
-})
+        }, function (e) { })
+    };
+});
 
 

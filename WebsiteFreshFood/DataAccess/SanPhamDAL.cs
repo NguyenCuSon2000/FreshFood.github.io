@@ -27,6 +27,7 @@ namespace WebsiteFreshFood.DataAccess
             return ToList(dt);
         }
 
+        //Chi tiết sản phẩm
         public List<SanPham> LaySPTheoMa(string masp)
         {
             string sqlselect = "select * from SanPham where MaSP ='" + masp + "'";
@@ -53,25 +54,25 @@ namespace WebsiteFreshFood.DataAccess
             return l;
         }
 
-        public SanPhamList GetSanPham(string maloai, int pageIndex, int pageSize, string productName)
-        {
-            SanPhamList spl = new SanPhamList();
-            List<SanPham> l = new List<SanPham>();
-            SqlDataReader dr = dc.StoreReaders("GetSanPhams", maloai, pageIndex, pageSize, productName);
-            while (dr.Read())
-            {
-                SanPham s = new SanPham(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
-                    dr[4].ToString(), dr[5].ToString(), double.Parse(dr[6].ToString()));
-                l.Add(s);
-            }
-            spl.SanPhams = l;
-            dr.NextResult();
-            while (dr.Read())
-            {
-                spl.totalCount = dr["totalCount"].ToString();
-            }
-            return spl;
-        }
+        //public SanPhamList GetSanPham(string maloai, int pageIndex, int pageSize, string productName)
+        //{
+        //    SanPhamList spl = new SanPhamList();
+        //    List<SanPham> l = new List<SanPham>();
+        //    SqlDataReader dr = dc.StoreReaders("GetSanPhams", maloai, pageIndex, pageSize, productName);
+        //    while (dr.Read())
+        //    {
+        //        SanPham s = new SanPham(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
+        //            dr[4].ToString(), dr[5].ToString(), double.Parse(dr[6].ToString()));
+        //        l.Add(s);
+        //    }
+        //    spl.SanPhams = l;
+        //    dr.NextResult();
+        //    while (dr.Read())
+        //    {
+        //        spl.totalCount = dr["totalCount"].ToString();
+        //    }
+        //    return spl;
+        //}
       
         public List<SanPham> GetAllSanPham()
         {
@@ -81,11 +82,11 @@ namespace WebsiteFreshFood.DataAccess
 
         public string ThemSanPham(SanPham sp)
         {
-            //WebsiteFreshFoodEntity d = new WebsiteFreshFoodEntity();
+            //DA3_QuanLyFreshFoodEntities d = new DA3_QuanLyFreshFoodEntities();
             //try
             //{
             //    d.SanPhams.Add(sp);
-            //    d.SaveChanges()
+            //    d.SaveChanges();
             //    return "";
             //}
             //catch (Exception e)
@@ -100,9 +101,11 @@ namespace WebsiteFreshFood.DataAccess
 
         public string XoaSanPham(string id)
         {
+            //DA3_QuanLyFreshFoodEntities d = new DA3_QuanLyFreshFoodEntities();
             //SanPham s = d.SanPhams.Find(id);
             //d.SanPhams.Remove(s);
-            //dc.SaveChanges();
+            //d.SaveChanges();
+            //return "";
             string st = "delete from SanPham where masp='" + id + "'";
             return dc.ExcuteNonQuery(st);
 
@@ -114,7 +117,7 @@ namespace WebsiteFreshFood.DataAccess
             return dc.ExcuteNonQuery(st);
         }
 
-        public List<SanPham> Search(string tenSP)
+        public List<SanPham> Search(string tenSP) // Search Admin
         {
             string st;
             st = "select * from SanPham where TenSP like N'%" + tenSP + "%'";

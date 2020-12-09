@@ -24,6 +24,19 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             return Json(lsp, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult Search(string tenncc)
+        {
+            if (tenncc == "")
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                List<NhaCungCap> lncc = qlncc.TimKiemNCC(tenncc);
+                return Json(lncc, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpPost]
         public JsonResult Insert(NhaCungCap n)
         {

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ffc9e72c724e46489cc0645e4ae661b0" Name="Diagram1">
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.BinhLuan" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.CTDonHang" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.CTHoaDonNhap" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.DonHang" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.GiaBan" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.GiamGia" Width="1.5" PointX="5.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.HoaDonNhap" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.KhachHang" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.LoaiSanPham" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.NhaCungCap" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.SanPham" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.TinTuc" Width="1.5" PointX="7.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.UserGroup" Width="1.5" PointX="8.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA3_QuanLyFreshFoodModel.User" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <AssociationConnector Association="DA3_QuanLyFreshFoodModel.FK_MaSP_BinhLuan" ManuallyRouted="false" />
+        <AssociationConnector Association="DA3_QuanLyFreshFoodModel.FK_UserID_BinhLuan" ManuallyRouted="false" />
+        <AssociationConnector Association="DA3_QuanLyFreshFoodModel.FK_MaDonHang_CTDonDatHang" ManuallyRouted="false" />
+        <AssociationConnector Association="DA3_QuanLyFreshFoodModel.FK_MaSP_CTDonDatHang" ManuallyRouted="false" />
+        <AssociationConnector Association="DA3_QuanLyFreshFoodModel.FK_MaHDN_CTHDNhap" ManuallyRouted="false" />
+        <AssociationConnector Association="DA3_QuanLyFreshFoodModel.FK_MaSP_SanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="DA3_QuanLyFreshFoodModel.FK_MaKH_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="DA3_QuanLyFreshFoodModel.FK_MaSP_GiaBan" ManuallyRouted="false" />
+        <AssociationConnector Association="DA3_QuanLyFreshFoodModel.FK_MaSP_GiamGia" ManuallyRouted="false" />
+        <AssociationConnector Association="DA3_QuanLyFreshFoodModel.FK_MaNCC_HoaDonNhap" ManuallyRouted="false" />
+        <AssociationConnector Association="DA3_QuanLyFreshFoodModel.FK_MaLoaiSP_SanPham" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

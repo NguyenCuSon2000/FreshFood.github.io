@@ -4,10 +4,6 @@ var app = angular.module("SanPhamApp", ['angularUtils.directives.dirPagination',
 
 // Hiển thị sản phẩm và phân trang
 app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload) {
-
-
-
-
     $scope.UploadFiles = function (files) {
         $scope.SelectedFiles = files;
         if ($scope.SelectedFiles && $scope.SelectedFiles.length) {
@@ -24,22 +20,7 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload)
     $http.get('/Admin/QLSanPham/GetSanPham').then(function (d) {
         $rootScope.ListSanPham = d.data;
     }, function (error) { alert('Failed'); });
-    $rootScope.TenSP = "";
-    $rootScope.Search = function (tensp) {
-        $rootScope.ListSanPham = null;
-        $http.get('/Admin/QLSanPham/Search', {
-            params: {
-                TenSP: tensp
-            }
-        }).then(function (d) {
-            if (d.data == "") {
-                alert("Sản phẩm không tồn tại");
-            }
-            else {
-                $rootScope.ListSanPham = d.data;
-            }
-        }, function (e) { });
-    };
+   
     $http.get('/Admin/QLSanPham/GetLoaiSanPham').then(function (d) {
         $rootScope.listloai = d.data;
     }, function (e) { alert("Lỗi lấy loại"); });
@@ -117,6 +98,22 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload)
         }, function (e) { alert(e) });
     };
 
+    $rootScope.TenSP = "";
+    $rootScope.Search = function (tensp) {
+        $rootScope.ListSanPham = null;
+        $http.get('/Admin/QLSanPham/Search', {
+            params: {
+                TenSP: tensp
+            }
+        }).then(function (d) {
+            if (d.data == "") {
+                alert("Sản phẩm không tồn tại");
+            }
+            else {
+                $rootScope.ListSanPham = d.data;
+            }
+        }, function (e) { });
+    };
 
    //// Begin Paging
    // $scope.maxSize = 3;     // limit number for pagination display number.  
@@ -236,9 +233,9 @@ function KhachHangController($scope, $rootScope, $http) {
         }, function (e) { alert(e) });
     };
 
-    $scope.TenKH = "";
-    $rootScope.SearchInfo = function (tenkh) {
-        $scope.ListKhachHang = null;
+    $rootScope.TenKH = "";
+    $rootScope.Search = function (tenkh) {
+        $rootScope.ListKhachHang = null;
         $http.get('/Admin/QLKhachHang/Search', {
             params: {
                 TenKH: tenkh
@@ -248,13 +245,11 @@ function KhachHangController($scope, $rootScope, $http) {
                 alert("Khách hàng không tồn tại");
             }
             else {
-                alert("Success search...!");
-                $scope.ListKhachHang = d.data;
+                $rootScope.ListKhachHang = d.data;
             }
         }, function (e) { });
-    }
-
-}
+    };
+};
 
 // NHÀ CUNG CẤP
 
@@ -336,5 +331,22 @@ function NCCController($scope, $rootScope, $http, Upload, $timeout, $document) {
             var vt = $scope.ListNhaCungCap.indexOf(n);
             $scope.ListNhaCungCap.splice(vt, 1);
         }, function (e) { alert(e) });
+    };
+
+    $rootScope.TenNCC = "";
+    $rootScope.Search = function (tenncc) {
+        $rootScope.ListNhaCungCap = null;
+        $http.get('/Admin/QLNhaCungCap/Search', {
+            params: {
+                TenNCC: tenncc
+            }
+        }).then(function (d) {
+            if (d.data == "") {
+                alert("Nhà cung cấp không tồn tại");
+            }
+            else {
+                $rootScope.ListNhaCungCap = d.data;
+            }
+        }, function (e) { });
     };
 }

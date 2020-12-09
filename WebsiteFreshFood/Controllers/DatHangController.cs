@@ -17,7 +17,7 @@ namespace WebsiteFreshFood.Controllers
             return View();
         }
 
-        public JsonResult DatHang(DonDatHang ddh)
+        public JsonResult DatHang(WebsiteFreshFood.Models.DonDatHang ddh)
         {
             DonHang d = new DonHang();
             d.MaKH = ddh.Khach.MaKH;
@@ -39,7 +39,9 @@ namespace WebsiteFreshFood.Controllers
                 l = Request.Cookies["login"].Value;
             }
             catch(Exception ex)
-            { }
+            {
+               
+            }
             KhachHang k = null;
             string p = "";
             if (l == "1")
@@ -65,7 +67,7 @@ namespace WebsiteFreshFood.Controllers
 
                 //Chuyển đối tượng
                 string output = JsonConvert.SerializeObject(u);
-                //b1 tạo cookie lưu thông tin về khác hàng
+                //b1 tạo cookie lưu thông tin về khách hàng
                 HttpCookie ck = new HttpCookie("Khach", output);
                 //b2 thiết lập thời gian tồn tại
                 ck.Expires = DateTime.Now.AddDays(2);

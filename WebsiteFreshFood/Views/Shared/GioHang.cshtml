@@ -1,21 +1,11 @@
-﻿<script>
-    function click() {
-        var x = document.getElementById('myP1');
-        if (x.style.display === 'none') {
-            x.style.display = 'block';
-        } else {
-            x.style.display = 'none';
-        }
-    }
-</script>
-<div class="header-cart" ng-controller="HomeController">
-    <a href="" ng-click="GetCart()" onclick="click()">
+﻿<div class="header-cart" ng-controller="HomeController">
+    <a href="" ng-click="GetCart()">
         <span class="icon-start">
             <img src="~/img/icon-cart.png" alt="">
         </span>
         <span class="cart-number">0</span>
     </a>
-    <div id="myP1" class="form_holder" style=" position: absolute;right: 16px;width: 300px;height: 100px;text-align: center;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18); z-index: 1;background-color: white;">
+    <div class="form_holder" style=" position: absolute;right: 16px;width: 300px;height: 100px;text-align: center;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18); z-index: 1;background-color: white;">
         <div class="cart-block">
             <div class="cart-block-content">
                 <div class="cart-block-list">
@@ -42,7 +32,7 @@
             <span class="toal-price pull-right" id="total_price">54,000đ</span>
         </div>
         <div class="cart-buttons">
-            <button ng-click="KiemTraDangNhap()" class="button" type="button" data-toggle="modal" data-target="{{dathang}}">Payment</button>
+            <button ng-click="KiemTraDangNhap()" class="btn btn-success" type="button" data-toggle="modal" data-target="{{dathang}}">Payment</button>
         </div>
     </div>
 </div>

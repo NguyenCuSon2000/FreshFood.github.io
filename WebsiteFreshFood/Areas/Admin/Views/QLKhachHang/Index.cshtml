@@ -3,6 +3,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+
 <!-- Page Content -->
 <div id="page-wrapper" style="min-height: 223px;" ng-controller="KhachHangController">
     <div class="container-fluid">
@@ -31,7 +32,7 @@
                                         <input type="text" ng-model="TenKH" class="form-control">
                                     </div>
                                     <div class="col-md-4">
-                                        <button type="button" ng-click="SearchInfo(TenKH)" class="btn btn-success">Tìm kiếm</button>
+                                        <button type="button" ng-click="Search(TenKH)" class="btn btn-success">Tìm kiếm</button>
                                         <!-- Button trigger modal -->
                                         <button ng-click="Them()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
                                             Thêm mới

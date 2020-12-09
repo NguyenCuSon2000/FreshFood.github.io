@@ -24,14 +24,14 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <form action="/Admin/User" method="get">
+                        <form action="" method="get">
                             <div class="row form-group">
                                 <div class="col-lg-12">
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" name="searchString">
+                                        <input type="text" ng-model="TenNCC" class="form-control">
                                     </div>
                                     <div class="col-md-4">
-                                        <button type="submit" class="btn btn-success">Tìm kiếm</button>
+                                        <button type="button" ng-click="Search(TenNCC)" class="btn btn-success">Tìm kiếm</button>
                                         <!-- Button trigger modal -->
                                         <button ng-click="Them()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
                                             Thêm mới

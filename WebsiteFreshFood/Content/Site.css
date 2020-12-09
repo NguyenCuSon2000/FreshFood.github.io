@@ -119,15 +119,51 @@ header {
     background-color: white;
 }
 
-    .header-info .form_holder table.shop_table {
-        width: 100%;
-    }
+.header-info .form_holder table.shop_table {
+    width: 100%;
+}
 
-/*div.header-cart:active .form_holder {
+div.header-cart:hover .form_holder {
     display: block;
-}*/
+}
+
+.cart-block .cart-block-content .toal-cart {
+    margin-top: 10px;
+}
+
+.cart-block .cart-block-content .toal-cart .toal-price {
+    font-size: 18px;
+    color: #999;
+}
 
 
+.cart-block .cart-block-content .cart-buttons {
+    overflow: hidden;
+    width: 100%;
+}
+
+.cart-block .cart-block-content .cart-buttons a {
+    width: 50%;
+    float: left;
+    margin-top: 12px;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.cart-block .cart-block-content .cart-buttons a:hover {
+    opacity: 0.8;
+}
+
+.cart-block .cart-block-content .cart-buttons a.btn-my-cart {
+    background: #eee;
+}
+
+.cart-block .cart-block-content .cart-buttons a.btn-check-out {
+    background: #43af50;
+    color: #fff;
+}
 
 .cart-number {
     width: 24px;
@@ -216,6 +252,10 @@ header {
 .header-banner img {
     width: 100%;
     height: auto;
+}
+
+.search .table-responsive {
+    overflow-x: auto;
 }
 
 .Search {

@@ -55,15 +55,10 @@ namespace WebsiteFreshFood.DataAccess
                 ncc.SDT + "', DiaChi=N'" + ncc.DiaChi + "',Email='" + ncc.Email + "',Fax='" + ncc.Fax + "' where MaNCC='" + ncc.MaNCC + "'";
             return dc.ExcuteNonQuery(st);
         }
-        public List<NhaCungCap> Search(string MaNCC, string TenNCC)
+        public List<NhaCungCap> Search(string tenNCC) // Search Admin
         {
             string st;
-            if (MaNCC != "")
-            {
-                st = "select * from NhaCungCap where (MaNCC='" + MaNCC + "') and (TenNCC like '%" + TenNCC + "%')";
-            }
-            else
-            { st = "select * from NhaCungCap where (TenNCC like '%" + TenNCC + "%')"; }
+            st = "select * from NhaCungCap where TenNCC like N'%" + tenNCC + "%'";
             DataTable dt = dc.GetDataTable(st);
             return ToList(dt);
         }

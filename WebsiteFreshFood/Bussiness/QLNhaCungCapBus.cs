@@ -28,5 +28,9 @@ namespace WebsiteFreshFood.Bussiness
         {
             return nccDAL.SuaNhaCungCap(n);
         }
+        public List<NhaCungCap> TimKiemNCC(string tenNCC) // Search Admin
+        {
+            return nccDAL.Search(tenNCC);
+        }
     }
 }

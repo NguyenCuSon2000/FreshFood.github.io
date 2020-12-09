@@ -28,9 +28,9 @@ namespace WebsiteFreshFood.Bussiness
         {
             return KhachHangDAL.SuaKhachHang(k);
         }
-        public List<KhachHang> SearchNameKH(string tenkh)
+        public List<KhachHang> TimKiemKhachHang(string tenKH) // Search Admin
         {
-            return KhachHangDAL.SearchName(tenkh);
+            return KhachHangDAL.Search(tenKH);
         }
     }
 }

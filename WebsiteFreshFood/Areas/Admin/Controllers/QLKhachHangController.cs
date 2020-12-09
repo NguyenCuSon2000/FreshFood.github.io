@@ -23,7 +23,7 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             List<KhachHang> lsp = qlkh.LayAllKhachHang();
             return Json(lsp, JsonRequestBehavior.AllowGet);
         }
-        [HttpGet]
+     
         public JsonResult Search(string tenkh)
         {
             if (tenkh == "")
@@ -32,7 +32,7 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             }
             else
             {
-                List<KhachHang> lkh = qlkh.SearchNameKH(tenkh);
+                List<KhachHang> lkh = qlkh.TimKiemKhachHang(tenkh);
                 return Json(lkh, JsonRequestBehavior.AllowGet);
             }
         }
