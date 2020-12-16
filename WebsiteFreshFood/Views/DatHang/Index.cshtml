@@ -20,62 +20,13 @@
 
 
 <!-- PHẦN GIỎ HÀNG -->
-<section class="container GioHang" ng-controller="DatHangController">
+<section class="container GioHang" ng-app="myApp" ng-controller="DatHangController">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5  ">
             <article>
                 <h4 class="title">Giỏ hàng</h4>
             </article>
-            <article>
-                @*<form action="">
-                <table cellspacing=5 cellpadding=5>
-                    <thead>
-                        <tr> &nbsp; </tr>
-                        <tr>Tên sản phẩm</tr>
-                        <tr>Số lượng</tr>
-                        <tr>Đơn giá</tr>
-                        <tr>Thành tiền</tr>
-                        <tr>&nbsp;</tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="d in dsDonHang">
-                            <td class="images">
-                                <a href="">
-                                    <img src="~/img/{{d.MaLoaiSP}}/{{d.HinhAnh}}" alt="">
-                                </a>
-                            </td>
-                            <td class="item"><a href="">{{d.TenSP}}</a></td>
-                            <td class="qty">
-                                <input type="number" name="number1" id="number" size="4" value="{{d.SoLuong}}" min="1" onclick="TinhTien()">
-                            </td>
-                            <td class="price" id="price">{{d.DonGia}} VND</td>
-                            <td class="">{{d.SoLuong*d.DonGia}}</td>
-                            <td class="remove"><a href="" onclick="onclick_Delete()">Xóa</a></td>
-                        </tr>
-                        <tr>
-                            <td class="images">&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>
-                                <b>Tổng cộng: </b>
-                            </td>
-                            <td class="price">220 000 VND</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="buttons">
-                    <button type="submit" id="checkout" class="button-default" name="checkout" value="" title="Thanh toán">
-                        Thanh toán &nbsp;&nbsp;
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                    <button type="submit" id="update-cart" class="button-default" name="update" value="">
-                        <a href="index.html" title="Quay lại"> <i class="fas fa-chevron-left"></i>&nbsp;&nbsp;  Quay lại </a>
-                    </button>
-                </div>
-            </form>*@
-            </article>
-            <!-- ../page heading-->
+               
             <div class="page-content page-order">
 
                 <div class="heading-counter warning">

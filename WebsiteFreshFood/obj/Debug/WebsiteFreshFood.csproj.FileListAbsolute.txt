@@ -64,7 +64,6 @@ D:\CHUẨN BỊ ĐỒ ÁN 3\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\bin\Syst
 D:\CHUẨN BỊ ĐỒ ÁN 3\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\bin\Newtonsoft.Json.xml
 D:\CHUẨN BỊ ĐỒ ÁN 3\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\bin\Antlr3.Runtime.pdb
 D:\CHUẨN BỊ ĐỒ ÁN 3\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\CHUẨN BỊ ĐỒ ÁN 3\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\obj\Debug\WebsiteFreshFood.csprojAssemblyReference.cache
 D:\CHUẨN BỊ ĐỒ ÁN 3\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\obj\Debug\WebsiteFreshFood.csproj.CoreCompileInputs.cache
 D:\CHUẨN BỊ ĐỒ ÁN 3\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\obj\Debug\WebsiteFreshFood.csproj.CopyComplete
 D:\CHUẨN BỊ ĐỒ ÁN 3\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\obj\Debug\WebsiteFreshFood.dll
@@ -158,3 +157,4 @@ D:\ICON ẢNH\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\obj\Debug\WebsiteFresh
 D:\ICON ẢNH\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\obj\Debug\WebsiteFreshFood.pdb
 D:\CHUẨN BỊ ĐỒ ÁN 3\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\bin\EntityFramework.dll
 D:\CHUẨN BỊ ĐỒ ÁN 3\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\bin\EntityFramework.xml
+D:\CHUẨN BỊ ĐỒ ÁN 3\CODE ĐỒ ÁN 3 FRESHFOOD\WebsiteFreshFood\obj\Debug\WebsiteFreshFood.csprojAssemblyReference.cache

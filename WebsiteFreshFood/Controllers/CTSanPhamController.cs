@@ -21,8 +21,27 @@ namespace WebsiteFreshFood.Controllers
         public JsonResult GetCTSanPham()
         {
             List<SanPham> lsp = spbus.LaySPTheoMa(Session["masp"].ToString());
-            //List<SanPham> lsp = spbus.LaySP("Lẩu");
             return Json(lsp, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetLoaiSanPham()
+        {
+            QLLoaiSanPhamBus bl = new QLLoaiSanPhamBus();
+            List<LoaiSanPham> ll = bl.LayLoaiSanPham();
+            return Json(ll, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSanPhamNoiBat()
+        {
+            List<SanPham> lnb = spbus.SanPhamNoiBat();
+            return Json(lnb, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSanPhamMoiNhat()
+        {
+            List<SanPham> lnb = spbus.SanPhamMoiNhat();
+            return Json(lnb, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

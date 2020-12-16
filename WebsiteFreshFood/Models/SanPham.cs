@@ -9,6 +9,7 @@ namespace WebsiteFreshFood.Models
     [Table("SanPham")]
     public partial class SanPham
     {
+        public int id { get; set; }
         [Key]
         [StringLength(50)]
         public string MaSP { get; set; }
@@ -33,8 +34,9 @@ namespace WebsiteFreshFood.Models
 
 
         public SanPham() { }
-        public SanPham(string masp, string tensp, string maloaisp, string donvi, string mota, string hinhanh, double dongia)
+        public SanPham(int id,string masp, string tensp, string maloaisp, string donvi, string mota, string hinhanh, double dongia)
         {
+            this.id = id;
             this.MaSP = masp; this.TenSP = tensp; this.MaLoaiSP = maloaisp;
             this.DonVi = donvi; this.MoTa = mota; this.HinhAnh = hinhanh;
             this.DonGia = dongia;

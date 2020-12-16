@@ -5,7 +5,6 @@
 }
 
 <link rel="stylesheet" href="~/Content/SanPham.css" />
-<script src="~/Scripts/dirPagination.js"></script>
 <link rel="stylesheet" href="~/Content/CTSanPham.css" />
 
 <div class="wrap-breadcrumb">
@@ -22,7 +21,7 @@
     </div>
 </div>
 
-<section class="container content">
+<section class="container content" ng-controller="CTSanPhamController">
     <div class="row">
         <div class="col-md-3 col-sm-12 col-xs-12 leftsidebar-col">
             <div class="group_sidebar">
@@ -31,68 +30,35 @@
                         <h3 class="sb-title">Danh mục</h3>
                     </div>
                     <ul class="nav" id="menu-blog">
-                        <li class="first">
-                            <a href="" title="Trang chủ"><span>Rau củ quả</span></a>
-                        </li>
-                        <li>
-                            <a href="" title="Giới thiệu"><span>Thực phẩm tươi sống</span></a>
-                        </li>
-                        <li>
-                            <a href="" title="Thực đơn"><span>Thực phẩm khô</span></a>
-                        </li>
-                        <li class="current active">
-                            <a href="" title="Tin tức"><span>Thực phẩm bổ dưỡng</span></a>
-                        </li>
-                        <li>
-                            <a href="" title="Đặt hàng"><span>Thực phẩm chế biến</span></a>
+                        <li class="current active" ng-repeat="l in listloai">
+                            <a href="/SanPham/Index?maloai={{l.MaLoaiSP}}" title="{{l.TenLoai}}"><span>{{l.TenLoai}}</span></a>
                         </li>
                     </ul>
                 </div>
                 <div class="list-group_l banner-left hidden-sm hidden-xs">
                     <a href=""><img src="~/img/quangcao4.png" alt=""></a>
                 </div>
+                <!--SẢN PHẨM NỔI BẬT-->
                 <div class="list-group_2 navbar-product">
                     <div class="mega-left-title btn-navbar title-hidden-sm">
                         <h3 class="product-title">Sản phẩm nổi bật</h3>
                     </div>
-                    <div class="article seller-item">
+                    <div class="article seller-item" ng-repeat="a in ListSPNoiBat">
                         <div class="sellers-img">
-                            <a href="" class="products-block-image content_img clearfix">
-                                <img src="~/img/FreshFood/BapBoUc.jpg" alt="">
+                            <a href="/CTSanPham/Index?masp={{a.MaSP}}" title="{{a.TenSP}}" class="products-block-image content_img clearfix">
+                                <img src="~/img/{{a.MaLoaiSP}}/{{a.HinhAnh}}" alt="">
                             </a>
                         </div>
                         <div class="post-content has-sellers-img ">
-                            <a href="">Bắp bò Úc</a><br>
-                            <span class="price">20.000 VND</span>
-                        </div>
-                    </div>
-                    <div class="article seller-item">
-                        <div class="sellers-img">
-                            <a href="" class="products-block-image content_img clearfix">
-                                <img src="~/img/FreshFood/BapBoUc.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="post-content has-sellers-img ">
-                            <a href="">Bắp bò Úc</a><br>
-                            <span class="price">20.000 VND</span>
-                        </div>
-                    </div>
-                    <div class="article seller-item">
-                        <div class="sellers-img">
-                            <a href="" class="products-block-image content_img clearfix">
-                                <img src="~/img/FreshFood/BapBoUc.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="post-content has-sellers-img ">
-                            <a href="">Bắp bò Úc</a><br>
-                            <span class="price"> 20.000 VND </span>
+                            <a href="/CTSanPham/Index?masp={{a.MaSP}}" title="{{a.TenSP}}">{{a.TenSP}}</a><br>
+                            <span class="price">{{a.DonGia}} VND</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" ng-controller="CTSanPhamController">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" >
             <div id="wrapper-detail" class="product-page" ng-repeat="c in CTSanPham">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -107,7 +73,7 @@
                         <div class="product-price" id="price-preview">
                             <span>{{c.DonGia}} VND</span>
                         </div>
-                        <form id="add-item-form" action="/cart/add" method="post" class="variants clearfix">
+                        <form id="add-item-form" action="" method="post" class="variants clearfix">
                             <div class="select clearfix">
                                 <div class="selector-wrapper">
                                     <label for="product-select-option-0">Kích thước</label>
@@ -141,7 +107,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
-                                    <button id="add-to-cart" class="btn-detail btn-color-add btn-min-width btn-mgt addtocart-modal" name="add">Thêm vào giỏ</button>
+                                    <button id="add-to-cart" ng-click="AddCart(c)" title="Add to Cart" data-name="{{c.TenSP}} - {{c.DonVi}}" data-price="{{c.DonGia}}" data-image="{{c.MaLoaiSP}}/{{c.HinhAnh}}" class="btn-detail btn-color-add btn-min-width btn-mgt addtocart-modal" name="add">Thêm vào giỏ</button>
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                                     <button id="buy-now" class="btn-detail btn-color-buy btn-min-width btn-mgt">Mua ngay</button>
@@ -193,14 +159,14 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div id="binhluan">
+                            <div id="binhluan" style="height: 400px">
                                 <div class="title-bl">
                                     <h2>Bình luận</h2>
                                 </div>
                                 <div class="product-comment-fb">
                                     <div class="fb-comments fb_iframe_widget fb_iframe_widget_fluid_desktop">
-                                        <span style="vertical-align: bottom; width: 100%; height: 178px;">
-                                            <iframe name="f256602566438bc" width="1000px" height="100px" data-testid="fb:comments Facebook Social Plugin" title="fb:comments Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v2.0/plugins/comments.php?app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df1d967e45a56f34%26domain%3Ddefault-fresh-food.myharavan.com%26origin%3Dhttps%253A%252F%252Fdefault-fresh-food.myharavan.com%252Ff588088507b4cc%26relation%3Dparent.parent&amp;color_scheme=light&amp;container_width=828&amp;height=100&amp;href=https%3A%2F%2Fdefault-fresh-food.myharavan.com%2Fproducts%2Fbap-cai-tim-da-lat-pf&amp;locale=vi_VN&amp;numposts=5&amp;sdk=joey&amp;version=v2.0&amp;width=" style="border: none; visibility: visible; width: 100%; height: 178px;" class=""></iframe>
+                                        <span style="vertical-align: bottom; width: 100%; height: 200px;">
+                                            <iframe name="f256602566438bc" width="1000px" height="100px" data-testid="fb:comments Facebook Social Plugin" title="fb:comments Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v2.0/plugins/comments.php?app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df1d967e45a56f34%26domain%3Ddefault-fresh-food.myharavan.com%26origin%3Dhttps%253A%252F%252Fdefault-fresh-food.myharavan.com%252Ff588088507b4cc%26relation%3Dparent.parent&amp;color_scheme=light&amp;container_width=828&amp;height=100&amp;href=https%3A%2F%2Fdefault-fresh-food.myharavan.com%2Fproducts%2Fbap-cai-tim-da-lat-pf&amp;locale=vi_VN&amp;numposts=5&amp;sdk=joey&amp;version=v2.0&amp;width=" style="border: none; visibility: visible; width: 100%; height: 300px;" class=""></iframe>
                                         </span>
                                     </div>
                                 </div>
@@ -209,21 +175,22 @@
                     </div>
                 </div>
             </div>
+            <!--SẢN PHẨM KHÁC-->
             <div class="col-md-12 col-sm-12 col-xs-12 list-like">
                 <div id="like">
                     <div class="title-like">
                         <h2>Sản phẩm khác</h2>
                     </div>
                     <div class="row product-list">
-                        <div class="col-md-3 col-sm-6 col-xs-12 pro-loop">
+                        <div class="col-md-3 col-sm-6 col-xs-12 pro-loop" ng-repeat="n in ListMoiNhat">
                             <div class="product-block product-resize fixheight" style="height: 262px;">
                                 <div class="product-img image-resize view view-third">
-                                    <a href="">
-                                        <img src="~/img/FreshFood/BapGioHeo.jpg" alt="">
+                                    <a href="/CTSanPham/Index?masp={{n.MaSP}}" title="{{n.TenSP}}">
+                                        <img src="~/img/{{n.MaLoaiSP}}/{{n.HinhAnh}}" alt="{{n.HinhAnh}}">
                                     </a>
                                     <div class="actionss">
                                         <div class="btn-cart-products">
-                                            <a href="">
+                                            <a href="" ng-click="AddCart(n)" title="Add to Cart" data-name="{{n.TenSP}} - {{n.DonVi}}" data-price="{{n.DonGia}}" data-image="{{n.MaLoaiSP}}/{{n.HinhAnh}}">
                                                 <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                                             </a>
                                         </div>
@@ -241,112 +208,10 @@
                                 </div>
                                 <div class="product-detail clearfix">
                                     <h3 class="pro-name">
-                                        <a href="">Bắp bò Úc giá tay</a>
+                                        <a href="/CTSanPham/Index?masp={{n.MaSP}}" title="{{n.TenSP}}">{{n.TenSP}}</a>
                                     </h3>
                                     <div class="pro-prices">
-                                        <p class="pro-price">73500 VND</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12 pro-loop">
-                            <div class="product-block product-resize fixheight" style="height: 262px;">
-                                <div class="product-img image-resize view view-third">
-                                    <a href="">
-                                        <img src="~/img/FreshFood/SuonChatHeo.jpg" alt="">
-                                    </a>
-                                    <div class="actionss">
-                                        <div class="btn-cart-products">
-                                            <a href="">
-                                                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                        <div class="view-details">
-                                            <a href="/products/bap-bo-uc-gia-tay" class="view-detail">
-                                                <span><i class="fa fa-clone"> </i></span>
-                                            </a>
-                                        </div>
-                                        <div class="btn-quickview-products">
-                                            <a class="quickview" data-handle="/products/bap-bo-uc-gia-tay">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-detail clearfix">
-                                    <h3 class="pro-name">
-                                        <a href="">Sườn Chặt Heo</a>
-                                    </h3>
-                                    <div class="pro-prices">
-                                        <p class="pro-price">35000 VND</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12 pro-loop">
-                            <div class="product-block product-resize fixheight" style="height: 262px;">
-                                <div class="product-img image-resize view view-third">
-                                    <a href="">
-                                        <img src="~/img/FreshFood/CaBaSaPhiLe.jpg" alt="">
-                                    </a>
-                                    <div class="actionss">
-                                        <div class="btn-cart-products">
-                                            <a href="">
-                                                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                        <div class="view-details">
-                                            <a href="/products/bap-bo-uc-gia-tay" class="view-detail">
-                                                <span><i class="fa fa-clone"> </i></span>
-                                            </a>
-                                        </div>
-                                        <div class="btn-quickview-products">
-                                            <a class="quickview" data-handle="/products/bap-bo-uc-gia-tay">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-detail clearfix">
-                                    <h3 class="pro-name">
-                                        <a href="">Cá Ba Sa Phi Lê</a>
-                                    </h3>
-                                    <div class="pro-prices">
-                                        <p class="pro-price">50000 VND</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12 pro-loop">
-                            <div class="product-block product-resize fixheight" style="height: 262px;">
-                                <div class="product-img image-resize view view-third">
-                                    <a href="">
-                                        <img src="~/img/FreshFood/BapGioHeo.jpg" alt="">
-                                    </a>
-                                    <div class="actionss">
-                                        <div class="btn-cart-products">
-                                            <a href="">
-                                                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                        <div class="view-details">
-                                            <a href="/products/bap-bo-uc-gia-tay" class="view-detail">
-                                                <span><i class="fa fa-clone"> </i></span>
-                                            </a>
-                                        </div>
-                                        <div class="btn-quickview-products">
-                                            <a class="quickview" data-handle="/products/bap-bo-uc-gia-tay">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-detail clearfix">
-                                    <h3 class="pro-name">
-                                        <a href="">Bắp Giò Heo</a>
-                                    </h3>
-                                    <div class="pro-prices">
-                                        <p class="pro-price">75000 VND</p>
+                                        <p class="pro-price">{{n.DonGia}} VND</p>
                                     </div>
                                 </div>
                             </div>

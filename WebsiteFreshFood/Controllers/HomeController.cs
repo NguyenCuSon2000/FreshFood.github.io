@@ -10,6 +10,7 @@ namespace WebsiteFreshFood.Controllers
 {
     public class HomeController : Controller
     {
+        QLSanPhamBus spbus = new QLSanPhamBus();
         // GET: Home
         public ActionResult Index()
         {
@@ -36,13 +37,30 @@ namespace WebsiteFreshFood.Controllers
             return PartialView("GioHang");
         }
 
-       
-
         public JsonResult GetLoaiSanPham()
         {
             QLLoaiSanPhamBus bl = new QLLoaiSanPhamBus();
             List<LoaiSanPham> ll = bl.LayLoaiSanPham();
             return Json(ll, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSanPhamNoiBat()
+        {
+            List<SanPham> list = spbus.SPNoiBatHome();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSanPhamMoiNhat()
+        {
+            List<SanPham> lnb = spbus.SanPhamMoiNhat();
+            return Json(lnb, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSanPhamKhuyenMai()
+        {
+            GiamGiaBus ggbus = new GiamGiaBus();
+            List<GiamGia> lgg = ggbus.GetSPKhuyenMai();
+            return Json(lgg, JsonRequestBehavior.AllowGet);
         }
     }
 }

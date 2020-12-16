@@ -14,10 +14,11 @@
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Scripts/Controllers/SanPhamAngularJS.js"></script>
     <script src="~/Scripts/dirPagination.js"></script>
-    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    @*<script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>*@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-   @* <script async type="text/javascript" src="https://panel.chatcompose.com/static/EN/global/export/js\main.dec259c7.js" user="SonNguyen"></script>*@
+    <script async type="text/javascript" src="https://panel.chatcompose.com/static/EN/global/export/js\main.dec259c7.js" user="SonNguyen"></script>
     @*<link href="~/assets/admin/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">*@
+    @*<script type="text/javascript" src="http://www.trungtamtinhoc.edu.vn/api/snowstorm.js"></script>*@
 </head>
 <body ng-app="myApp">
     <header>
@@ -32,7 +33,7 @@
                         <ul>
                             <li><i class="fas fa-phone-alt"></i> 1900.636.099</li>
                             <li><a href="/Admin/Login/Index" title="Đăng ký">ĐĂNG KÝ</a></li>
-                            <li><a href="/Admin/Signup/Index" title="Đăng nhập">ĐĂNG NHẬP</a></li>
+                            <li><a href="/Admin/Login/Index" title="Đăng nhập">ĐĂNG NHẬP</a></li>
                         </ul>
                         <p style=" margin-left: 0px;text-align: center;padding-left: 90px;">Miễn phí vận chuyển <span>ĐƠN HÀNG TRÊN 900K</span> </p>
                     </div>
@@ -40,12 +41,7 @@
             </div>
         </div>
         <div style="border-bottom: 1px solid #ebebeb; width: 100%;"></div>
-
-        
-
         @{ Html.RenderAction("TopMenu", "Home");}
-
-
     </header>
 
     @RenderBody()
@@ -83,10 +79,10 @@
                     <hr>
                     <ul class="inner">
                         <li><a href="/Home/Index">Trang chủ</a></li>
-                        <li><a href="SanPham.html">Sản phẩm</a></li>
-                        <li><a href="GioiThieu.html">Giới thiệu</a></li>
-                        <li><a href="TinTuc.html">Tin tức</a></li>
-                        <li><a href="LienHe.html">Liên hệ</a></li>
+                        <li><a href="#">Sản phẩm</a></li>
+                        <li><a href="/GioiThieu/Index">Giới thiệu</a></li>
+                        <li><a href="/TinTuc/Index">Tin tức</a></li>
+                        <li><a href="/LienHe/Index">Liên hệ</a></li>
                     </ul>
                 </section>
                 <section class="col-sm-6 col-md-4 col-xs-12 clear-sm column-item">

@@ -349,4 +349,110 @@ function NCCController($scope, $rootScope, $http, Upload, $timeout, $document) {
             }
         }, function (e) { });
     };
+};
+
+
+
+app.controller("TinTucController", TinTucController);
+function TinTucController($rootScope, $scope, $http, $window) {
+
+    $scope.UploadFiles = function (files) {
+        $scope.SelectedFiles = files;
+        if ($scope.SelectedFiles && $scope.SelectedFiles.length) {
+            Upload.upload({
+                url: '/Admin/QLTinTuc/Upload',
+                data: { files: $scope.SelectedFiles}
+            }).then(function (d) {
+                $scope.t.HinhAnh = d.data[0];
+            }, function (e) { alert("Lỗi"); });
+        }
+    };
+
+    //Danh sách tin tức
+    $http.get('/TinTuc/GetTinTuc').then(function (d) {
+        $rootScope.ListTinTuc = d.data;
+    }, function (error) { alert('Failed'); });
+
+    $http.get('/SanPham/GetLoaiSanPham').then(function (d) {
+        $rootScope.listloai = d.data;
+    }, function (e) { alert("Lỗi lấy loại"); });
+
+    //DS tin tức mới nhất
+    $http.get('/TinTuc/GetTinTucMoiNhat').then(function (d) {
+        $rootScope.ListNew = d.data;
+    }, function (error) { alert('Failed'); });
+
+
+    $scope.Them = function () {
+        $scope._function = "Thêm tin tức";
+        $scope.buttext = "Save";
+        $scope.t = null;
+    };
+
+    $scope.Sua = function (t) {
+        $scope._function = "Sửa tin tức";
+        $scope.buttext = "Save changes";
+        $scope.t = t;
+    };
+
+    $scope.Save = function () {
+        //Sửa tin tức
+        if ($scope.buttext != "Save") {
+            $http({
+                method: 'Post',
+                datatype: 'Json',
+                data: JSON.stringify($scope.t),
+                url: '/Admin/QLTinTuc/Update'
+            }).then(function (d) {
+                if (d.data == "") {
+                    var index = $scope.ListTinTuc;
+                    for (var i = 0; i < $scope.ListTinTuc.length; i++) {
+                        //Sửa thành công thì tiến hành sửa trên $scope
+                        if ($scope.ListTinTuc[i].ID == $scope.t.ID) {
+                            $scope.ListTinTuc[i].TieuDe = $scope.t.TieuDe;
+                            $scope.ListTinTuc[i].HinhAnh = $scope.t.HinhAnh;
+                            $scope.ListTinTuc[i].NoiDung = $scope.t.NoiDung;
+                            $scope.ListTinTuc[i].NgayDang = $scope.t.NgayDang;
+                            $scope.ListTinTuc[i].TrangThai = $scope.t.TrangThai;
+                            break;
+                        }
+                    }
+                    alert("Update success...!")
+                }
+            }, function (e) { alert(e); });
+        }
+        else //Thêm tin tức
+        {
+            $http({
+                method: 'POST',
+                datatype: 'json',
+                url: '/Admin/QLTinTuc/Insert',
+                data: JSON.stringify($scope.t)
+            }).then(function (d) {
+                alert($scope.t.ID);
+                if (d.data == "") {
+                    $scope.ListTinTuc.push($scope.t);
+                    $scope.t = null;
+                    alert("Data Submitted...!");
+                }
+                else {
+                    alert(d.data);
+                }
+            }, function (e) {
+                alert("Lỗi nhập...!");
+            });
+        }
+    };
+
+    $scope.XoaTinTuc = function (t) {
+        $http({
+            method: 'Post',
+            url: '/Admin/QLTinTuc/Delete',
+            datatype: 'Json',
+            data: { id: t.ID }
+        }).then(function (d) {
+            var vt = $scope.ListTinTuc.indexOf(t);
+            $scope.ListTinTuc.splice(vt, 1);
+        }, function (e) { alert(e) });
+    };
 }

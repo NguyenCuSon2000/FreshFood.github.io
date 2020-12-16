@@ -42,13 +42,14 @@ namespace WebsiteFreshFood.DataAccess
             foreach (DataRow dr in dt.Rows)
             {
                 SanPham s = new SanPham();
-                s.MaSP = Convert.ToString(dr[0]);
-                s.TenSP = Convert.ToString(dr[1]);
-                s.MaLoaiSP = Convert.ToString(dr[2]);
-                s.DonVi = Convert.ToString(dr[3]);
-                s.MoTa = Convert.ToString(dr[4]);
-                s.HinhAnh = Convert.ToString(dr[5]);
-                s.DonGia = Convert.ToInt32(dr[6]);
+                s.id = Convert.ToInt32(dr[0]);
+                s.MaSP = Convert.ToString(dr[1]);
+                s.TenSP = Convert.ToString(dr[2]);
+                s.MaLoaiSP = Convert.ToString(dr[3]);
+                s.DonVi = Convert.ToString(dr[4]);
+                s.MoTa = Convert.ToString(dr[5]);
+                s.HinhAnh = Convert.ToString(dr[6]);
+                s.DonGia = Convert.ToInt32(dr[7]);
                 l.Add(s);
             }
             return l;
@@ -82,17 +83,6 @@ namespace WebsiteFreshFood.DataAccess
 
         public string ThemSanPham(SanPham sp)
         {
-            //DA3_QuanLyFreshFoodEntities d = new DA3_QuanLyFreshFoodEntities();
-            //try
-            //{
-            //    d.SanPhams.Add(sp);
-            //    d.SaveChanges();
-            //    return "";
-            //}
-            //catch (Exception e)
-            //{
-            //    return e.Message;
-            //}
             string sql = "INSERT into SanPham values('" + sp.MaSP + "',N'" + sp.TenSP + "','" + sp.MaLoaiSP + "',N'" +
                 sp.DonVi + "',N'" + sp.MoTa + "','" + sp.HinhAnh + "','" + sp.DonGia + "')";
 
@@ -101,11 +91,6 @@ namespace WebsiteFreshFood.DataAccess
 
         public string XoaSanPham(string id)
         {
-            //DA3_QuanLyFreshFoodEntities d = new DA3_QuanLyFreshFoodEntities();
-            //SanPham s = d.SanPhams.Find(id);
-            //d.SanPhams.Remove(s);
-            //d.SaveChanges();
-            //return "";
             string st = "delete from SanPham where masp='" + id + "'";
             return dc.ExcuteNonQuery(st);
 
@@ -125,5 +110,24 @@ namespace WebsiteFreshFood.DataAccess
             return ToList(dt);
         }
 
+        public List<SanPham> GetSPNoiBat()
+        {
+            DataTable dt = dc.GetDataTable("SELECT TOP(5) * FROM SanPham ORDER BY DonGia DESC");
+            return ToList(dt);
+        }
+
+        public List<SanPham> SanPhamNoiBatHome()
+        {
+            DataTable dt = dc.GetDataTable("SELECT TOP(8) * FROM SanPham ORDER BY DonGia DESC");
+            return ToList(dt);
+        }
+
+        public List<SanPham> GetSPMoiNhat()
+        {
+            DataTable dt = dc.GetDataTable("SELECT TOP(4) * FROM SanPham ORDER BY id DESC");
+            return ToList(dt);
+        }
+
+      
     }
 }

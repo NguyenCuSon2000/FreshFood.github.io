@@ -39,6 +39,12 @@ namespace WebsiteFreshFood.Controllers
             return Json(ll, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetSanPhamNoiBat()
+        {
+            List<SanPham> lnb = spbus.SanPhamNoiBat();
+            return Json(lnb, JsonRequestBehavior.AllowGet);
+        }
+
         //public JsonResult GetSanPhamPTLoai(int pageIndex, int pageSize, string productName)
         //{
         //    if (Session["maloai"] == null)
@@ -61,5 +67,7 @@ namespace WebsiteFreshFood.Controllers
                 return Json(lsp, JsonRequestBehavior.AllowGet);
             }
         }
+
+       
     }
 }

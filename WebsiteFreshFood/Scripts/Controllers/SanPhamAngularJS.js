@@ -1,6 +1,21 @@
 /// <reference path="../angular.js" />
 var app = angular.module("myApp", ['angularUtils.directives.dirPagination']);
 
+app.controller("DatHangController", function ($rootScope, $scope, $http) {
+    $rootScope.DatHang = function () {
+        $rootScope.DonHang.Khach = $rootScope.Khach;
+        $rootScope.DonHang.TongTien = $rootScope.ThanhTien;
+        $rootScope.DonHang.LCTDonHang = $rootScope.dsDonHang;
+        $http({
+            method: "POST",
+            datatype: 'json',
+            url: '/DatHang/DatHang',
+            data: JSON.stringify($rootScope.DonHang)
+        }).then(function (d) {
+
+        }, function (e) { })
+    };
+});
 
 //Phân trang và tìm kiếm
 app.controller("PhanTrangController", PhanTrangController);
@@ -60,7 +75,13 @@ function MenuController($scope, $rootScope, $http) {
 
 app.controller("SanPhamController", SanPhamController);
 function SanPhamController($scope, $rootScope, $http) {
-    $rootScope.dsDonHang = null;
+
+    // DS sản phẩm nổi bật
+    $http.get('/SanPham/GetSanPhamNoiBat').then(function (d) {
+        $rootScope.ListSPNoiBat = d.data;
+    }, function (error) { alert('Failed'); });
+
+    // Add vào giỏ hàng
     $rootScope.AddCart = function (s) {
         $http({
             method: 'POST',
@@ -81,6 +102,7 @@ function SanPhamController($scope, $rootScope, $http) {
             $rootScope.SoLuong = d.data.sl;
         }, function (e) { alert("Lỗi"); });
     };
+
     //Danh sách sản phẩm
     $http.get('/SanPham/GetSanPham').then(function (d) {
         $rootScope.ListSanPham = d.data;
@@ -105,22 +127,59 @@ function SanPhamController($scope, $rootScope, $http) {
             $rootScope.dr = "Ascending";
         }
     };
-
-   
 };
 
 
 //Chi tiết sản phẩm
 app.controller("CTSanPhamController", CTSanPhamController);
 function CTSanPhamController($scope, $rootScope, $http) {
-    //Danh sách sản phẩm
+
+    //Chi tiết sản phẩm
     $http.get('/CTSanPham/GetCTSanPham').then(function (d) {
         $rootScope.CTSanPham = d.data;
     }, function (error) { alert('Failed'); });
 
+    $http.get('/SanPham/GetLoaiSanPham').then(function (d) {
+        $rootScope.listloai = d.data;
+    }, function (e) { alert("Lỗi lấy loại"); });
+
+
+    // DS sản phẩm nổi bật
+    $http.get('/CTSanPham/GetSanPhamNoiBat').then(function (d) {
+        $rootScope.ListSPNoiBat = d.data;
+    }, function (error) { alert('Failed'); });
+
+    //DANH SÁCH LOẠI SẢN PHẨM
+    $http.get('/CTSanPham/GetSanPhamMoiNhat').then(function (d) {
+        $rootScope.ListMoiNhat = d.data;
+    }, function (error) { alert('Failed'); });
+
+
+    // Add vào giỏ hàng
+    $rootScope.AddCart = function (s) {
+        $http({
+            method: 'POST',
+            datatype: 'json',
+            url: '/GioHang/AddCart',
+            data: JSON.stringify(s)
+        }).then(function (d) {
+            alert("Thêm vào giỏ hàng thành công !")
+            if (d.data.ctdon != null) {
+                $rootScope.dsDonHang.push(d.data.ctdon);
+            }
+            else {
+                for (var i = 0; i < $rootScope.dsDonHang.length; i++) {
+                    if ($rootScope.dsDonHang[i].MaSP == s.MaSP) {
+                        $rootScope.dsDonHang[i].SoLuong = $rootScope.dsDonHang[i].SoLuong + 1;
+                    }
+                }
+            }
+            $rootScope.SoLuong = d.data.sl;
+        }, function (e) { alert("Lỗi"); });
+    };
 };
 
-
+// Tìm kiếm sản phẩm
 app.controller("SearchController", SearchController);
 function SearchController($scope, $rootScope, $window, $http ) {
     $rootScope.TenSP = "";
@@ -150,16 +209,30 @@ function SearchController($scope, $rootScope, $window, $http ) {
 
 app.controller("HomeController", HomeController);
 function HomeController($rootScope, $scope, $http, $window) {
-    $rootScope.dsDonHang = null;
-    //$http.get("/Home/GetLoaiSanPham").then(function (d) { }, function (e) { });
 
-    //$rootScope.GetCart = function () {
-    //    $http.get('/GioHang/GetCarts').then(function (d) {
-    //        $rootScope.dsDonHang = d.data.DSDonHang;
-    //        $rootScope.SoLuong = d.data.soluong;
-    //        $rootScope.ThanhTien = d.data.ThanhTien;
-    //    }, function (e) { })
-    //};
+    // DS sản phẩm nổi bật
+    $http.get('/Home/GetSanPhamNoiBat').then(function (d) {
+        $rootScope.ListNoiBat = d.data;
+    }, function (error) { alert('Failed'); });
+
+    $http.get('/Home/GetSanPhamMoiNhat').then(function (d) {
+        $rootScope.ListMoiNhat = d.data;
+    }, function (error) { alert('Failed'); });
+
+    $http.get('/Home/GetSanPhamKhuyenMai').then(function (d) {
+        $rootScope.ListKhuyenMai = d.data;
+    }, function (error) { alert('Failed'); });
+
+    $rootScope.dsDonHang = null;
+    $http.get("/Home/GetLoaiSanPham").then(function (d) { }, function (e) { });
+
+    $rootScope.GetCart = function () {
+        $http.get('/GioHang/GetCarts').then(function (d) {
+            $rootScope.dsDonHang = d.data.DSDonHang;
+            $rootScope.SoLuong = d.data.soluong;
+            $rootScope.ThanhTien = d.data.ThanhTien;
+        }, function (e) { })
+    };
 
 
     $rootScope.dathang = "";
@@ -168,7 +241,8 @@ function HomeController($rootScope, $scope, $http, $window) {
     $rootScope.KiemTraDangNhap = function () {
         $http.get('/DatHang/ReadAccount').then(
             function (d) {
-                if (d.data.login == "1") //Đã đăng nhập thì hiển thị giao diện đặt hàng
+                if (d.data.login == "1")
+                //Đã đăng nhập thì hiển thị giao diện đặt hàng
                 {
                     $rootScope.dathang = "";
                     $rootScope.Khach = d.data.Khach;
@@ -182,27 +256,51 @@ function HomeController($rootScope, $scope, $http, $window) {
                 }
                 else { //Hiển thị giao diện đăng nhập
                     $rootScope.dathang = "#myModalLogin";
-                    //$window.location.href = '/Admin/Login/Index';
+                    $window.location.href = '/Admin/Login/Index';
                 }
             }, function (e) { })
+    };
+
+
+    // Add vào giỏ hàng
+    $rootScope.AddCart = function (s) {
+        $http({
+            method: 'POST',
+            datatype: 'json',
+            url: '/GioHang/AddCart',
+            data: JSON.stringify(s)
+        }).then(function (d) {
+            if (d.data.ctdon != null) {
+                $rootScope.dsDonHang.push(d.data.ctdon);
+            }
+            else {
+                for (var i = 0; i < $rootScope.dsDonHang.length; i++) {
+                    if ($rootScope.dsDonHang[i].MaSP == s.MaSP) {
+                        $rootScope.dsDonHang[i].SoLuong = $rootScope.dsDonHang[i].SoLuong + 1;
+                    }
+                }
+            }
+            $rootScope.SoLuong = d.data.sl;
+        }, function (e) { alert("Lỗi"); });
     };
 };
 
 
-app.controller("DatHangController", function ($rootScope, $scope, $http) {
-    $rootScope.DatHang = function () {
-        $rootScope.DonHang.Khach = $rootScope.Khach;
-        $rootScope.DonHang.TongTien = $rootScope.ThanhTien;
-        $rootScope.DonHang.LCTDonHang = $rootScope.dsDonHang;
-        $http({
-            method: "POST",
-            datatype: 'json',
-            url: '/DatHang/DatHang',
-            data: JSON.stringify($rootScope.DonHang)
-        }).then(function (d) {
+app.controller("TinTucController", TinTucController);
+function TinTucController($rootScope, $scope, $http, $window) {
+    //Danh sách tin tức
+    $http.get('/TinTuc/GetTinTuc').then(function (d) {
+        $rootScope.ListTinTuc = d.data;
+    }, function (error) { alert('Failed'); });
 
-        }, function (e) { })
-    };
-});
+    $http.get('/SanPham/GetLoaiSanPham').then(function (d) {
+        $rootScope.listloai = d.data;
+    }, function (e) { alert("Lỗi lấy loại"); });
+
+    //DS tin tức mới nhất
+    $http.get('/TinTuc/GetTinTucMoiNhat').then(function (d) {
+        $rootScope.ListNew = d.data;
+    }, function (error) { alert('Failed'); });
+}
 
 

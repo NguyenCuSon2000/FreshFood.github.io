@@ -10,15 +10,15 @@
     <title>Index</title>
     <link rel="stylesheet" href="~/assets/admin/dist/css/Login.css">
     <script src="~/Scripts/angular.min.js"></script>
-    <script src="~/Areas/Admin/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular.js"></script>
     <script src=" https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="~/Areas/Admin/Scripts/Controllers/AdminAJS.js"></script>
 </head>
-<body ng-app="DangNhapApp" style="margin: 0px">
+<body ng-app="LoginApp" style="margin: 0px">
     <div class="bg-img" ng-controller="LoginController">
         <div class="content">
             <header>Login Form</header>
-            <form action="#" name="formLogin" id="formLogin">
+            <form action="/Admin/Home/Index" method="post" name="formLogin" id="formLogin">
                 <div class="field">
                     <span class="fa fa-user"></span>
                     <input ng-model="UN" type="text" required="" id="email" name="email" placeholder="Email">

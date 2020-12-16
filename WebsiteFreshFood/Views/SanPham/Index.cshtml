@@ -32,58 +32,25 @@
                         <li class="current active" ng-repeat="l in listloai">
                             <a href="/SanPham/Index?maloai={{l.MaLoaiSP}}" title="{{l.TenLoai}}"><span>{{l.TenLoai}}</span></a>
                         </li>
-                        @*<li>
-                            <a href="" title="Thực phẩm tươi sống"><span>Thực phẩm tươi sống</span></a>
-                        </li>
-                        <li>
-                            <a href="" title="Thực phẩm khô"><span>Thực phẩm khô</span></a>
-                        </li>
-                        <li class="current active">
-                            <a href="" title="Thực phẩm bổ dưỡng"><span>Thực phẩm bổ dưỡng</span></a>
-                        </li>
-                        <li>
-                            <a href="" title="Thực phẩm chế biến"><span>Thực phẩm chế biến</span></a>
-                        </li>*@
                     </ul>
                 </div>
                 <div class="list-group_l banner-left hidden-sm hidden-xs">
                     <a href=""><img src="~/img/quangcao4.png" alt=""></a>
                 </div>
+                <!--SẢN PHẨM NỔI BẬT-->
                 <div class="list-group_2 navbar-product">
                     <div class="mega-left-title btn-navbar title-hidden-sm">
                         <h3 class="product-title">Sản phẩm nổi bật</h3>
                     </div>
-                    <div class="article seller-item">
+                    <div class="article seller-item" ng-repeat="a in ListSPNoiBat">
                         <div class="sellers-img">
-                            <a href="" class="products-block-image content_img clearfix">
-                                <img src="~/img/FreshFood/BapBoUc.jpg" alt="">
+                            <a href="/CTSanPham/Index?masp={{a.MaSP}}" title="{{a.TenSP}}" class="products-block-image content_img clearfix">
+                                <img src="~/img/{{a.MaLoaiSP}}/{{a.HinhAnh}}" alt="">
                             </a>
                         </div>
                         <div class="post-content has-sellers-img ">
-                            <a href="">Bắp bò Úc</a><br>
-                            <span class="price">20.000 VND</span>
-                        </div>
-                    </div>
-                    <div class="article seller-item">
-                        <div class="sellers-img">
-                            <a href="" class="products-block-image content_img clearfix">
-                                <img src="~/img/FreshFood/BapBoUc.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="post-content has-sellers-img ">
-                            <a href="">Bắp bò Úc</a><br>
-                            <span class="price">20.000 VND</span>
-                        </div>
-                    </div>
-                    <div class="article seller-item">
-                        <div class="sellers-img">
-                            <a href="" class="products-block-image content_img clearfix">
-                                <img src="~/img/FreshFood/BapBoUc.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="post-content has-sellers-img ">
-                            <a href="">Bắp bò Úc</a><br>
-                            <span class="price"> 20.000 VND </span>
+                            <a href="/CTSanPham/Index?masp={{a.MaSP}}" title="{{a.TenSP}}">{{a.TenSP}}</a><br>
+                            <span class="price">{{a.DonGia}} VND</span>
                         </div>
                     </div>
                 </div>
@@ -145,10 +112,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div id="pagination">
+                            <span class="page-node current">1</span>
+                            <a href="ThucDonMonBanh2.html" class="page-node">2</a>
+                            <a href="ThucDonMonBanh2.html" class="TrangSau">
+                                <span>
+                                    Trang sau
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     @*<div class="row" >
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div id="pagination" class="mt-5">

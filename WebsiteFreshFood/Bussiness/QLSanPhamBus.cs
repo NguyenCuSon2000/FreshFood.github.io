@@ -53,5 +53,20 @@ namespace WebsiteFreshFood.Bussiness
             return SanPhamDAL.SearchName(tensp);
         }
 
+        public List<SanPham> SanPhamNoiBat()
+        {
+            return SanPhamDAL.GetSPNoiBat();
+        }
+
+        public List<SanPham> SPNoiBatHome()
+        {
+            return SanPhamDAL.SanPhamNoiBatHome();
+        }
+
+        public List<SanPham> SanPhamMoiNhat()
+        {
+            return SanPhamDAL.GetSPMoiNhat();
+        }
+
     }
 }

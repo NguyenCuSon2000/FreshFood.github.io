@@ -20,6 +20,9 @@ LuotBinhLuan int,
 SoLanMua int,
 )
 
+alter table SanPham add id bigint identity(1,1)
+alter table SanPham add constraint uni_SP_id Unique(id)
+
 CREATE TABLE NhaCungCap(
 MaNCC varchar(50) primary key clustered (MaNCC asc),
 TenNCC nvarchar(50) not null,
@@ -115,17 +118,19 @@ MaSP varchar(10) constraint FK_MaSP_GiamGia foreign key (MaSP) references SanPha
 PhanTram float,
 GiaGiam float,
 Active bit,
-NgayBatDau datetime,
-NgayKetThuc datetime,
-NgayNhap datetime,
+NgayBatDau date,
+NgayKetThuc date,
+NgayNhap date,
 )
+
+Drop table GiamGia
 
 CREATE TABLE TinTuc(
 ID int identity(1,1) primary key,
 TieuDe nvarchar(200),
 HinhAnh nvarchar(200),
 NoiDung nvarchar(max),
-NgayDang Datetime,
+NgayDang Date,
 TrangThai bit
 )
 
@@ -237,3 +242,8 @@ Exec GetSanPhams 'Rau', 3, 5, ''
 select * from SanPham where TenSP like N'%Thịt%'
 
 Drop table User
+
+
+select TOP(5) WITH TIES * from SanPham order by DonGia desc
+
+select * from SanPham inner join GiamGia on SanPham.MaSP = GiamGia.MaSP

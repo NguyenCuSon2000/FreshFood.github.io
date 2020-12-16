@@ -10,9 +10,9 @@ using WebsiteFreshFood.Bussiness;
 namespace WebsiteFreshFood.Areas.Admin.Controllers
 {
     [Authorize]
-    public class QLSanPhamController : Controller
+    public class QLSanPhamController : BaseController
     {
-        // GET: Admin/QLSanPham
+      
         QLSanPhamBus qlsp = new QLSanPhamBus();
         // GET: Admin/QLSanPham
         public ActionResult Index()
