@@ -16,14 +16,14 @@ namespace WebsiteFreshFood.Bussiness
         }
 
         //Chi tiết sản phẩm
-        public List<SanPham> LaySPTheoMa(string masp)
+        public List<SanPham> LaySPTheoMa(int masp)
         {
             return SanPhamDAL.LaySPTheoMa(masp);
         }
 
-        //public SanPhamList LaySanPhamPT(string maloai, int pageIndex, int pageSize, string productName)
+        //public SanPhamList LaySanPhamPT(int pageIndex, int pageSize, string productName)
         //{
-        //    return SanPhamDAL.GetSanPham(maloai, pageIndex, pageSize, productName);
+        //    return SanPhamDAL.GetSanPham(pageIndex, pageSize, productName);
         //}
 
         public List<SanPham> LayAllSanPham()

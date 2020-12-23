@@ -43,7 +43,7 @@ namespace WebsiteFreshFood.DataAccess
 
         public string ThemTinTuc(TinTuc t)
         {
-            string sql = "INSERT into TinTuc values('" + t.ID + "',N'" + t.TieuDe + "','" + t.HinhAnh + "',N'" +
+            string sql = "INSERT into TinTuc values(N'" + t.TieuDe + "','" + t.HinhAnh + "',N'" +
                 t.NoiDung + "','" + t.NgayDang + "','" + t.TrangThai + "')";
 
             return dc.ExcuteNonQuery(sql);

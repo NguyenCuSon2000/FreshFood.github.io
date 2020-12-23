@@ -369,3 +369,12 @@ table.dataTable thead .sorting_desc_disabled {
     pointer-events: none;
     background-color: aliceblue;
 }
+
+
+.Scroll i {
+    font-size: 50px;
+    color: #99ADC0;
+    position: fixed;
+    bottom: 90px;
+    right: 35px;
+}

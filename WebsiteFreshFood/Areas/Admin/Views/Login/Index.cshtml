@@ -18,7 +18,7 @@
     <div class="bg-img" ng-controller="LoginController">
         <div class="content">
             <header>Login Form</header>
-            <form action="/Admin/Home/Index" method="post" name="formLogin" id="formLogin">
+            <form name="formLogin" id="formLogin">
                 <div class="field">
                     <span class="fa fa-user"></span>
                     <input ng-model="UN" type="text" required="" id="email" name="email" placeholder="Email">
@@ -48,7 +48,7 @@
             </div>
             <div class="signup">
                 Don't have account?
-                <a href="SignUp.html">Signup Now</a>
+                <a href="/Admin/Signup/Index">Signup Now</a>
             </div>
         </div>
     </div>

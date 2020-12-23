@@ -34,6 +34,7 @@ namespace WebsiteFreshFood.DataAccess
         /// Phương thức lấy dữ liệu về Datatable
         /// </summary>
         /// <param name="sqlSelect">Câu lệnh truy vấn Select</param>
+        /// 
         /// <returns>Đối tượng DataTable chứa các bản ghi lấy về</returns>
         public DataTable GetDataTable(string sqlSelect)
         {

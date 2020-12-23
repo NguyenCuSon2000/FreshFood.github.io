@@ -5,6 +5,7 @@
 
 <script src="~/Scripts/dirPagination.js"></script>
 <script src="~/Scripts/ng-file-upload.min.js"></script>
+<script src="~/Scripts/script.js"></script>
 
 <!-- Page Content -->
 <div id="page-wrapper" style="min-height: 223px;" ng-controller="SanPhamController">
@@ -58,7 +59,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="s in ListSanPham" current-page="currentPage" total-items="totalCount">
+                                    <tr ng-repeat="s in ListSanPham" total-items="totalCount">
                                         <td>{{s.MaSP}}</td>
                                         <td>{{s.TenSP}}</td>
                                         <td>{{s.MaLoaiSP}}</td>
@@ -103,8 +104,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="ma">Mã sản phẩm</label>
-                        <input ng-model="s.MaSP" type="text" id="ma" class="form-control" name="" aria-describedby="helpId" placeholder="">
                         <label for="name">Tên sản phẩm</label>
                         <input ng-model="s.TenSP" type="text" id="name" class="form-control" name="" aria-describedby="helpId" placeholder="">
                         <label for="">Mã loại</label>
@@ -131,3 +130,9 @@
     <!--End Modal-->
 </div>
 <!-- /#page-wrapper -->
+<!-- SCROLL TO TOP -->
+<div class="Scroll">
+    <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop(); return false">
+        <i class="fas fa-arrow-alt-circle-up"></i>
+    </a>
+</div>

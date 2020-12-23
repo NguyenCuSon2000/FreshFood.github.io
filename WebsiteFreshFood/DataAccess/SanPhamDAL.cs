@@ -28,7 +28,7 @@ namespace WebsiteFreshFood.DataAccess
         }
 
         //Chi tiết sản phẩm
-        public List<SanPham> LaySPTheoMa(string masp)
+        public List<SanPham> LaySPTheoMa(int masp)
         {
             string sqlselect = "select * from SanPham where MaSP ='" + masp + "'";
             DataTable dt = dc.GetDataTable(sqlselect);
@@ -42,27 +42,26 @@ namespace WebsiteFreshFood.DataAccess
             foreach (DataRow dr in dt.Rows)
             {
                 SanPham s = new SanPham();
-                s.id = Convert.ToInt32(dr[0]);
-                s.MaSP = Convert.ToString(dr[1]);
-                s.TenSP = Convert.ToString(dr[2]);
-                s.MaLoaiSP = Convert.ToString(dr[3]);
-                s.DonVi = Convert.ToString(dr[4]);
-                s.MoTa = Convert.ToString(dr[5]);
-                s.HinhAnh = Convert.ToString(dr[6]);
-                s.DonGia = Convert.ToInt32(dr[7]);
+                s.MaSP = Convert.ToInt32(dr[0]);
+                s.TenSP = Convert.ToString(dr[1]);
+                s.MaLoaiSP = Convert.ToString(dr[2]);
+                s.DonVi = Convert.ToString(dr[3]);
+                s.MoTa = Convert.ToString(dr[4]);
+                s.HinhAnh = Convert.ToString(dr[5]);
+                s.DonGia = Convert.ToInt32(dr[6]);
                 l.Add(s);
             }
             return l;
         }
 
-        //public SanPhamList GetSanPham(string maloai, int pageIndex, int pageSize, string productName)
+        //public SanPhamList GetSanPham(int pageIndex, int pageSize, string productName)
         //{
         //    SanPhamList spl = new SanPhamList();
         //    List<SanPham> l = new List<SanPham>();
-        //    SqlDataReader dr = dc.StoreReaders("GetSanPhams", maloai, pageIndex, pageSize, productName);
+        //    SqlDataReader dr = dc.StoreReaders("GetSanPhams", pageIndex, pageSize, productName);
         //    while (dr.Read())
         //    {
-        //        SanPham s = new SanPham(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
+        //        SanPham s = new SanPham(int.Parse(dr[0].ToString()), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
         //            dr[4].ToString(), dr[5].ToString(), double.Parse(dr[6].ToString()));
         //        l.Add(s);
         //    }
@@ -74,7 +73,7 @@ namespace WebsiteFreshFood.DataAccess
         //    }
         //    return spl;
         //}
-      
+
         public List<SanPham> GetAllSanPham()
         {
             DataTable dt = dc.GetDataTable("select * from SanPham");
@@ -83,8 +82,7 @@ namespace WebsiteFreshFood.DataAccess
 
         public string ThemSanPham(SanPham sp)
         {
-            string sql = "INSERT into SanPham values('" + sp.MaSP + "',N'" + sp.TenSP + "','" + sp.MaLoaiSP + "',N'" +
-                sp.DonVi + "',N'" + sp.MoTa + "','" + sp.HinhAnh + "','" + sp.DonGia + "')";
+            string sql = "INSERT into SanPham values(N'" + sp.TenSP + "','" + sp.MaLoaiSP + "',N'" + sp.DonVi + "',N'" + sp.MoTa + "','" + sp.HinhAnh + "','" + sp.DonGia + "')";
 
             return dc.ExcuteNonQuery(sql);
         }
@@ -124,7 +122,7 @@ namespace WebsiteFreshFood.DataAccess
 
         public List<SanPham> GetSPMoiNhat()
         {
-            DataTable dt = dc.GetDataTable("SELECT TOP(4) * FROM SanPham ORDER BY id DESC");
+            DataTable dt = dc.GetDataTable("SELECT TOP(4) * FROM SanPham ORDER BY MaSP DESC");
             return ToList(dt);
         }
 

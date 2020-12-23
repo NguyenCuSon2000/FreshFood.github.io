@@ -18,12 +18,6 @@
         public string Pass { get; set; }
 
         [StringLength(50)]
-        public string Email { get; set; }
-
-        [StringLength(50)]
-        public string SDT { get; set; }
-
-        [StringLength(50)]
         public string Role { get; set; }
 
         [StringLength(50)]
@@ -31,14 +25,11 @@
 
         public Users() { }
 
-        public Users(int userID, string userName, string passWord, string email, string sdt, string role, string active)
+        public Users(int userID, string userName, string passWord, string role, string active)
         {
             this.UserID = userID;
             this.UserName = userName;
             this.Pass = passWord;
-            this.Email = email;
-            this.SDT = sdt;
-            this.Role = role;
             this.Active = active;
         }
     }

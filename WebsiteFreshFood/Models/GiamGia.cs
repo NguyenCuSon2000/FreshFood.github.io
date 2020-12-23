@@ -11,8 +11,8 @@
         [Key]
         public int MaGiamGia { get; set; }
 
-        [StringLength(10)]
-        public string MaSP { get; set; }
+       
+        public int MaSP { get; set; }
 
         [StringLength(50)]
         public string TenSP { get; set; }
@@ -37,10 +37,10 @@
 
         public GiamGia() { }
 
-        public GiamGia(int maGiamGia, string maSP,string tenSP, int phanTram, double giaGiam, string hinhAnh, string active, string ngayBatDau, string ngayKetThuc, string ngayNhap)
+        public GiamGia(int maGiamGia, int maSP,string tenSP, int phanTram, double giaGiam, string hinhAnh, string active, string ngayBatDau, string ngayKetThuc, string ngayNhap)
         {
             this.MaGiamGia = maGiamGia;
-            this.MaSP = MaSP;
+            this.MaSP = maSP;
             this.TenSP = tenSP;
             this.PhanTram = phanTram;
             this.GiaGiam = giaGiam;

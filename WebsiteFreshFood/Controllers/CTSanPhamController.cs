@@ -12,7 +12,7 @@ namespace WebsiteFreshFood.Controllers
     {
         QLSanPhamBus spbus = new QLSanPhamBus();
         // GET: CTSanPham
-        public ActionResult Index(string masp)
+        public ActionResult Index(int masp)
         {
             Session.Add("masp", masp);
             return View();
@@ -20,7 +20,7 @@ namespace WebsiteFreshFood.Controllers
 
         public JsonResult GetCTSanPham()
         {
-            List<SanPham> lsp = spbus.LaySPTheoMa(Session["masp"].ToString());
+            List<SanPham> lsp = spbus.LaySPTheoMa(Convert.ToInt32(Session["masp"].ToString()));
             return Json(lsp, JsonRequestBehavior.AllowGet);
         }
 

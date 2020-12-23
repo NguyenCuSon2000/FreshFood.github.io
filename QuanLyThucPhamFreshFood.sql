@@ -195,8 +195,8 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create PROCEDURE GetSanPhams(
-@maloai varchar(20), @pageIndex int, @pageSize int, @productName nvarchar(100)
+Alter PROCEDURE GetSanPhams(
+@pageIndex int, @pageSize int, @productName nvarchar(100)
 )
 as
 Begin
@@ -237,11 +237,11 @@ Begin
 
 SELECT * FROM Users u WHERE u.UserName = 'son@gmail.com' AND u.Pass = '1'
 
-Exec GetSanPhams 'Rau', 3, 5, ''
+Exec GetSanPhams  7, 5, ''
 
 select * from SanPham where TenSP like N'%Thịt%'
 
-Drop table User
+
 
 
 select TOP(5) WITH TIES * from SanPham order by DonGia desc

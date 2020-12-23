@@ -17,7 +17,7 @@ namespace WebsiteFreshFood.Controllers
             return View();
         }
 
-        public JsonResult DatHang(WebsiteFreshFood.Models.DonDatHang ddh)
+        public JsonResult DatHang(DonDatHang ddh)
         {
             DonHang d = new DonHang();
             d.MaKH = ddh.Khach.MaKH;

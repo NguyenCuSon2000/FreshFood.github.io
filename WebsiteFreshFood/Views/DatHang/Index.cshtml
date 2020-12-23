@@ -3,31 +3,33 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<link rel="stylesheet" href="~/Content/SanPham.css" />
 <link rel="stylesheet" href="~/Content/DatHang.css"/>
+<script src="~/Scripts/Controllers/SanPhamAngularJS.js"></script>
 
 <div class="wrap-breadcrumb">
     <div class="clearfix container">
         <div class="row main-header">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5  ">
                 <ol class="breadcrumb breadcrumb-arrows">
-                    <li><a href="index.html" target="_self">Trang chủ</a></li>
-                    <li><a href="/" target="_self">Giỏ hàng</a></li>
+                    <li><a href="/Home/Index" target="_self">Trang chủ</a></li>
+                    <li class="active"><a href="/DatHang/Index" target="_self">Đặt hàng</a></li>
                 </ol>
             </div>
         </div>
     </div>
 </div>
 
-
 <!-- PHẦN GIỎ HÀNG -->
-<section class="container GioHang" ng-app="myApp" ng-controller="DatHangController">
+<section class="container GioHang" ng-app="myApp" >
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5  ">
             <article>
                 <h4 class="title">Giỏ hàng</h4>
             </article>
                
-            <div class="page-content page-order">
+            <div class="page-content page-order" ng-controller="DatHangController">
 
                 <div class="heading-counter warning">
                     <span class="fa fa-shopping-cart"></span> Your shopping cart contains:
@@ -46,18 +48,18 @@
                             </tr>
                         </thead>
                         <tbody id="show-item-cart">
-                            <tr ng-repeat="d in dsDonHang">
+                            <tr ng-repeat="a in dsDonHang">
                                 <td class="images">
                                     <a href="">
-                                        <img src="~/img/{{d.MaLoaiSP}}/{{d.HinhAnh}}" alt="">
+                                        <img src="~/img/{{a.MaLoaiSP}}/{{a.HinhAnh}}" alt="">
                                     </a>
                                 </td>
-                                <td class="item"><a href="">{{d.TenSP}}</a></td>
+                                <td class="item"><a href="">{{a.TenSP}}</a></td>
                                 <td class="qty">
-                                    <input type="number" name="number1" id="number" size="4" value="{{d.SoLuong}}" min="1" onclick="TinhTien()">
+                                    {{a.SoLuong}}
                                 </td>
-                                <td class="price" id="price">{{d.DonGia}} VND</td>
-                                <td class="">{{d.SoLuong*d.DonGia}}</td>
+                                <td class="price" id="price">{{a.DonGia}} VND</td>
+                                <td class="">{{a.SoLuong*a.DonGia}}</td>
                                 <th class="action"><i class="fa fa-trash-o"></i></th>
                             </tr>
                         </tbody>

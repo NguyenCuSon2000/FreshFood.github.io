@@ -24,7 +24,6 @@
                                 <th>Đơn vị</th>
                                 <th width="150px">Hình ảnh</th>
                                 <th>Đơn giá</th>
-                                <th width="100px">#</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,9 +32,6 @@
                                 <td>{{s.DonVi}}</td>
                                 <td><img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" /></td>
                                 <td>{{s.DonGia}} VNĐ</td>
-                                <td>
-                                    <a ng-click="XoaSanPham(s)" href="">Xoá</a>
-                                </td>
                             </tr>
                         </tbody>
                     </table>

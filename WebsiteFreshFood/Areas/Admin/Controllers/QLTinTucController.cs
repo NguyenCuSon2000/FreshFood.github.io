@@ -49,7 +49,7 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
         public JsonResult Upload()
         {
             List<string> l = new List<string>();
-            string path = Server.MapPath("~/img/TinTuc/");
+            string path = Server.MapPath("~/img/TinTuc");
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);

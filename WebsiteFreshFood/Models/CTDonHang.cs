@@ -15,8 +15,7 @@ namespace WebsiteFreshFood.Models
         [StringLength(50)]
         public string MaDonHang { get; set; }
 
-        [StringLength(50)]
-        public string MaSP { get; set; }
+        public int MaSP { get; set; }
 
         [StringLength(100)]
         public string TenSP { get; set; }
@@ -30,7 +29,7 @@ namespace WebsiteFreshFood.Models
         public DateTime NgayNhap { get; set; }
         public CTDonHang() { }
         
-        public CTDonHang(int maCTDonDatHang, string maDonHang, string maSP,string tenSP, float soLuong, double donGia, float giamGia, DateTime ngayNhap)
+        public CTDonHang(int maCTDonDatHang, string maDonHang, int maSP,string tenSP, float soLuong, double donGia, float giamGia, DateTime ngayNhap)
         {
             this.MaCTDonDatHang = maCTDonDatHang;
             this.MaDonHang = maDonHang;

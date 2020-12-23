@@ -9,8 +9,8 @@ using WebsiteFreshFood.Bussiness;
 
 namespace WebsiteFreshFood.Areas.Admin.Controllers
 {
-    [Authorize]
-    public class QLSanPhamController : BaseController
+    
+    public class QLSanPhamController : Controller
     {
       
         QLSanPhamBus qlsp = new QLSanPhamBus();
@@ -44,7 +44,7 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
         //[HttpGet]
         //public JsonResult GetSanPhamPT(int pageIndex, int pageSize, string productName)
         //{
-        //    SanPhamList spl = qlsp.LaySanPhamPT("", pageIndex, pageSize, productName);
+        //    SanPhamList spl = qlsp.LaySanPhamPT(pageIndex, pageSize, productName);
         //    return Json(spl, JsonRequestBehavior.AllowGet);
         //}
 

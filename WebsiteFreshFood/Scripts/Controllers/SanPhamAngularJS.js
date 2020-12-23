@@ -1,22 +1,6 @@
 /// <reference path="../angular.js" />
 var app = angular.module("myApp", ['angularUtils.directives.dirPagination']);
 
-app.controller("DatHangController", function ($rootScope, $scope, $http) {
-    $rootScope.DatHang = function () {
-        $rootScope.DonHang.Khach = $rootScope.Khach;
-        $rootScope.DonHang.TongTien = $rootScope.ThanhTien;
-        $rootScope.DonHang.LCTDonHang = $rootScope.dsDonHang;
-        $http({
-            method: "POST",
-            datatype: 'json',
-            url: '/DatHang/DatHang',
-            data: JSON.stringify($rootScope.DonHang)
-        }).then(function (d) {
-
-        }, function (e) { })
-    };
-});
-
 //Phân trang và tìm kiếm
 app.controller("PhanTrangController", PhanTrangController);
 function PhanTrangController($scope, $rootScope, $http) {
@@ -89,6 +73,7 @@ function SanPhamController($scope, $rootScope, $http) {
             url: '/GioHang/AddCart',
             data: JSON.stringify(s)
         }).then(function (d) {
+            alert("Thêm vào giỏ hàng thành công !!!");
             if (d.data.ctdon != null) {
                 $rootScope.dsDonHang.push(d.data.ctdon);
             }
@@ -235,6 +220,30 @@ function HomeController($rootScope, $scope, $http, $window) {
     };
 
 
+
+    // Add vào giỏ hàng
+    $rootScope.AddCart = function (s) {
+        $http({
+            method: 'POST',
+            datatype: 'json',
+            url: '/GioHang/AddCart',
+            data: JSON.stringify(s)
+        }).then(function (d) {
+            alert("Thêm vào giỏ hàng thành công !!!");
+            if (d.data.ctdon != null) {
+                $rootScope.dsDonHang.push(d.data.ctdon);
+            }
+            else {
+                for (var i = 0; i < $rootScope.dsDonHang.length; i++) {
+                    if ($rootScope.dsDonHang[i].MaSP == s.MaSP) {
+                        $rootScope.dsDonHang[i].SoLuong = $rootScope.dsDonHang[i].SoLuong + 1;
+                    }
+                }
+            }
+            $rootScope.SoLuong = d.data.sl;
+        }, function (e) { alert("Lỗi"); });
+    };
+
     $rootScope.dathang = "";
     $rootScope.SoLuong = 0;
     $rootScope.Log = "Login";
@@ -255,35 +264,44 @@ function HomeController($rootScope, $scope, $http, $window) {
                     $window.location.href = '/DatHang/Index';
                 }
                 else { //Hiển thị giao diện đăng nhập
-                    $rootScope.dathang = "#myModalLogin";
-                    $window.location.href = '/Admin/Login/Index';
+                    $rootScope.dathang = "/Admin/Login/Index";
+                    //$window.location.href = '';
                 }
             }, function (e) { })
     };
 
-
-    // Add vào giỏ hàng
-    $rootScope.AddCart = function (s) {
-        $http({
-            method: 'POST',
-            datatype: 'json',
-            url: '/GioHang/AddCart',
-            data: JSON.stringify(s)
-        }).then(function (d) {
-            if (d.data.ctdon != null) {
-                $rootScope.dsDonHang.push(d.data.ctdon);
-            }
-            else {
-                for (var i = 0; i < $rootScope.dsDonHang.length; i++) {
-                    if ($rootScope.dsDonHang[i].MaSP == s.MaSP) {
-                        $rootScope.dsDonHang[i].SoLuong = $rootScope.dsDonHang[i].SoLuong + 1;
-                    }
-                }
-            }
-            $rootScope.SoLuong = d.data.sl;
-        }, function (e) { alert("Lỗi"); });
-    };
+    //$rootScope.dathang = "";
+    //$rootScope.SoLuong = 0;
+    //$rootScope.Payment = function () {
+    //    $rootScope.dathang = "";
+    //    //$rootScope.Khach = d.data.Khach;
+    //    //console.log(JSON.stringify($rootScope.Khach));
+    //    $http.get('/GioHang/GetCarts').then(function (d) {
+    //        $rootScope.dsDonHang = d.data.DSDonHang;
+    //        $rootScope.SoLuong = d.data.soluong;
+    //        $rootScope.ThanhTien = d.data.ThanhTien;
+    //    }, function (e) { });
+    //    $window.location.href = '/DatHang/Index';
+    //};
 };
+
+app.controller("DatHangController", function ($rootScope, $scope, $http) {
+    $rootScope.DatHang = function () {
+        $rootScope.DonDatHang.Khach = $rootScope.Khach;
+        $rootScope.DonDatHang.TongTien = $rootScope.ThanhTien;
+        $rootScope.DonDatHang.LCTDonHang = $rootScope.dsDonHang;
+        $http({
+            method: "POST",
+            datatype: 'JSON',
+            url: '/DatHang/DatHang',
+            data: JSON.stringify($rootScope.DonDatHang)
+        }).then(function (d) {
+
+        }, function (e) { });
+
+    };
+});
+
 
 
 app.controller("TinTucController", TinTucController);

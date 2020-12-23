@@ -27,7 +27,7 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public JsonResult Login(string us, string pw)
+        public JsonResult DangNhap(string us, string pw)
         {
             LoginBus lb = new LoginBus();
             Users u = lb.checkUser(us, pw);

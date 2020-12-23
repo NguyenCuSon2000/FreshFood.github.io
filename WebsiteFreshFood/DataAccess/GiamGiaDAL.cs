@@ -18,7 +18,7 @@ namespace WebsiteFreshFood.DataAccess
             {
                 GiamGia g = new GiamGia();
                 g.MaGiamGia = Convert.ToInt32(dr[0]);
-                g.MaSP = Convert.ToString(dr[1]);
+                g.MaSP = Convert.ToInt32(dr[1]);
                 g.TenSP = Convert.ToString(dr[2]);
                 g.PhanTram = Convert.ToInt32(dr[3]);
                 g.GiaGiam = Convert.ToDouble(dr[4]);

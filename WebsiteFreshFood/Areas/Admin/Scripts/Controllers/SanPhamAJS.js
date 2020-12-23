@@ -1,7 +1,6 @@
 ﻿/// <reference path="../angular.js" />
 var app = angular.module("SanPhamApp", ['angularUtils.directives.dirPagination', 'ngFileUpload']);
 
-
 // Hiển thị sản phẩm và phân trang
 app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload) {
     $scope.UploadFiles = function (files) {
@@ -48,7 +47,8 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload)
             }).then(function (d) {
                 if (d.data == "") {
                     var index = $scope.ListSanPham;
-                    for (var i = 0; i < $scope.ListSanPham.length; i++) { //Sửa thành công thì tiến hành sửa trên $scope
+                    for (var i = 0; i < $scope.ListSanPham.length; i++) {
+                        //Sửa thành công thì tiến hành sửa trên $scope
                         if ($scope.ListSanPham[i].MaSP == $scope.s.MaSP) {
                             $scope.ListSanPham[i].TenSP = $scope.s.TenSP;
                             $scope.ListSanPham[i].MaLoaiSP = $scope.s.MaLoaiSP;
@@ -71,7 +71,7 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload)
                 url: '/Admin/QLSanPham/Insert',
                 data: JSON.stringify($scope.s)
             }).then(function (d) {
-                alert($scope.s.MaSP);
+                //alert($scope.s.MaSP);
                 if (d.data == "") {
                     $scope.ListSanPham.push($scope.s);
                     $scope.s = null;
@@ -354,7 +354,7 @@ function NCCController($scope, $rootScope, $http, Upload, $timeout, $document) {
 
 
 app.controller("TinTucController", TinTucController);
-function TinTucController($rootScope, $scope, $http, $window) {
+function TinTucController($rootScope, $scope, $http, Upload) {
 
     $scope.UploadFiles = function (files) {
         $scope.SelectedFiles = files;
@@ -455,4 +455,61 @@ function TinTucController($rootScope, $scope, $http, $window) {
             $scope.ListTinTuc.splice(vt, 1);
         }, function (e) { alert(e) });
     };
-}
+};
+
+
+
+app.controller("LogoutController", function ($scope, $rootScope, $http, $window) {
+    $rootScope.Logout = function () {
+        $http({
+            method: 'Post',
+            url: '/Admin/Login/Logout'
+        }).then(function () {
+            $window.location.href = '/Admin/Login/Index';
+        }, function () { });
+    };
+});
+
+
+
+app.controller("UserController", UserController);
+function UserController($scope, $rootScope, $http, $window) {
+
+    $scope.Signup = function () {
+        $http({
+            method: 'POST',
+            datatype: 'json',
+            url: '/Admin/Signup/Signup',
+            data: JSON.stringify($scope.us)
+        }).then(function (d) {
+            //alert($scope.s.MaSP);
+            if (d.data == "") {
+                $scope.ListUser.push($scope.us);
+                $scope.us = null;
+                alert("Đăng ký thành công...!");
+            }
+            else {
+                alert(d.data);
+            }
+        }, function (e) {
+            alert("Lỗi nhập...!");
+        });
+    };
+
+    //Danh sách user
+    $http.get('/Admin/QLUser/GetUsers').then(function (d) {
+        $rootScope.ListUser = d.data;
+    }, function (error) { alert('Failed'); });
+
+    $scope.Them = function () {
+        $scope._function = "Thêm sản phẩm";
+        $scope.buttext = "Save";
+        $scope.s = null;
+    };
+
+   
+};
+
+
+
+
