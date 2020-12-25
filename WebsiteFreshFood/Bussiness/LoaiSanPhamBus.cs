@@ -13,8 +13,6 @@ namespace WebsiteFreshFood.Bussiness
         public string SinhMaHoaDon(string ngay)
         {
             string ma = "";
-            //Lấy về hóa đơn cùng ngày
-            //Đưa ra quy tắc sinh
             return ma;
         }
         public List<LoaiSanPham> LayLoaiSanPham()

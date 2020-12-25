@@ -5,7 +5,6 @@
 
 <script src="~/Scripts/dirPagination.js"></script>
 <script src="~/Scripts/ng-file-upload.min.js"></script>
-<script src="~/Scripts/script.js"></script>
 
 <!-- Page Content -->
 <div id="page-wrapper" style="min-height: 223px;" ng-controller="SanPhamController">
@@ -74,15 +73,27 @@
                                         </td>
                                     </tr>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td align="center" colspan="8">
+                                            <span class="form-group pull-left page-size form-inline">
+                                                <select id="ddlPageSize" class="form-control control-color"
+                                                        ng-model="pageSizeSelected"
+                                                        ng-change="changePageSize()">
+                                                    <option value="5">5</option>
+                                                    <option value="10">10</option>
+                                                    <option value="25">25</option>
+                                                    <option value="50">50</option>
+                                                </select>
+                                            </span>
+                                            <div class="pull-right">
+                                                <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                                                <a class="btn btn-primary">Page: {{pageIndex}} / {{numPages}}</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
-                            <div class="pagination-container">
-                                <dir-pagination-controls max-size="maxSize"
-                                                         direction-links="true"
-                                                         boundary-links="true"
-                                                         on-page-change="GetSanPhamList(newPageNumber)"
-                                                         template-url="~/dirPagination.tpl.html">
-                                </dir-pagination-controls>
-                            </div>
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -130,9 +141,3 @@
     <!--End Modal-->
 </div>
 <!-- /#page-wrapper -->
-<!-- SCROLL TO TOP -->
-<div class="Scroll">
-    <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop(); return false">
-        <i class="fas fa-arrow-alt-circle-up"></i>
-    </a>
-</div>

@@ -5,6 +5,7 @@
 
 <link rel="stylesheet" href="~/Content/SanPham.css" />
 <script src="~/Scripts/dirPagination.js"></script>
+<script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
 
 <div class="wrap-breadcrumb">
     <div class="clearfix container">
@@ -84,7 +85,7 @@
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12 content-product-list">
                         <div class="row product-list">
-                            <div class="col-md-4 col-sm-6 col-xs-12 pro-loop" ng-repeat="s in ListSanPham|orderBy:sortcolumn:reverse">
+                            <div class="col-md-4 col-sm-6 col-xs-12 pro-loop" ng-repeat="s in ListSanPham|orderBy:sortcolumn:reverse" total-items="totalCount">
                                 <div class=" product-img">
                                     <a href="/CTSanPham/Index?masp={{s.MaSP}}">
                                         <img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" title="{{s.TenSP}}">
@@ -112,35 +113,30 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 ">
-                        <div id="pagination">
-                            <span class="page-node current">1</span>
-                            <a href="ThucDonMonBanh2.html" class="page-node">2</a>
-                            <a href="ThucDonMonBanh2.html" class="TrangSau">
-                                <span>
-                                    Trang sau
-                                    <i class="fas fa-chevron-right"></i>
-                                </span>
-                            </a>
+                    <div class="col-md-12 col-sm-12 col-xs-12 mt-5">
+                        <div class="mt-5">
+                            <div class="text-center">
+                                <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+  
     @*<div class="row" >
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div id="pagination" class="mt-5">
-                <dir-pagination-controls max-size="maxSize"
-                                         direction-links="true"
-                                         boundary-links="true"
-                                         on-page-change="GetSanPhamList(newPageNumber)"
-                                         template-url="~/dirPagination.tpl.html">
-                </dir-pagination-controls>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div id="pagination" class="mt-5">
+                    <dir-pagination-controls max-size="maxSize"
+                                             direction-links="true"
+                                             boundary-links="true"
+                                             on-page-change="GetSanPhamList(newPageNumber)"
+                                             template-url="~/dirPagination.tpl.html">
+                    </dir-pagination-controls>
+                </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
     <!-- SCROLL TO TOP -->
     <div class="Scroll">
         <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop();return false">

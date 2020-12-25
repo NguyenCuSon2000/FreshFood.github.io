@@ -180,3 +180,7 @@
     background-color: #28b241;
     color: #ffffff;
 }
+
+h2.title-article.post-Content {
+    margin-top: 0px;
+}

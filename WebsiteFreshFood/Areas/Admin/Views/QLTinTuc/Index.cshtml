@@ -61,7 +61,7 @@
                                         ng-class-even="even" ng-class-odd="odd" id="tr_{{t.ID}}">
                                         <td>{{t.ID}}</td>
                                         <td>{{t.TieuDe}}</td>
-                                        <td><img src="~/img/TinTuc/{{t.HinhAnh}}"/></td>
+                                        <td><img src="~/img/TinTuc/{{t.HinhAnh}}" /></td>
                                         <td>{{t.NoiDung}}</td>
                                         <td>{{t.NgayDang}}</td>
                                         <td>{{t.TrangThai}}</td>
@@ -72,6 +72,26 @@
                                         </td>
                                     </tr>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td align="center" colspan="8">
+                                            <span class="form-group pull-left page-size form-inline">
+                                                <select id="ddlPageSize" class="form-control control-color"
+                                                        ng-model="pageSizeSelected"
+                                                        ng-change="changePageSize()">
+                                                    <option value="5">5</option>
+                                                    <option value="10">10</option>
+                                                    <option value="25">25</option>
+                                                    <option value="50">50</option>
+                                                </select>
+                                            </span>
+                                            <div class="pull-right">
+                                                <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                                                <a class="btn btn-primary">Page: {{pageIndex}} / {{numPages}}</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                         <!-- /.table-responsive -->

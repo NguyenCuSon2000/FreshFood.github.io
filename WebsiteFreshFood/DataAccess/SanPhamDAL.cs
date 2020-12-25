@@ -54,25 +54,46 @@ namespace WebsiteFreshFood.DataAccess
             return l;
         }
 
-        //public SanPhamList GetSanPham(int pageIndex, int pageSize, string productName)
-        //{
-        //    SanPhamList spl = new SanPhamList();
-        //    List<SanPham> l = new List<SanPham>();
-        //    SqlDataReader dr = dc.StoreReaders("GetSanPhams", pageIndex, pageSize, productName);
-        //    while (dr.Read())
-        //    {
-        //        SanPham s = new SanPham(int.Parse(dr[0].ToString()), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
-        //            dr[4].ToString(), dr[5].ToString(), double.Parse(dr[6].ToString()));
-        //        l.Add(s);
-        //    }
-        //    spl.SanPhams = l;
-        //    dr.NextResult();
-        //    while (dr.Read())
-        //    {
-        //        spl.totalCount = dr["totalCount"].ToString();
-        //    }
-        //    return spl;
-        //}
+        //Admin
+        public SanPhamList GetSanPham(int pageIndex, int pageSize)
+        {
+            SanPhamList spl = new SanPhamList();
+            List<SanPham> l = new List<SanPham>();
+            SqlDataReader dr = dc.StoreReaders("GetSanPhams", pageIndex, pageSize);
+            while (dr.Read())
+            {
+                SanPham s = new SanPham(int.Parse(dr[0].ToString()), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
+                    dr[4].ToString(), dr[5].ToString(), double.Parse(dr[6].ToString()));
+                l.Add(s);
+            }
+            spl.SanPhams = l;
+            dr.NextResult();
+            while (dr.Read())
+            {
+                spl.totalCount = dr["totalCount"].ToString();
+            }
+            return spl;
+        }
+
+        public SanPhamList GetSanPhamPTLoai(string maloai,int pageIndex, int pageSize)
+        {
+            SanPhamList spl = new SanPhamList();
+            List<SanPham> l = new List<SanPham>();
+            SqlDataReader dr = dc.StoreReaders("GetSanPhamPTLoai", maloai, pageIndex, pageSize);
+            while (dr.Read())
+            {
+                SanPham s = new SanPham(int.Parse(dr[0].ToString()), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
+                    dr[4].ToString(), dr[5].ToString(), double.Parse(dr[6].ToString()));
+                l.Add(s);
+            }
+            spl.SanPhams = l;
+            dr.NextResult();
+            while (dr.Read())
+            {
+                spl.totalCount = dr["totalCount"].ToString();
+            }
+            return spl;
+        }
 
         public List<SanPham> GetAllSanPham()
         {
@@ -110,7 +131,7 @@ namespace WebsiteFreshFood.DataAccess
 
         public List<SanPham> GetSPNoiBat()
         {
-            DataTable dt = dc.GetDataTable("SELECT TOP(5) * FROM SanPham ORDER BY DonGia DESC");
+            DataTable dt = dc.GetDataTable("SELECT TOP(3) * FROM SanPham ORDER BY DonGia DESC");
             return ToList(dt);
         }
 

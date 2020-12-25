@@ -30,5 +30,19 @@ namespace WebsiteFreshFood.Controllers
             List<TinTuc> ltt = TinTucBus.LayTinTucMoiNhat();
             return Json(ltt, JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// Paging and searching
+        /// </summary>
+        /// <param name="pageIndex"> current page</param>
+        /// <param name="pageSize"></param>
+        /// <param name="productName"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public JsonResult GetTinTucPT(int pageIndex, int pageSize)
+        {
+            TinTucList spl = TinTucBus.LayTinTucPT(pageIndex, pageSize);
+            return Json(spl, JsonRequestBehavior.AllowGet);
+        }
     }
 }

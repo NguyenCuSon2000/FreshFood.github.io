@@ -1,5 +1,5 @@
-﻿/// <reference path="../angular.js" />
-var app = angular.module("SanPhamApp", ['angularUtils.directives.dirPagination', 'ngFileUpload']);
+﻿/// <reference path="../../../../scripts/angular-1.3.9/angular.js" />
+var app = angular.module("SanPhamApp", ['angularUtils.directives.dirPagination', 'ngFileUpload', 'ui.bootstrap']);
 
 // Hiển thị sản phẩm và phân trang
 app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload) {
@@ -115,36 +115,35 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload)
         }, function (e) { });
     };
 
-   //// Begin Paging
-   // $scope.maxSize = 3;     // limit number for pagination display number.  
-   // $scope.totalCount = 0;  // total number of items in all pages. initialize as a zero 
-   // $scope.pageIndex = 1;   // current page number. first page is 1
-   // $scope.pageSize = 5; // maximum number of items per page. 
-   // $scope.searchName = "";
+    $scope.maxSize = 5;     // Limit number for pagination display number.  
+    $scope.totalCount = 0;  // Total number of items in all pages. initialize as a zero  
+    $scope.pageIndex = 1;   // Current page number. First page is 1.-->  
+    $scope.pageSizeSelected = 5; // Maximum number of items per page.  
 
-   // $scope.GetSanPhamList = function (index) {
-   //     $http.get('/Admin/QLSanPham/GetSanPhamPT', {
-   //         params: {
-   //             pageIndex: index,
-   //             pageSize: $scope.pageSize,
-   //             productName: $scope.searchName
-   //         }
-   //     }).then(function (response) {
-   //         $scope.ListSanPham = response.data.SanPhams;
-   //         $scope.totalCount = response.data.totalCount;
-   //         var sotrang = parseInt(response.data.totalCount) / parseInt($scope.pageSize);
-   //         if (parseInt(response.data.totalCount) > sotrang * parseInt($scope.pageSize))
-   //             sotrang = sotrang + 1;
-   //         if (sotrang < $scope.maxSize) { $scope.maxSize = sotrang; }
-   //         else $scope.maxSize = 5;
-   //     },
-   //         function (err) {
-   //             alert(err);
-   //         });
-   // };
+    $scope.GetSanPhamList = function () {
+        $http.get("http://localhost:64769/Admin/QLSanPham/GetSanPhamPT?pageIndex=" + $scope.pageIndex + "&pageSize=" + $scope.pageSizeSelected).then(
+            function (response) {
+                $scope.ListSanPham = response.data.SanPhams;
+                $scope.totalCount = response.data.totalCount;
+            },
+            function (err) {
+                var error = err;
+            });
+    }
 
-   // $scope.GetSanPhamList($scope.pageIndex);
-   //// End Paging
+    //Loading employees list on first time  
+    $scope.GetSanPhamList();
+
+    //This method is calling from pagination number  
+    $scope.pageChanged = function () {
+        $scope.GetSanPhamList();
+    };
+
+    //This method is calling from dropDown  
+    $scope.changePageSize = function () {
+        $scope.pageIndex = 1;
+        $scope.GetSanPhamList();
+    };  
 });
 
 
@@ -352,7 +351,7 @@ function NCCController($scope, $rootScope, $http, Upload, $timeout, $document) {
 };
 
 
-
+// TIN TỨC
 app.controller("TinTucController", TinTucController);
 function TinTucController($rootScope, $scope, $http, Upload) {
 
@@ -455,6 +454,36 @@ function TinTucController($rootScope, $scope, $http, Upload) {
             $scope.ListTinTuc.splice(vt, 1);
         }, function (e) { alert(e) });
     };
+
+    $scope.maxSize = 5;     // Limit number for pagination display number.  
+    $scope.totalCount = 0;  // Total number of items in all pages. initialize as a zero  
+    $scope.pageIndex = 1;   // Current page number. First page is 1.-->  
+    $scope.pageSizeSelected = 5; // Maximum number of items per page.  
+
+    $scope.GetTinTucList = function () {
+        $http.get("http://localhost:64769/Admin/QLTinTuc/GetTinTucPT?pageIndex=" + $scope.pageIndex + "&pageSize=" + $scope.pageSizeSelected).then(
+            function (response) {
+                $scope.ListTinTuc = response.data.TinTucs;
+                $scope.totalCount = response.data.totalCount;
+            },
+            function (err) {
+                var error = err;
+            });
+    }
+
+    //Loading employees list on first time  
+    $scope.GetTinTucList();
+
+    //This method is calling from pagination number  
+    $scope.pageChanged = function () {
+        $scope.GetTinTucList();
+    };
+
+    //This method is calling from dropDown  
+    $scope.changePageSize = function () {
+        $scope.pageIndex = 1;
+        $scope.GetTinTucList();
+    };  
 };
 
 
@@ -471,7 +500,7 @@ app.controller("LogoutController", function ($scope, $rootScope, $http, $window)
 });
 
 
-
+// QUẢN LÝ USER
 app.controller("UserController", UserController);
 function UserController($scope, $rootScope, $http, $window) {
 

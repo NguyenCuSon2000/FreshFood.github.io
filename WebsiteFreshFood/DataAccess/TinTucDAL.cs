@@ -41,6 +41,26 @@ namespace WebsiteFreshFood.DataAccess
             return ToList(dt);
         }
 
+        public TinTucList GetTinTucPT(int pageIndex, int pageSize)
+        {
+            TinTucList ttl = new TinTucList();
+            List<TinTuc> l = new List<TinTuc>();
+            SqlDataReader dr = dc.StoreReaders("GetTinTuc", pageIndex, pageSize);
+            while (dr.Read())
+            {
+                TinTuc t = new TinTuc(int.Parse(dr[0].ToString()), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
+                    dr[4].ToString(), dr[5].ToString());
+                l.Add(t);
+            }
+            ttl.TinTucs = l;
+            dr.NextResult();
+            while (dr.Read())
+            {
+                ttl.totalCount = dr["totalCount"].ToString();
+            }
+            return ttl;
+        }
+
         public string ThemTinTuc(TinTuc t)
         {
             string sql = "INSERT into TinTuc values(N'" + t.TieuDe + "','" + t.HinhAnh + "',N'" +

@@ -45,15 +45,23 @@ namespace WebsiteFreshFood.Controllers
             return Json(lnb, JsonRequestBehavior.AllowGet);
         }
 
-        //public JsonResult GetSanPhamPTLoai(int pageIndex, int pageSize, string productName)
-        //{
-        //    if (Session["maloai"] == null)
-        //    {
-        //        Session.Add("maloai", "Rau");
-        //    }
-        //    SanPhamList spl = spbus.LaySanPhamPT(Session["maloai"].ToString(), pageIndex, pageSize, productName);
-        //    return Json(spl, JsonRequestBehavior.AllowGet);
-        //}
+        /// <summary>
+        /// Paging and searching
+        /// </summary>
+        /// <param name="pageIndex"> current page</param>
+        /// <param name="pageSize"></param>
+        /// <param name="productName"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public JsonResult GetSanPhamPTLoai(int pageIndex, int pageSize)
+        {
+            if (Session["maloai"] == null)
+            {
+                Session.Add("maloai", "Rau");
+            }
+            SanPhamList spl = spbus.LaySanPhamPTLoai(Session["maloai"].ToString(), pageIndex, pageSize);
+            return Json(spl, JsonRequestBehavior.AllowGet);
+        }
 
         public JsonResult SearchName(string tensp)
         {

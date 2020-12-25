@@ -64,5 +64,19 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             return Json(l, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Paging and searching
+        /// </summary>
+        /// <param name="pageIndex"> current page</param>
+        /// <param name="pageSize"></param>
+        /// <param name="productName"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public JsonResult GetTinTucPT(int pageIndex, int pageSize)
+        {
+            TinTucList spl = TinTucBus.LayTinTucPT(pageIndex, pageSize);
+            return Json(spl, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

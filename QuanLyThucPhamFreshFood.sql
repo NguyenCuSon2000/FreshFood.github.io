@@ -187,63 +187,64 @@ Insert into NhaCungCap values('NCC07',N'Ngô Văn Thịnh',N'Gia Lộc - Hải D
 Insert into NhaCungCap values('NCC08',N'Khúc Chí Thiện',N'Trâu Quỳ - Hà Nội','0984578546','chithien@gmail.com','+84 (8) 1825 3318')
 Insert into NhaCungCap values('NCC09',N'Lý Cao Thượng',N'Thái Thụy - Thái Bình','0987477542','lythuong@gmail.com','+84 (8) 3824 3918')
 Insert into NhaCungCap values('NCC010',N'Triệu Thái Sơn',N'Từ Sơn - Bắc Ninh','0974554321','thaison@gmail.com','+84 (8) 3424 3318')
-exec GetSanPhams 'FreshFood', 1, 5 , ''
 
 USE [DA3_QuanLyFreshFood]
 GO
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
+
+-- Phân trang phần admin
+Go
+CREATE Procedure GetSanPhams 
+(  
+ @PageIndex INT,  
+ @pageSize INT   
+)   
+As  
+ Begin  
+ SELECT * FROM SanPham ORDER BY MaSP OFFSET @PageSize*(@PageIndex-1) ROWS FETCH NEXT @PageSize ROWS ONLY;  
+ 
+ SELECT count(*) as totalCount FROM SanPham;  
+ End  
 GO
-Alter PROCEDURE GetSanPhams(
-@pageIndex int, @pageSize int, @productName nvarchar(100)
+
+
+-- Phân trang phần người dùng
+GO
+Create PROCEDURE GetSanPhamPTLoai(
+@maloai varchar(20), @pageIndex int, @pageSize int
 )
 as
 Begin
---if(@maloai = '')
---  begin
-    Declare @RecordCount int;
 	select * into #Result from SanPham
-	where (TenSP='') or (TenSP like '%' + @productName + '%')
+	where MaLoaiSP = @maloai
 
 	select * from #Result order by MaSP offset @pageSize*(@pageIndex-1)
 	Rows Fetch Next @pageSize Rows Only;
 
 	select COUNT(*) as totalCount from SanPham;
 	Drop table #Result
-  end
-----else
-----   begin
-----    select * into #Result from SanPham
-----	where (MaLoaiSP = @maloai) and (TenSP='') or (TenSP like '%' + @productName + '%')
-
-----	select * from #Result order by MaSP offset @pageSize*(@pageIndex-1)
-----	Rows Fetch Next @pageSize Rows Only;
-
-----	select COUNT(*) as totalCount from SanPham;
-----	Drop table #Result
-----  end
-----end
-
---Alter proc Sp_get_data
---@Pageindex int,
---@Pagesize int
---as 
---begin
---select * from KhachHang order by MaKH desc Offset @Pagesize*(@Pageindex-1) rows fetch next @Pagesize rows only
-
---select COUNT(KhachHang.TenKH) as totalcount from KhachHang
---end
-
-SELECT * FROM Users u WHERE u.UserName = 'son@gmail.com' AND u.Pass = '1'
-
-Exec GetSanPhams  7, 5, ''
-
-select * from SanPham where TenSP like N'%Thịt%'
+end
 
 
+Exec GetSanPhamPTLoai 'Rau',1,20
+
+GO
 
 
-select TOP(5) WITH TIES * from SanPham order by DonGia desc
+Go
+CREATE Procedure GetTinTuc
+(  
+ @PageIndex INT,  
+ @pageSize INT   
+)   
+As  
+ Begin  
+ SELECT * FROM TinTuc ORDER BY ID OFFSET @PageSize*(@PageIndex-1) ROWS FETCH NEXT @PageSize ROWS ONLY;  
+ 
+ SELECT count(*) as totalCount FROM TinTuc;  
+ End  
+GO
 
-select * from SanPham inner join GiamGia on SanPham.MaSP = GiamGia.MaSP
+Exec GetTinTuc 1,3

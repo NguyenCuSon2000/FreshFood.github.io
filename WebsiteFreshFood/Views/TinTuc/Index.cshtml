@@ -63,7 +63,7 @@
                         <h1>Tin tức</h1>
                     </div>
                     <!-- Begin: Nội dung blog -->
-                    <div class="news-content" ng-repeat="t in ListTinTuc">
+                    <div class="news-content" ng-repeat="t in ListTinTuc" total-items="totalCount">
                         <div class="row">
                             <div class="col-md-5 col-xs-12 col-sm-12 img-article">
                                 <div class="art-img">
@@ -85,16 +85,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 ">
-                        <div id="pagination">
-                            <span class="page-node current">1</span>
-                            <a href="ThucDonMonBanh2.html" class="page-node">2</a>
-                            <a href="ThucDonMonBanh2.html" class="TrangSau">
-                                <span>
-                                    Trang sau
-                                    <i class="fas fa-chevron-right"></i>
-                                </span>
-                            </a>
+                    <div class="col-md-12 col-sm-12 col-xs-12 mt-5">
+                        <div class="mt-5">
+                            <div class="text-center">
+                                <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                            </div>
                         </div>
                     </div>
                 </div>

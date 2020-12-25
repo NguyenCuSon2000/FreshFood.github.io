@@ -21,10 +21,18 @@ namespace WebsiteFreshFood.Bussiness
             return SanPhamDAL.LaySPTheoMa(masp);
         }
 
-        //public SanPhamList LaySanPhamPT(int pageIndex, int pageSize, string productName)
-        //{
-        //    return SanPhamDAL.GetSanPham(pageIndex, pageSize, productName);
-        //}
+        public SanPhamList LaySanPhamPTLoai(string maLoai,int pageIndex, int pageSize)
+        {
+            SanPhamList spList = SanPhamDAL.GetSanPhamPTLoai(maLoai, pageIndex, pageSize);
+            return spList;
+        }
+
+        //Admin
+        public SanPhamList LaySanPhamPT(int pageIndex, int pageSize)
+        {
+            SanPhamList spList = SanPhamDAL.GetSanPham(pageIndex, pageSize);
+            return spList;
+        }
 
         public List<SanPham> LayAllSanPham()
         {

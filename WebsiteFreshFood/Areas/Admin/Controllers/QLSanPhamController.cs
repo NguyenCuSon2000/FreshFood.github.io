@@ -41,12 +41,12 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
         /// <param name="pageSize"></param>
         /// <param name="productName"></param>
         /// <returns></returns>
-        //[HttpGet]
-        //public JsonResult GetSanPhamPT(int pageIndex, int pageSize, string productName)
-        //{
-        //    SanPhamList spl = qlsp.LaySanPhamPT(pageIndex, pageSize, productName);
-        //    return Json(spl, JsonRequestBehavior.AllowGet);
-        //}
+        [HttpGet]
+        public JsonResult GetSanPhamPT(int pageIndex, int pageSize)
+        {
+            SanPhamList spl = qlsp.LaySanPhamPT(pageIndex, pageSize);
+            return Json(spl, JsonRequestBehavior.AllowGet);
+        }
 
         public JsonResult Search(string tensp)
         {

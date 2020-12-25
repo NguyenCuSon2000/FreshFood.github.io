@@ -20,6 +20,12 @@ namespace WebsiteFreshFood.Bussiness
             return TinTucDAL.GetTinTucMoiNhat();
         }
 
+        public TinTucList LayTinTucPT(int pageIndex, int pageSize)
+        {
+            TinTucList ttList = TinTucDAL.GetTinTucPT(pageIndex, pageSize);
+            return ttList;
+        }
+
         public string ThemTinTuc(TinTuc t)
         {
             return TinTucDAL.ThemTinTuc(t);

@@ -1,52 +1,5 @@
-/// <reference path="../angular.js" />
-var app = angular.module("myApp", ['angularUtils.directives.dirPagination']);
-
-//Phân trang và tìm kiếm
-app.controller("PhanTrangController", PhanTrangController);
-function PhanTrangController($scope, $rootScope, $http) {
-
-    $rootScope.maxSize = 3;
-    $rootScope.totalCount = 0;
-    $rootScope.pageIndex = 1;
-    $rootScope.pageSize = 9;
-    $rootScope.searchName = "";
-
-    $rootScope.GetSanPhamList = function (index) {
-        $http.get('/SanPham/GetSanPhamPTLoai', {
-            params: {
-                pageIndex: index,
-                pageSize: $rootScope.pageSize, productName: $rootScope.searchName
-            }
-        }).then(
-            function (response) {
-                $rootScope.ListSanPham = response.data.SanPhams;
-                $rootScope.totalCount = response.data.totalCount;
-            },
-            function (e) {
-                alert(e);
-            });
-    };
-    $rootScope.GetSanPhamList($rootScope.pageIndex);
-
-    //$rootScope.GetSanPhamList = function () {
-    //    $http.get("/SanPham/GetSanPhamPTLoai?pageindex=" + $scope.pageIndex + "&pagesize=" + $scope.pageSize).then(function (response) {
-    //        $scope.SanPhams = response.data.SanPhams;
-    //        $scope.totalCount = response.data.totalCount;
-    //    }, function (e) {
-    //        alert("Lỗi");
-    //    });
-    //};
-    //$rootScope.GetSanPhamList();
-
-    //$scope.pagechanged = function () {
-    //    $scope.GetSanPhamList();
-    //}
-
-    //$scope.changePageSize = function () {
-    //    $scope.pageIndex = 1;
-    //    $scope.GetSanPhamList();
-    //}
-};
+/// <reference path="../angular-1.3.9/angular.js" />
+var app = angular.module("myApp", ['angularUtils.directives.dirPagination', 'ui.bootstrap']);
 
 //Menu 
 app.controller("MenuController", MenuController);
@@ -112,6 +65,35 @@ function SanPhamController($scope, $rootScope, $http) {
             $rootScope.dr = "Ascending";
         }
     };
+
+    $scope.maxSize = 3;     // Limit number for pagination display number.  
+    $scope.totalCount = 0;  // Total number of items in all pages. initialize as a zero  
+    $scope.pageIndex = 1;   // Current page number. First page is 1.-->  
+    $scope.pageSizeSelected = 9; // Maximum number of items per page.  
+
+    $rootScope.GetSanPhamList = function () {
+        $http.get("http://localhost:64769/SanPham/GetSanPhamPTLoai?pageIndex=" + $scope.pageIndex + "&pageSize=" + $scope.pageSizeSelected).then(
+            function (response) {
+                $scope.ListSanPham = response.data.SanPhams;
+                $scope.totalCount = response.data.totalCount;
+            }, function (e) {
+                alert("Lỗi");
+            });
+    };
+
+    //Loading employees list on first time  
+    $scope.GetSanPhamList();
+
+    //This method is calling from pagination number  
+    $scope.pageChanged = function () {
+        $scope.GetSanPhamList();
+    };
+
+    //This method is calling from dropDown  
+    $scope.changePageSize = function () {
+        $scope.pageIndex = 1;
+        $scope.GetSanPhamList();
+    };  
 };
 
 
@@ -180,7 +162,6 @@ function SearchController($scope, $rootScope, $window, $http ) {
             }
             else {
                 $rootScope.ListTimKiem = d.data;
-                //$window.location.href = '/SanPham/Search';
             }
         }, function (e) { });
     }
@@ -319,6 +300,37 @@ function TinTucController($rootScope, $scope, $http, $window) {
     $http.get('/TinTuc/GetTinTucMoiNhat').then(function (d) {
         $rootScope.ListNew = d.data;
     }, function (error) { alert('Failed'); });
+
+
+    $scope.maxSize = 3;     // Limit number for pagination display number.  
+    $scope.totalCount = 0;  // Total number of items in all pages. initialize as a zero  
+    $scope.pageIndex = 1;   // Current page number. First page is 1.-->  
+    $scope.pageSizeSelected = 3; // Maximum number of items per page.  
+
+    $scope.GetTinTucList = function () {
+        $http.get("http://localhost:64769/TinTuc/GetTinTucPT?pageIndex=" + $scope.pageIndex + "&pageSize=" + $scope.pageSizeSelected).then(
+            function (response) {
+                $scope.ListTinTuc = response.data.TinTucs;
+                $scope.totalCount = response.data.totalCount;
+            },
+            function (err) {
+                var error = err;
+            });
+    }
+
+    //Loading employees list on first time  
+    $scope.GetTinTucList();
+
+    //This method is calling from pagination number  
+    $scope.pageChanged = function () {
+        $scope.GetTinTucList();
+    };
+
+    //This method is calling from dropDown  
+    $scope.changePageSize = function () {
+        $scope.pageIndex = 1;
+        $scope.GetTinTucList();
+    };  
 }
 
 
