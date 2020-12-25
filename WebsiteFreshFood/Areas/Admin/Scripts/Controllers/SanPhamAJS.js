@@ -144,12 +144,16 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload)
         $scope.pageIndex = 1;
         $scope.GetSanPhamList();
     };  
+
+    //Thống kê số lượng sản phẩm
+    $scope.maloai = "";
+    $http.get("http://localhost:64769/Admin/ThongKe/GetThongKe?maloai=" + $scope.maloai).then(
+        function (d) {
+            $rootScope.ListLoaiSP = d.data.ThongKeSLSP;
+            $scope.SLSP = d.data.SLSP;
+    }, function (error) { alert('Lỗi'); });
+
 });
-
-
-//app.controller("SanPhamController", function ($scope, $rootScope, $http) {
-//   
-//})
 
 // KHÁCH HÀNG
 
@@ -368,17 +372,8 @@ function TinTucController($rootScope, $scope, $http, Upload) {
     };
 
     //Danh sách tin tức
-    $http.get('/TinTuc/GetTinTuc').then(function (d) {
+    $http.get('/Admin/QLTinTuc/GetTinTuc').then(function (d) {
         $rootScope.ListTinTuc = d.data;
-    }, function (error) { alert('Failed'); });
-
-    $http.get('/SanPham/GetLoaiSanPham').then(function (d) {
-        $rootScope.listloai = d.data;
-    }, function (e) { alert("Lỗi lấy loại"); });
-
-    //DS tin tức mới nhất
-    $http.get('/TinTuc/GetTinTucMoiNhat').then(function (d) {
-        $rootScope.ListNew = d.data;
     }, function (error) { alert('Failed'); });
 
 

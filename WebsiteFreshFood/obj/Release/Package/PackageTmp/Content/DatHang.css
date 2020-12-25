@@ -1,0 +1,81 @@
+﻿
+.page-order .heading-counter {
+    margin: 30px 0;
+    padding: 15px;
+    border: 1px solid #eaeaea;
+}
+
+.table-bordered > thead > tr > td,
+.table-bordered > thead > tr > th {
+    border-bottom-width: 0px;
+}
+
+.page-order .cart_navigation a {
+    padding: 10px 20px;
+    border: 1px solid #eaeaea;
+}
+
+.page-order .cart_avail {
+    text-align: center;
+}
+
+    .page-order .cart_avail .label {
+        white-space: normal;
+        display: inline-block;
+        padding: 6px 10px;
+        font-size: 14px;
+        border-radius: 0px;
+    }
+
+.page-order .product-name {
+    font-size: 16px;
+}
+
+.page-order .cart_description {
+    font-size: 14px;
+}
+
+.page-order .cart_avail .label-success {
+    background: #FFF;
+    border: 1px solid #55c65e;
+    color: #48b151;
+    font-weight: normal;
+    transform: rotate(25deg);
+    -webkit-transform: rotate(25deg);
+    -moz-transform: rotate(25deg);
+    -ms-transform: rotate(25deg);
+    -o-transform: rotate(25deg);
+}
+
+.page-order .cart_navigation a.next-btn {
+    float: right;
+    background: #48b151;
+    color: #fff;
+    border: 1px solid #48b151;
+}
+
+    .page-order .cart_navigation a.next-btn:hover {
+        opacity: 0.8;
+    }
+
+.page-order .cart_navigation a.prev-btn {
+    float: left;
+}
+
+    .page-order .cart_navigation a.prev-btn:before {
+        font: normal normal normal 14px/1 FontAwesome;
+        content: "\f104";
+        padding-right: 15px;
+    }
+
+.page-order .cart_navigation a.next-btn:after {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f105";
+    padding-left: 15px;
+}
+
+.page-order .cart_navigation a:hover {
+    background: #fa8334;
+    border: 1px solid #fa8334;
+    color: #fff;
+}

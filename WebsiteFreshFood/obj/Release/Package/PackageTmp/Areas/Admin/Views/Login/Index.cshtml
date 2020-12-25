@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/assets/admin/dist/css/Login.css">
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src=" https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="~/Areas/Admin/Scripts/Controllers/AdminAJS.js"></script>
+</head>
+<body ng-app="LoginApp" style="margin: 0px">
+    <div class="bg-img" ng-controller="LoginController">
+        <div class="content">
+            <header>Login Form</header>
+            <form name="formLogin" id="formLogin">
+                <div class="field">
+                    <span class="fa fa-user"></span>
+                    <input ng-model="UN" type="text" required="" id="email" name="email" placeholder="Email">
+                </div>
+                <span id="IDemail" style="color:#FF0000; font-size:18px"></span>
+                <div class="field space">
+                    <span class="fa fa-lock"></span>
+                    <input ng-model="PW" type="password" id="password" class="pass-key" required="" placeholder="Password">
+                </div>
+                <div class="pass">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <div class="field">
+                    <input ng-click="Login(UN,PW)" type="submit" value="LOGIN">
+                </div>
+            </form>
+            <div class="login">
+                Or login with
+            </div>
+            <div class="links">
+                <div class="facebook">
+                    <i class="fab fa-facebook-f"><span>Facebook</span></i>
+                </div>
+                <div class="google">
+                    <i class="fab fa-google"><span>Google</span></i>
+                </div>
+            </div>
+            <div class="signup">
+                Don't have account?
+                <a href="/Admin/Signup/Index">Signup Now</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

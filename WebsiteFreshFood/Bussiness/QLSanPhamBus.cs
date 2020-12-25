@@ -76,5 +76,10 @@ namespace WebsiteFreshFood.Bussiness
             return SanPhamDAL.GetSPMoiNhat();
         }
 
+        public ThongKeSLSP ThongKeSoLuongSP(string maloai)
+        {
+            ThongKeSLSP tksp = SanPhamDAL.ThongKeSLSP(maloai);
+            return tksp;
+        }
     }
 }

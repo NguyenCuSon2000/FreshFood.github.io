@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="~/assets/admin/dist/css/Login.css">
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src=" https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="~/Areas/Admin/Scripts/Controllers/AdminAJS.js"></script>
+    <script src="~/Areas/Admin/Scripts/Controllers/SanPhamAJS.js"></script>
+</head>
+<body ng-app="SanPhamApp">
+    <div class="bg-img" ng-controller="UserController">
+        <div class="content">
+            <header>SignUp Form</header>
+            <form action="#" name="formSignUp" id="SignUp">
+                <div class="field">
+                    <span class="fa fa-user"></span>
+                    <input type="text" required="" placeholder="Tên đăng ký" id="name" name="name" ng-model="us.UserName">
+                </div>
+                <span id="IDuser" style="color:#FF0000; font-size:18px"></span>
+                <div class="field space">
+                    <span class="fa fa-lock"></span>
+                    <input type="password" id="password" class="pass-key" required="" placeholder="Password" ng-model="us.Pass">
+                </div>
+                <div class="pass">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <div class="field">
+                    <input type="submit" value="SIGN UP" ng-click="Signup()">
+                </div>
+            </form>
+            <div class="login">
+                Or SignUp with
+            </div>
+            <div class="links">
+                <div class="facebook">
+                    <i class="fab fa-facebook-f"><span>Facebook</span></i>
+                </div>
+                <div class="google">
+                    <i class="fab fa-google"><span>Google</span></i>
+                </div>
+            </div>
+            <div class="signup">
+                Don't have account?
+                <a href="/Admin/Login/Index">Login Now</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

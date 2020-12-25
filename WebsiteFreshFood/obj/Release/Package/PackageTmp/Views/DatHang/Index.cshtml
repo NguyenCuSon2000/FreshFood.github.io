@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/SanPham.css" />
+<link rel="stylesheet" href="~/Content/DatHang.css"/>
+<script src="~/Scripts/Controllers/SanPhamAngularJS.js"></script>
+
+<div class="wrap-breadcrumb">
+    <div class="clearfix container">
+        <div class="row main-header">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5  ">
+                <ol class="breadcrumb breadcrumb-arrows">
+                    <li><a href="/Home/Index" target="_self">Trang chủ</a></li>
+                    <li class="active"><a href="/DatHang/Index" target="_self">Đặt hàng</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PHẦN GIỎ HÀNG -->
+<section class="container GioHang" ng-app="myApp" >
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5  ">
+            <article>
+                <h4 class="title">Giỏ hàng</h4>
+            </article>
+               
+            <div class="page-content page-order" ng-controller="DatHangController">
+
+                <div class="heading-counter warning">
+                    <span class="fa fa-shopping-cart"></span> Your shopping cart contains:
+                    <span id="count-cart" style="font-weight: bold">1</span> <span> Products</span>
+                </div>
+                <div class="order-detail-content">
+                    <table class="table table-bordered table-responsive cart_summary">
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th class="cart_product">Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Thành tiền</th>
+                                <th class="action"><i class="fa fa-trash-o"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="show-item-cart">
+                            <tr ng-repeat="a in dsDonHang">
+                                <td class="images">
+                                    <a href="">
+                                        <img src="~/img/{{a.MaLoaiSP}}/{{a.HinhAnh}}" alt="">
+                                    </a>
+                                </td>
+                                <td class="item"><a href="">{{a.TenSP}}</a></td>
+                                <td class="qty">
+                                    {{a.SoLuong}}
+                                </td>
+                                <td class="price" id="price">{{a.DonGia}} VND</td>
+                                <td class="">{{a.SoLuong*a.DonGia}}</td>
+                                <th class="action"><i class="fa fa-trash-o"></i></th>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2" rowspan="1"></td>
+                                <td colspan="3"><strong>Total(tax incl.)</strong></td>
+                                <td colspan="1" id="total_price" style="font-weight: bold; color: #e84d1c; font-size: 20px;">54,000</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="cart_navigation">
+                        <a class="prev-btn" href="/Home/Index">Continue shopping</a>
+                        <a class="next-btn" href="" ng-click="DatHang()">Đặt Hàng</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCROLL TO TOP -->
+    <div class="Scroll">
+        <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop();return false">
+            <i class="fas fa-arrow-alt-circle-up"></i>
+        </a>
+    </div>
+</section>
+
+<div class="clear-fix"></div>
+

@@ -1,0 +1,31 @@
+﻿<nav class="menu">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 navbar">
+                <ul>
+                    <li><a href="/Home/Index" class="active" title="Trang chủ">Trang chủ</a></li>
+                    <li>
+                        <a class="active" href="SanPham.html" title="Sản phẩm">Sản phẩm <i class="fas fa-sort-down"></i></a>
+                        <ul ng-controller="MenuController">
+                            <li ng-repeat="l in listloai">
+                                @*<a href="">Rau củ quả</a>*@
+                                <a href="/SanPham/Index?maloai={{l.MaLoaiSP}}" title="{{l.TenLoai}}">{{l.TenLoai}}</a>
+                            </li>
+                            @*<li>
+                             <a href="">Thực phẩm tươi sống</a>
+                        </li>
+                        <li><a href="">Thực phẩm khô</a></li>
+                        <li><a href="">Thực phẩm bổ dưỡng</a></li>*@
+                        </ul>
+                    </li>
+                    <li><a class="active" href="/GioiThieu/Index" title="Giới thiệu">Giới thiệu</a></li>
+                    <li><a class="active" href="/TinTuc/Index" title="Tin tức">Tin tức</a></li>
+                    <li><a class="active" href="/LienHe/Index" title="Liên hệ">Liên hệ</a></li>
+                </ul>
+            </div>
+            @{ Html.RenderAction("Header_Search", "Home");}
+        </div>
+    </div>
+</nav>
+
+

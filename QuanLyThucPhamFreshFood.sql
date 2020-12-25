@@ -248,3 +248,19 @@ As
 GO
 
 Exec GetTinTuc 1,3
+
+
+Go
+Create procedure ThongKeSLSP 
+( 
+@maloai nvarchar(50)
+) 
+as
+Begin
+   select l.MaLoaiSP,l.TenLoai ,Count(s.MaSP) as SLSP
+   from LoaiSanPham l left join SanPham s on l.MaLoaiSP = s.MaLoaiSP  
+   where s.MaLoaiSP = @maloai
+   group by l.MaLoaiSP, l.TenLoai
+end
+
+exec ThongKeSLSP 'Rau'

@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/dirPagination.js"></script>
+
+<!-- Page Content -->
+<div id="page-wrapper" style="min-height: 223px;" ng-controller="TinTucController">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Danh sách tin tức
+                </h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Danh sách tin tức
+                    </div>
+
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <form action="/Admin/User" method="get">
+                            <div class="row form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="searchString">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-success">Tìm kiếm</button>
+                                        <!-- Button trigger modal -->
+                                        <button ng-click="Them()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
+                                            Thêm mới
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tiêu Đề</th>
+                                        <th>Hình Ảnh</th>
+                                        <th>Nội Dung</th>
+                                        <th>Ngày Đăng</th>
+                                        <th>Trạng Thái</th>
+                                        <th width="100px">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="t in ListTinTuc" total-items="totalCount"
+                                        ng-class-even="even" ng-class-odd="odd" id="tr_{{t.ID}}">
+                                        <td>{{t.ID}}</td>
+                                        <td>{{t.TieuDe}}</td>
+                                        <td><img src="~/img/TinTuc/{{t.HinhAnh}}" /></td>
+                                        <td>{{t.NoiDung}}</td>
+                                        <td>{{t.NgayDang}}</td>
+                                        <td>{{t.TrangThai}}</td>
+                                        <td>
+                                            <a ng-click="Sua(t)" data-toggle="modal" data-target="#modelId" href="">Sửa</a>
+                                            |
+                                            <a ng-click="XoaSanPham(t)" href="">Xoá</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td align="center" colspan="8">
+                                            <span class="form-group pull-left page-size form-inline">
+                                                <select id="ddlPageSize" class="form-control control-color"
+                                                        ng-model="pageSizeSelected"
+                                                        ng-change="changePageSize()">
+                                                    <option value="5">5</option>
+                                                    <option value="10">10</option>
+                                                    <option value="25">25</option>
+                                                    <option value="50">50</option>
+                                                </select>
+                                            </span>
+                                            <div class="pull-right">
+                                                <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                                                <a class="btn btn-primary">Page: {{pageIndex}} / {{numPages}}</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{_function}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Tiêu đề</label>
+                        <input ng-model="t.TieuDe" type="text" id="name" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <label for="image">Hình ảnh</label>
+                        <input type="file" id="image" class="form-control" name="" aria-describedby="helpId" placeholder="" ngf-select="UploadFiles($files)">
+                        <label for="Content">Nội dung</label>
+                        <input ng-model="t.NoiDung" type="text" id="Content" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <label for="Date">Ngày đăng</label>
+                        <input ng-model="t.NgayDang" type="text" id="Date" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                        <label for="trangThai">Trạng thái</label>
+                        <input ng-model="t.TrangThai" type="text" id="trangThai" class="form-control" name="" aria-describedby="helpId" placeholder="">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button ng-click="Save()" type="button" class="btn btn-primary">{{buttext}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+</div>
+<!-- /#page-wrapper -->
+
+
+
+

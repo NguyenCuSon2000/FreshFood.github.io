@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div ng-controller="SearchController">
+    <div>
+        <table style="text-align: center;">
+            <tbody>
+                <tr ng-repeat="s in ListTimKiem">
+                    <td><a href="/CTSanPham/Index?masp={{s.MaSP}}" title="{{s.TenSP}}">{{s.TenSP}}</a></td>
+                    <td style="width:100px"><img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" /></td>
+                    <td>{{s.DonGia}} VNĐ</td>
+                    <td>
+                        <a ng-click="XoaSanPham(s)" href="">Xoá</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- /.table-responsive -->
+</div>
+
+

@@ -100,5 +100,12 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             }
             return Json(l, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult GetThongKe(string maloai)
+        {
+            ThongKeSLSP tk = qlsp.ThongKeSoLuongSP(maloai);
+            return Json(tk, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/SanPham.css" />
+<link rel="stylesheet" href="~/Content/TinTuc.css" />
+
+
+<div class="wrap-breadcrumb">
+    <div class="clearfix container">
+        <div class="row main-header">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5  ">
+                <ol class="breadcrumb breadcrumb-arrows">
+                    <li><a href="/" target="_self">Trang chủ</a></li>
+                    <li class="active"><span>Blog - Tin tức</span></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="container content" ng-controller="TinTucController">
+    <div class="row">
+        <div class="col-md-3 col-sm-12 col-xs-12 leftsidebar-col">
+            <div class="group_sidebar">
+                <div class="list-group navbar-inner">
+                    <div class="mega-left-title btn-navbar title-hidden-sm">
+                        <h3 class="sb-title">Danh mục</h3>
+                    </div>
+                    <ul class="nav" id="menu-blog">
+                        <li class="current active" ng-repeat="l in listloai">
+                            <a href="/SanPham/Index?maloai={{l.MaLoaiSP}}" title="{{l.TenLoai}}"><span>{{l.TenLoai}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-group_l banner-left hidden-sm hidden-xs">
+                    <a href=""><img src="~/img/quangcao4.png" alt=""></a>
+                </div>
+                <div class="list-group_2 navbar-product">
+                    <div class="mega-left-title btn-navbar title-hidden-sm">
+                        <h3 class="Content-title">Bài viết mới nhất</h3>
+                    </div>
+                    <div class="seller-item" ng-repeat="n in ListNew">
+                        <div class="sellers-image">
+                            <a href="" class="products-block-image content_img clearfix">
+                                <img src="~/img/TinTuc/{{n.HinhAnh}}" alt="">
+                            </a>
+                        </div>
+                        <div class="post-Content has-sellers-img ">
+                            <a href="">{{n.TieuDe}}</a><br>
+                            <span class="date"> <i class="far fa-calendar-alt"></i>{{n.NgayDang}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-12 col-xs-12 " id="blog-container" data-sticky_column="">
+            <div class="row">
+                <div class="articles clearfix" id="layout-page">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h1>Tin tức</h1>
+                    </div>
+                    <!-- Begin: Nội dung blog -->
+                    <div class="news-content" ng-repeat="t in ListTinTuc" total-items="totalCount">
+                        <div class="row">
+                            <div class="col-md-5 col-xs-12 col-sm-12 img-article">
+                                <div class="art-img">
+                                    <img src="~/img/TinTuc/{{t.HinhAnh}}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-sm-12 col-xs-12">
+                                <!-- Begin: Nội dung bài viết -->
+                                <h2 class="title-article post-Content"><a href="/blogs/news/com-chay-kho-quet-mon-an-dan-da-nhung-ngon-vo-doi-o-mien-tay">{{t.TieuDe}}</a></h2>
+                                <div class="body-content">
+                                    <ul class="info-more">
+                                        <li><i class="far fa-calendar-alt"></i><time pubdate="" datetime="2016-12-15">{{t.NgayDang | date}}</time></li>
+                                        <li><i class="far fa-file-alt"></i></i><a href="#"> Tin tức	</a> </li>
+                                    </ul>
+                                    <p>{{t.NoiDung}}</p>
+                                </div>
+                                <!-- End: Nội dung bài viết -->
+                                <a class="readmore btn-rb clear-fix" href="/blogs/news/com-chay-kho-quet-mon-an-dan-da-nhung-ngon-vo-doi-o-mien-tay" role="button">Xem tiếp <span class="fa fa-angle-double-right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 mt-5">
+                        <div class="mt-5">
+                            <div class="text-center">
+                                <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SCROLL TO TOP -->
+    <div class="Scroll">
+        <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop();return false">
+            <i class="fas fa-arrow-alt-circle-up"></i>
+        </a>
+    </div>
+</section>
+
+<div class="clear-fix"></div>

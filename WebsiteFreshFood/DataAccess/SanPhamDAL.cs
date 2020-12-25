@@ -147,6 +147,23 @@ namespace WebsiteFreshFood.DataAccess
             return ToList(dt);
         }
 
-      
+        public ThongKeSLSP ThongKeSLSP(string maloai)
+        {
+            ThongKeSLSP spl = new ThongKeSLSP();
+            List<LoaiSanPham> list = new List<LoaiSanPham>();
+            SqlDataReader dr = dc.StoreReaders("ThongKeSLSP", maloai);
+            while (dr.Read())
+            {
+                LoaiSanPham l = new LoaiSanPham(dr[0].ToString(), dr[1].ToString());
+                list.Add(l);
+            }
+            spl.LoaiSanPhams = list;
+            dr.NextResult();
+            while (dr.Read())
+            {
+                spl.SLSP = dr["SLSP"].ToString();
+            }
+            return spl;
+        }
     }
 }

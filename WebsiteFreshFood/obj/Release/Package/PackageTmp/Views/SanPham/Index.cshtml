@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/SanPham.css" />
+<script src="~/Scripts/dirPagination.js"></script>
+<script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
+
+<div class="wrap-breadcrumb">
+    <div class="clearfix container">
+        <div class="row main-header">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5  ">
+                <ol class="breadcrumb breadcrumb-arrows">
+                    <li><a href="/" target="_self">Trang chủ</a></li>
+                    <li><a href="/" target="_self">Danh mục</a></li>
+                    <li class="active"><span>Tất cả sản phẩm</span></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="container content">
+    <div class="row" ng-controller="SanPhamController">
+        <div class="col-md-3 col-sm-12 col-xs-12 leftsidebar-col">
+            <div class="group_sidebar">
+                <div class="list-group navbar-inner">
+                    <div class="mega-left-title btn-navbar title-hidden-sm">
+                        <h3 class="sb-title">Danh mục</h3>
+                    </div>
+                    <ul class="nav" id="menu-blog">
+                        <li class="current active" ng-repeat="l in listloai">
+                            <a href="/SanPham/Index?maloai={{l.MaLoaiSP}}" title="{{l.TenLoai}}"><span>{{l.TenLoai}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-group_l banner-left hidden-sm hidden-xs">
+                    <a href=""><img src="~/img/quangcao4.png" alt=""></a>
+                </div>
+                <!--SẢN PHẨM NỔI BẬT-->
+                <div class="list-group_2 navbar-product">
+                    <div class="mega-left-title btn-navbar title-hidden-sm">
+                        <h3 class="product-title">Sản phẩm nổi bật</h3>
+                    </div>
+                    <div class="article seller-item" ng-repeat="a in ListSPNoiBat">
+                        <div class="sellers-img">
+                            <a href="/CTSanPham/Index?masp={{a.MaSP}}" title="{{a.TenSP}}" class="products-block-image content_img clearfix">
+                                <img src="~/img/{{a.MaLoaiSP}}/{{a.HinhAnh}}" alt="">
+                            </a>
+                        </div>
+                        <div class="post-content has-sellers-img ">
+                            <a href="/CTSanPham/Index?masp={{a.MaSP}}" title="{{a.TenSP}}">{{a.TenSP}}</a><br>
+                            <span class="price">{{a.DonGia}} VND</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="main-content">
+                    <div class="col-md-12 hidden-sm hidden-xs">
+                        <div class="sort-collection">
+                            <div class="row" style="height:65px">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 title">
+                                    <h1>Tất cả sản phẩm</h1>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 sort">
+                                    <div class="browse-tags">
+                                        <span>Sắp xếp theo:</span>
+                                        <span class="custom-dropdown custom-dropdown--white">
+                                            <select ng-model="sortcolumn" class="sort-by custom-dropdown__select custom-dropdown__select--white">
+                                                <option value="TenSP" selected="selected">Tên sản phẩm</option>
+                                                <option value="DonGia">Giá bán</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 sort">
+                                    <input type="button" class="btn btn-primary" value="{{dr}}" ng-click="Chon(dr)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 content-product-list">
+                        <div class="row product-list">
+                            <div class="col-md-4 col-sm-6 col-xs-12 pro-loop" ng-repeat="s in ListSanPham|orderBy:sortcolumn:reverse" total-items="totalCount">
+                                <div class=" product-img">
+                                    <a href="/CTSanPham/Index?masp={{s.MaSP}}">
+                                        <img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" title="{{s.TenSP}}">
+                                    </a>
+                                    <div class="actionss">
+                                        <div class="btn-cart-products">
+                                            <a href="" ng-click="AddCart(s)" title="Add to Cart" data-name="{{s.TenSP}} - {{s.DonVi}}" data-price="{{s.DonGia}}" data-image="{{s.MaLoaiSP}}/{{s.HinhAnh}}">
+                                                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                        <div class="view-details">
+                                            <a href="/products/bap-bo-uc-gia-tay" class="view-detail">
+                                                <span><i class="fa fa-clone"> </i></span>
+                                            </a>
+                                        </div>
+                                        <div class="btn-quickview-products">
+                                            <a class="quickview" data-handle="/products/bap-bo-uc-gia-tay">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p><a href="/CTSanPham/Index?masp={{s.MaSP}}" title="{{s.TenSP}}">{{s.TenSP}} - {{s.DonVi}}</a></p>
+                                <p><span>{{s.DonGia}} VNĐ</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 mt-5">
+                        <div class="mt-5">
+                            <div class="text-center">
+                                <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    @*<div class="row" >
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div id="pagination" class="mt-5">
+                    <dir-pagination-controls max-size="maxSize"
+                                             direction-links="true"
+                                             boundary-links="true"
+                                             on-page-change="GetSanPhamList(newPageNumber)"
+                                             template-url="~/dirPagination.tpl.html">
+                    </dir-pagination-controls>
+                </div>
+            </div>
+        </div>*@
+    <!-- SCROLL TO TOP -->
+    <div class="Scroll">
+        <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop();return false">
+            <i class="fas fa-arrow-alt-circle-up"></i>
+        </a>
+    </div>
+</section>
+
+<div class="clear-fix"></div>
+
+
+
+
+
+

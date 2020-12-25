@@ -1,0 +1,245 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Controllers/SanPhamAngularJS.js"></script>
+
+@{Html.RenderAction("SlideShow", "Home"); }
+
+<!-- PHẦN NỘI DUNG -->
+<section class="content container" ng-app="myApp" ng-controller="HomeController">
+    <div class="row">
+        <!-- SẢN PHẨM NỔI BẬT -->
+        <div class="content_SanPham">
+            <aside class="styled_header  use_icon ">
+                <h3>Sản phẩm nổi bật</h3>
+                <span class="icon"><img src="~/img/icon_featured.jpg" alt="Newest trends"></span>
+            </aside>
+            <article class="container info_SanPham">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-6 San-Pham" ng-repeat="l in ListNoiBat">
+                        <div class="product-img">
+                            <a href="/CTSanPham/Index?masp={{l.MaSP}}" title="{{l.TenSP}}"><img src="~/img/{{l.MaLoaiSP}}/{{l.HinhAnh}}" alt="{{l.HinhAnh}}"></a>
+                            <div class="actionss">
+                                <div class="btn-cart-products">
+                                    <a href="" ng-click="AddCart(l)" title="Add to Cart" data-name="{{l.TenSP}} - {{l.DonVi}}" data-price="{{l.DonGia}}" data-image="{{l.MaLoaiSP}}/{{l.HinhAnh}}">
+                                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="view-details">
+                                    <a href="/products/bap-bo-uc-gia-tay" class="view-detail">
+                                        <span><i class="fa fa-clone"> </i></span>
+                                    </a>
+                                </div>
+                                <div class="btn-quickview-products">
+                                    <a class="quickview" data-handle="/products/bap-bo-uc-gia-tay">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p><a href="/CTSanPham/Index?masp={{l.MaSP}}" title="{{l.TenSP}}">{{l.TenSP}}</a></p>
+                        <p><span>{{l.DonGia}} VND</span></p>
+                    </div>
+                </div>
+            </article>
+            <article class="XemThem">
+                <button class="btn-outline-success btn-lg">Xem Thêm</button>
+            </article>
+        </div>
+
+        <div class="col-sm-12 quangcao">
+            <img src="~/img/QuangCao.png" alt="" style="width: 100%">
+        </div>
+
+        <!-- PHẦN SẢN PHẨM MỚI-->
+        <div class="content_Moi">
+            <aside class="styled_header  use_icon ">
+                <h3>Sản phẩm mới</h3>
+                <span class="icon"><img src="~/img/icon_sale.jpg" alt="Newest trends"></span>
+            </aside>
+            <article class="container info_Moi">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-6 Moi" ng-repeat="m in ListMoiNhat">
+                        <div class="product-img">
+                            <a href="/CTSanPham/Index?masp={{m.MaSP}}" title="{{m.TenSP}}"><img src="~/img/{{m.MaLoaiSP}}/{{m.HinhAnh}}" alt="{{m.HinhAnh}}"></a>
+                            <div class="actionss">
+                                <div class="btn-cart-products">
+                                    <a href="" ng-click="AddCart(m)" title="Add to Cart" data-name="{{m.TenSP}} - {{m.DonVi}}" data-price="{{m.DonGia}}" data-image="{{m.MaLoaiSP}}/{{m.HinhAnh}}">
+                                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="view-details">
+                                    <a href="/products/bap-bo-uc-gia-tay" class="view-detail">
+                                        <span><i class="fa fa-clone"> </i></span>
+                                    </a>
+                                </div>
+                                <div class="btn-quickview-products">
+                                    <a class="quickview" data-handle="/products/bap-bo-uc-gia-tay">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p><a href="/CTSanPham/Index?masp={{m.MaSP}}" title="{{m.TenSP}}">{{m.TenSP}}</a></p>
+                        <p><span>{{m.DonGia}} VND</span></p>
+                    </div>
+                </div>
+            </article>
+            <article class="XemThem">
+                    <button class="btn-outline-success btn-lg">Xem Thêm</button>
+            </article>
+        </div>
+
+        <!-- PHẦN KHUYẾN MÃI -->
+        <div class="content_KhuyenMai">
+            <aside class="styled_header use_icon ">
+                <h3>Sản khuyến mãi</h3>
+                <span class="icon"><img src="~/img/icon_sale.jpg" alt="Newest trends"></span>
+            </aside>
+            <article class="container info_KhuyenMai">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-6 KhuyenMai">
+                        <div class="product-sale">
+                            <span><label class="sale-lb">- </label> 25%</span>
+                        </div>
+                        <div class="product-img">
+                            <a href=""><img src="~/img/FreshFood/RongNho.jpg" alt="{{k.TenSP}}"></a>
+                            <div class="actionss">
+                                <div class="btn-cart-products">
+                                    <a href="">
+                                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="view-details">
+                                    <a href="/products/bap-bo-uc-gia-tay" class="view-detail">
+                                        <span><i class="fa fa-clone"> </i></span>
+                                    </a>
+                                </div>
+                                <div class="btn-quickview-products">
+                                    <a class="quickview" data-handle="/products/bap-bo-uc-gia-tay">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="name"><a href="">Rong Nho</a></p>
+                        <p class="price"><span>390000 VND</span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6 KhuyenMai">
+                        <div class="product-sale">
+                            <span><label class="sale-lb">- </label> 15%</span>
+                        </div>
+                        <div class="product-img">
+                            <a href=""><img src="~/img/Rau/OtChuongDaLat.jpg" alt="Ớt chuông đỏ Đà Lạt"></a>
+                            <div class="actionss">
+                                <div class="btn-cart-products">
+                                    <a href="">
+                                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="view-details">
+                                    <a href="/products/bap-bo-uc-gia-tay" class="view-detail">
+                                        <span><i class="fa fa-clone"> </i></span>
+                                    </a>
+                                </div>
+                                <div class="btn-quickview-products">
+                                    <a class="quickview" data-handle="/products/bap-bo-uc-gia-tay">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="name"><a href="">Ớt chuông đỏ Đà Lạt</a></p>
+                        <p class="price"><span>30.000 VND</span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6 KhuyenMai">
+                        <div class="product-sale">
+                            <span><label class="sale-lb">- </label> 20%</span>
+                        </div>
+                        <div class="product-img">
+                            <a href=""><img src="~/img/Rau/OtSungDaLat.jpg" alt="Ớt sừng đỏ Đà Lạt"></a>
+                            <div class="actionss">
+                                <div class="btn-cart-products">
+                                    <a href="">
+                                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="view-details">
+                                    <a href="/products/bap-bo-uc-gia-tay" class="view-detail">
+                                        <span><i class="fa fa-clone"> </i></span>
+                                    </a>
+                                </div>
+                                <div class="btn-quickview-products">
+                                    <a class="quickview" data-handle="/products/bap-bo-uc-gia-tay">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="name"><a href="">Ớt sừng đỏ Đà Lạt</a></p>
+                        <p class="price"><span>30.000 VND</span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6 KhuyenMai">
+                        <div class="product-sale">
+                            <span><label class="sale-lb">- </label> 10%</span>
+                        </div>
+                        <div class="product-img">
+                            <a href=""><img src="~/img/Rau/CaChuaDaLat.jpg" alt="Cà Chua Đà Lạt"></a>
+                            <div class="actionss">
+                                <div class="btn-cart-products">
+                                    <a href="">
+                                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="view-details">
+                                    <a href="/products/bap-bo-uc-gia-tay" class="view-detail">
+                                        <span><i class="fa fa-clone"> </i></span>
+                                    </a>
+                                </div>
+                                <div class="btn-quickview-products">
+                                    <a class="quickview" data-handle="/products/bap-bo-uc-gia-tay">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="name"><a href="">Cà Chua Đà Lạt</a></p>
+                        <p class="price"><span>30.000 VND</span></p>
+                    </div>
+                </div>
+            </article>
+            <article class="XemThem">
+                <button class="btn-outline-success btn-lg">
+                    Xem thêm
+                </button>
+            </article>
+        </div>
+    </div>
+    <!-- SCROLL TO TOP -->
+    <div class="Scroll">
+        <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop(); return false">
+            <i class="fas fa-arrow-alt-circle-up"></i>
+        </a>
+    </div>
+</section>
+
+<div class="container banner-bottom">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 home-category-item-1">
+            <div class="block-home-category">
+                <a href=""><img src="~/img/quangcao2.png" alt=""></a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 home-category-item-2">
+            <div class="block-home-category">
+                <a href=""><img src="~/img/quangcao3.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clear-fix"></div>
+
