@@ -182,6 +182,7 @@
     <Content Include="Areas\Admin\Scripts\angular.js" />
     <Content Include="Areas\Admin\Scripts\Controllers\AdminAJS.js" />
     <Content Include="Areas\Admin\Scripts\Controllers\SanPhamAJS.js" />
+    <Content Include="Areas\Admin\Scripts\Controllers\SignupAJS.js" />
     <Content Include="assets\admin\bower_components\bootstrap-social\.gitignore" />
     <Content Include="assets\admin\bower_components\bootstrap-social\bootstrap-social.css" />
     <Content Include="assets\admin\bower_components\bootstrap\dist\css\bootstrap-theme.css" />

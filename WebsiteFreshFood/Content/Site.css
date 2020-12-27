@@ -749,9 +749,9 @@ footer .inner li a:hover {
     margin-bottom: 10px;
 }
 
-    .form-list li .feild .input-box input:hover {
-        border: 1px solid orange;
-    }
+.form-list li .feild .input-box input:hover {
+    border: 1px solid orange;
+}
 
 .footer-block .buttons-set button span {
     font-family: 'Lobster Two';
@@ -760,7 +760,7 @@ footer .inner li a:hover {
 }
 
 .footer-block .buttons-set button.button {
-    background-color: #fff;
+    background-color: red;
     border-radius: 20px;
     margin-right: 10px;
     float: left;
@@ -775,10 +775,10 @@ footer .inner li a:hover {
     outline: none;
 }
 
-    .footer-block .buttons-set button.button:hover {
-        background-color: #FE9705;
-        color: white;
-    }
+.footer-block .buttons-set button.button:hover {
+    background-color: #FE9705;
+    color: white;
+}
 
 .clear-fix {
     content: "";

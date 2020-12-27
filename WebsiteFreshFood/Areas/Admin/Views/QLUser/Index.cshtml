@@ -30,10 +30,10 @@
                             <div class="row form-group">
                                 <div class="col-lg-12">
                                     <div class="col-md-4">
-                                        <input type="text" ng-model="TenKH" class="form-control">
+                                        <input type="text" ng-model="" class="form-control">
                                     </div>
                                     <div class="col-md-4">
-                                        <button type="button" ng-click="Search(TenKH)" class="btn btn-success">Tìm kiếm</button>
+                                        <button type="button" ng-click="Search()" class="btn btn-success">Tìm kiếm</button>
                                         <!-- Button trigger modal -->
                                         <button ng-click="Them()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
                                             Thêm mới
@@ -51,7 +51,7 @@
                                         <th>Password</th>
                                         <th>Role</th>
                                         <th>Active</th>
-                                        <th>#</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,9 +63,8 @@
                                         <td>{{u.Role}}</td>
                                         <td>{{u.Active}}</td>
                                         <td>
-                                            <a ng-click="Sua(u)" data-toggle="modal" data-target="#modelId" href="">Sửa</a>
-                                            |
-                                            <a ng-click="XoaKhachHang(u)">Xoá</a>
+                                            <button class="btn btn-success btn-sm" ng-click="Sua(u)" data-toggle="modal" data-target="#modelId">Sửa</button>
+                                            <button class="btn btn-success btn-sm" ng-click="XoaUser(u)">Xóa</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -80,37 +79,5 @@
         </div>
     </div>
     <!-- /.container-fluid -->
-    <!-- Modal -->
-    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{_function}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="ma">Mã khách hàng</label>
-                        <input ng-model="k.MaKH" type="text" id="ma" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="name">Tên khách hàng</label>
-                        <input ng-model="k.TenKH" type="text" id="name" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="tel">Số điện thoại</label>
-                        <input ng-model="k.SDT" type="text" id="tel" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="address">Địa chỉ</label>
-                        <input ng-model="k.DiaChi" type="text" id="address" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                        <label for="email">Email</label>
-                        <input ng-model="k.Email" type="email" id="email" class="form-control" name="" aria-describedby="helpId" placeholder="">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button ng-click="Save()" type="button" class="btn btn-primary">{{buttext}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--End Modal-->
 </div>
 <!-- /#page-wrapper -->

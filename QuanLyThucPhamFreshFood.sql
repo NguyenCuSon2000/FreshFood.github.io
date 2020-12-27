@@ -46,17 +46,15 @@ GroupID varchar(20) primary key,
 Name nvarchar(50)
 )
 
-CREATE TABLE [User](
+CREATE TABLE [Users](
 UserID bigint identity(1,1) primary key,
 UserName varchar(50),
-Password varchar(50),
-GroupID varchar(20) constraint FK_GroupID_User foreign key (GroupID) references UserGroup(GroupID) on delete cascade on update cascade,
-Name nvarchar(50),
-DiaChi nvarchar(50),
-Email nvarchar(50),
-SDT varchar(12),
+Pass varchar(50),
+Role nvarchar(50),
 Active bit
 )
+
+Drop table Users
 
 CREATE TABLE HoaDonNhap(
 MaHoaDonNhap varchar(50) primary key clustered (MaHoaDonNhap asc),
@@ -114,7 +112,7 @@ NgayKetThuc datetime
 
 CREATE TABLE GiamGia(
 MaGiamGia int identity(1,1) primary key,
-MaSP varchar(10) constraint FK_MaSP_GiamGia foreign key (MaSP) references SanPham(MaSP) on delete cascade on update cascade,
+MaSP int constraint FK_MaSP_GiamGia foreign key (MaSP) references SanPham(MaSP) on delete cascade on update cascade,
 PhanTram float,
 GiaGiam float,
 Active bit,
@@ -139,7 +137,7 @@ Insert into LoaiSanPham values('FreshFood',N'Thực phẩm tươi sống')
 Insert into LoaiSanPham values('Thực phẩm khô',N'Thực phẩm khô')
 Insert into LoaiSanPham values('Thực phẩm bổ dưỡng',N'Thực phẩm bổ dưỡng')
 
-Insert into SanPham values('SP01',N'Bắp Bò Úc', N'FreshFood',N'1 cái', N'Bắp bò Úc giá tay do Vissan cung cấp có độ tươi ngon 100%','BapBoUc.jpg',10,20,30,10,73500)
+Insert into SanPham values(N'Bắp Bò Úc', N'FreshFood',N'1 cái', N'Bắp bò Úc giá tay do Vissan cung cấp có độ tươi ngon 100%','BapBoUc.jpg',73500)
 Insert into SanPham values('SP02',N'Bắp Giò Heo', N'FreshFood',N'1 cái', N'Bắp giò heo Vissan được phân phối bởi VinMart - hệ thống siêu thị có uy tín trong việc cung ứng nguồn thực phẩm tươi sạch cho thị trường.','BapGioHeo.jpg',10,20,30,10,22400)
 Insert into SanPham values('SP03',N'Cá Bạc Má', N'FreshFood',N'1 hộp', N'Cá bạc má có thân hình thuôn dài, hơi dẹt bên, thuộc nhóm cá biển có thịt thơm, ít xương dăm, rất ngon và bổ dưỡng. ','CaBacMa.jpg',10,20,30,10,62400)
 Insert into SanPham values('SP04',N'Cá Ba Sa', N'FreshFood',N'1 con', N'Cá basa không đầu do VinMart cung cấp được chọn lọc từ cá basa tươi ngon, theo quy trình khép kín, an toàn cho sức khỏe người tiêu dùng.','CaBaSa.jpg',10,20,30,10,45000)
@@ -264,3 +262,7 @@ Begin
 end
 
 exec ThongKeSLSP 'Rau'
+
+
+ 
+select *  from GiamGia g inner join SanPham s on g.MaSP = s.MaSP

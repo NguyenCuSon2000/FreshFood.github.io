@@ -54,7 +54,7 @@
                                         <th>Mô tả</th>
                                         <th>Hình ảnh</th>
                                         <th>Đơn giá</th>
-                                        <th width="100px">#</th>
+                                        <th width="110px">Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,9 +67,8 @@
                                         <td><img src="~/img/{{s.MaLoaiSP}}/{{s.HinhAnh}}" /></td>
                                         <td>{{s.DonGia}} VNĐ</td>
                                         <td>
-                                            <a ng-click="Sua(s)" data-toggle="modal" data-target="#modelId" href="">Sửa</a>
-                                            |
-                                            <a ng-click="XoaSanPham(s)" href="">Xoá</a>
+                                            <button class="btn btn-success btn-sm" ng-click="Sua(s)" data-toggle="modal" data-target="#modelId">Sửa</button>
+                                            <button class="btn btn-success btn-sm" ng-click="XoaSanPham(s)">Xóa</button>
                                         </td>
                                     </tr>
                                 </tbody>

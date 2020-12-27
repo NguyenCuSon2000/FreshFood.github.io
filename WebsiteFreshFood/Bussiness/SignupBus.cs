@@ -12,7 +12,7 @@ namespace WebsiteFreshFood.Bussiness
         UsersDAL usDAL = new UsersDAL();
         public string DangKy(Users us)
         {
-            return usDAL.SignUp(us);
+            return usDAL.CheckDangKy(us);
         }
     }
 }

@@ -50,7 +50,7 @@
                                         <th>Số điện thoại</th>
                                         <th>Địa chỉ</th>
                                         <th>Email</th>
-                                        <th>#</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,9 +62,8 @@
                                         <td>{{k.DiaChi}}</td>
                                         <td>{{k.Email}}</td>
                                         <td>
-                                            <a ng-click="Sua(k)" data-toggle="modal" data-target="#modelId" href="">Sửa</a>
-                                            |
-                                            <a  ng-click="XoaKhachHang(k)">Xoá</a>
+                                            <button class="btn btn-success btn-sm" ng-click="Sua(k)" data-toggle="modal" data-target="#modelId">Sửa</button>
+                                            <button class="btn btn-success btn-sm" ng-click="XoaKhachHang(k)">Xóa</button>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -14,5 +14,10 @@ namespace WebsiteFreshFood.Bussiness
         {
             return usDAL.GetAllUser();
         }
+
+        public string XoaUser(string id)
+        {
+            return usDAL.XoaUser(id);
+        }
     }
 }

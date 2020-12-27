@@ -1,6 +1,10 @@
 ﻿/// <reference path="../../../../scripts/angular-1.3.9/angular.js" />
 var app = angular.module("SanPhamApp", ['angularUtils.directives.dirPagination', 'ngFileUpload', 'ui.bootstrap']);
 
+
+
+
+
 // Hiển thị sản phẩm và phân trang
 app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload) {
     $scope.UploadFiles = function (files) {
@@ -495,45 +499,28 @@ app.controller("LogoutController", function ($scope, $rootScope, $http, $window)
 });
 
 
+
 // QUẢN LÝ USER
 app.controller("UserController", UserController);
 function UserController($scope, $rootScope, $http, $window) {
-
-    $scope.Signup = function () {
-        $http({
-            method: 'POST',
-            datatype: 'json',
-            url: '/Admin/Signup/Signup',
-            data: JSON.stringify($scope.us)
-        }).then(function (d) {
-            //alert($scope.s.MaSP);
-            if (d.data == "") {
-                $scope.ListUser.push($scope.us);
-                $scope.us = null;
-                alert("Đăng ký thành công...!");
-            }
-            else {
-                alert(d.data);
-            }
-        }, function (e) {
-            alert("Lỗi nhập...!");
-        });
-    };
 
     //Danh sách user
     $http.get('/Admin/QLUser/GetUsers').then(function (d) {
         $rootScope.ListUser = d.data;
     }, function (error) { alert('Failed'); });
 
-    $scope.Them = function () {
-        $scope._function = "Thêm sản phẩm";
-        $scope.buttext = "Save";
-        $scope.s = null;
+    $scope.XoaUser = function (u) {
+        $http({
+            method: 'Post',
+            url: '/Admin/QLUser/Delete',
+            datatype: 'Json',
+            data: { id: n.UserID }
+        }).then(function (d) {
+            var vt = $scope.ListUser.indexOf(u);
+            $scope.ListUser.splice(vt, 1);
+        }, function (e) { alert(e) });
     };
-
-   
 };
-
 
 
 

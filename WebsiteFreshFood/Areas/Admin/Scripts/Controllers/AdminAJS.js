@@ -1,14 +1,14 @@
 ﻿/// <reference path="../../../../scripts/angular.js" />
 var app = angular.module("LoginApp", []);
 
-
-
 app.controller("LoginController", LoginController);
 function LoginController($rootScope, $http, $window) {
 
     $rootScope.Users = null;
     $rootScope.UN = "";
     $rootScope.PW = "";
+    $rootScope.quyenad = "";
+    $rootScope.quyenus = "";
 
     $rootScope.Login = function (un, pw) {
 
@@ -24,9 +24,18 @@ function LoginController($rootScope, $http, $window) {
             }
             else {
                 $rootScope.Users = d.data;
+                if (d.data.Role == "admin") {
+                    $rootScope.quyenad = "";
+                    $rootScope.quyenus = "KhongQuyen";
+                }
+                else {
+                    $rootScope.quyenad = "KhongQuyen";
+                    $rootScope.quyenus = "";
+                }
                 $window.location.href = '/Admin/Home/Index';
             }
         }, function (e) { });
     };
 };
+
 

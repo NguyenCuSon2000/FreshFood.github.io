@@ -34,7 +34,7 @@ namespace WebsiteFreshFood.DataAccess
 
         public List<GiamGia> LaySPKhuyenMai()
         {
-            DataTable dt = dc.GetDataTable("select * from GiamGia");
+            DataTable dt = dc.GetDataTable("select *  from GiamGia");
             return ToList(dt);
         }
 

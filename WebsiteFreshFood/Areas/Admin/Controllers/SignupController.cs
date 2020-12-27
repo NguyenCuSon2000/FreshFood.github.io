@@ -18,7 +18,7 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public JsonResult Signup(Users us)
+        public JsonResult DangKy(Users us)
         {
             string res = signupBus.DangKy(us);
             return Json(res, JsonRequestBehavior.AllowGet);

@@ -23,5 +23,11 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             List<Users> lsp = qlus.LayAllUser();
             return Json(lsp, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public JsonResult Delete(string id)
+        {
+            string st = qlus.XoaUser(id);
+            return Json(st, JsonRequestBehavior.AllowGet);
+        }
     }
 }

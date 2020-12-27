@@ -27,12 +27,6 @@ namespace WebsiteFreshFood.DataAccess
         }
 
 
-        public string SignUp(Users us)
-        {
-            string sql = "Insert into Users values('" + us.UserName + "','" + us.Pass + "','" + us.Role + "','" + us.Active + "')";
-            return db.ExcuteNonQuery(sql);
-        }
-
         public List<Users> ToList(DataTable dt)
         {
             List<Users> l = new List<Users>();
@@ -54,6 +48,28 @@ namespace WebsiteFreshFood.DataAccess
         {
             DataTable dt = db.GetDataTable("select * from Users");
             return ToList(dt);
+        }
+
+        public string XoaUser(string id)
+        {
+            string st = "delete from User where UserID='" + id + "'";
+            return db.ExcuteNonQuery(st);
+        }
+
+
+        public string CheckDangKy(Users us)
+        {
+            string sql = "SELECT * FROM Users WHERE UserName = '" + us.UserName + "'";
+            DataTable dt = db.GetDataTable(sql);
+            if(dt.Rows.Count == 1)
+            {
+                return null;
+            }
+            else
+            {
+                string sqlInsert = "INSERT into Users values(N'" + us.UserName + "', '" + us.Pass + "','" + us.Role + "','" + us.Active + "')";
+                return db.ExcuteNonQuery(sqlInsert);
+            }
         }
     }
 }
