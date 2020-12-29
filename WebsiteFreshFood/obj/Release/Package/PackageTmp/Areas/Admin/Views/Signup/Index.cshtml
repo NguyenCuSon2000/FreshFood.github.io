@@ -8,11 +8,10 @@
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular.js"></script>
     <script src=" https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="~/Areas/Admin/Scripts/Controllers/AdminAJS.js"></script>
-    <script src="~/Areas/Admin/Scripts/Controllers/SanPhamAJS.js"></script>
+    <script src="~/Areas/Admin/Scripts/Controllers/SignupAJS.js"></script>
 </head>
-<body ng-app="SanPhamApp">
-    <div class="bg-img" ng-controller="UserController">
+<body ng-app="SignApp">
+    <div class="bg-img" ng-controller="SignupController">
         <div class="content">
             <header>SignUp Form</header>
             <form action="#" name="formSignUp" id="SignUp">
@@ -23,7 +22,11 @@
                 <span id="IDuser" style="color:#FF0000; font-size:18px"></span>
                 <div class="field space">
                     <span class="fa fa-lock"></span>
-                    <input type="password" id="password" class="pass-key" required="" placeholder="Password" ng-model="us.Pass">
+                    <input type="password" id="password" class="pass-key" required="" placeholder="Nhập mật khẩu...." ng-model="us.Pass">
+                </div>
+                <div class="field space">
+                    <span class="fa fa-lock"></span>
+                    <input type="password" id="password1" class="pass-key" required="" placeholder="Nhập lại mật khẩu" ng-model="us.rePass">
                 </div>
                 <div class="pass">
                     <a href="#">Forgot Password?</a>

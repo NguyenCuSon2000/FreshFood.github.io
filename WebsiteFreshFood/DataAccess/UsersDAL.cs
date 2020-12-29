@@ -50,9 +50,30 @@ namespace WebsiteFreshFood.DataAccess
             return ToList(dt);
         }
 
+        public string ThemUser(Users us)
+        {
+            string sql = "INSERT into Users values(N'" + us.UserName + "', '" + us.Pass + "','" + us.Role + "','" + us.Active + "')";
+
+            return db.ExcuteNonQuery(sql);
+        }
+
+        public string SuaUser(Users us)
+        {
+            string st = "UPDATE Users SET UserName=N'" + us.UserName + "', Pass='" + us.Pass + "', Role=N'" + us.Role + "',Active='" + us.Active + "' where UserID='" + us.UserID + "'";
+            return db.ExcuteNonQuery(st);
+        }
+
+        public List<Users> Search(string userName) // Search Admin
+        {
+            string st;
+            st = "select * from Users where UserName like N'%" + userName + "%'";
+            DataTable dt = db.GetDataTable(st);
+            return ToList(dt);
+        }
+
         public string XoaUser(string id)
         {
-            string st = "delete from User where UserID='" + id + "'";
+            string st = "delete from Users where UserID='" + id + "'";
             return db.ExcuteNonQuery(st);
         }
 

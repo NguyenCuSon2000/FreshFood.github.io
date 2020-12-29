@@ -50,7 +50,7 @@
                                         <th>Địa chỉ</th>
                                         <th>Email</th>
                                         <th>Fax</th>
-                                        <th>#</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,9 +63,8 @@
                                         <td>{{n.Email}}</td>
                                         <td>{{n.Fax}}</td>
                                         <td>
-                                            <a ng-click="Sua(n)" data-toggle="modal" data-target="#modelId" href="">Sửa</a>
-                                            |
-                                            <a ng-click="XoaNhaCungCap(n)">Xoá</a>
+                                            <button class="btn btn-success btn-sm" ng-click="Sua(n)" data-toggle="modal" data-target="#modelId">Sửa</button>
+                                            <button class="btn btn-success btn-sm" ng-click="XoaNhaCungCap(s)">Xóa</button>
                                         </td>
                                     </tr>
                                 </tbody>

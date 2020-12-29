@@ -53,7 +53,7 @@
                                         <th>Nội Dung</th>
                                         <th>Ngày Đăng</th>
                                         <th>Trạng Thái</th>
-                                        <th width="100px">#</th>
+                                        <th width="110px">Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,9 +66,8 @@
                                         <td>{{t.NgayDang}}</td>
                                         <td>{{t.TrangThai}}</td>
                                         <td>
-                                            <a ng-click="Sua(t)" data-toggle="modal" data-target="#modelId" href="">Sửa</a>
-                                            |
-                                            <a ng-click="XoaSanPham(t)" href="">Xoá</a>
+                                            <button class="btn btn-success btn-sm" ng-click="Sua(t)" data-toggle="modal" data-target="#modelId">Sửa</button>
+                                            <button class="btn btn-success btn-sm" ng-click="XoaTinTuc(t)">Xóa</button>
                                         </td>
                                     </tr>
                                 </tbody>

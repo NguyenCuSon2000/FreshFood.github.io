@@ -6,47 +6,53 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\Test User\source\repos</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Publish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/Admin/Scripts/angular.js">
       <publishTime>10/30/2020 10:55:16</publishTime>
     </File>
     <File Include="Areas/Admin/Scripts/Controllers/AdminAJS.js">
-      <publishTime>12/22/2020 22:41:39</publishTime>
+      <publishTime>12/27/2020 23:16:38</publishTime>
     </File>
     <File Include="Areas/Admin/Scripts/Controllers/SanPhamAJS.js">
-      <publishTime>12/25/2020 13:55:06</publishTime>
+      <publishTime>12/28/2020 23:07:25</publishTime>
+    </File>
+    <File Include="Areas/Admin/Scripts/Controllers/SignupAJS.js">
+      <publishTime>12/27/2020 17:02:50</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Home/Index.cshtml">
       <publishTime>10/30/2020 07:41:58</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Login/Index.cshtml">
-      <publishTime>12/22/2020 23:01:43</publishTime>
+      <publishTime>12/27/2020 16:03:48</publishTime>
     </File>
     <File Include="Areas/Admin/Views/QLKhachHang/Index.cshtml">
-      <publishTime>12/04/2020 15:42:18</publishTime>
+      <publishTime>12/27/2020 07:36:45</publishTime>
     </File>
     <File Include="Areas/Admin/Views/QLNhaCungCap/Index.cshtml">
-      <publishTime>12/04/2020 15:45:11</publishTime>
+      <publishTime>12/27/2020 07:38:11</publishTime>
     </File>
     <File Include="Areas/Admin/Views/QLSanPham/Index.cshtml">
-      <publishTime>12/25/2020 14:03:52</publishTime>
+      <publishTime>12/27/2020 07:42:28</publishTime>
     </File>
     <File Include="Areas/Admin/Views/QLTinTuc/Index.cshtml">
-      <publishTime>12/25/2020 10:00:37</publishTime>
+      <publishTime>12/27/2020 09:14:54</publishTime>
     </File>
     <File Include="Areas/Admin/Views/QLUser/Index.cshtml">
-      <publishTime>12/22/2020 22:52:14</publishTime>
+      <publishTime>12/28/2020 22:59:40</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/LeftMenu.cshtml">
-      <publishTime>12/22/2020 16:34:12</publishTime>
+      <publishTime>12/27/2020 09:34:28</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/_Layout.cshtml">
-      <publishTime>12/24/2020 09:39:06</publishTime>
+      <publishTime>12/27/2020 22:46:52</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Signup/Index.cshtml">
-      <publishTime>12/23/2020 10:24:59</publishTime>
+      <publishTime>12/27/2020 16:12:32</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ThongKe/Index.cshtml">
+      <publishTime>12/25/2020 21:11:42</publishTime>
     </File>
     <File Include="Areas/Admin/Views/web.config">
       <publishTime>10/30/2020 07:21:04</publishTime>
@@ -5857,10 +5863,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2014 13:57:34</publishTime>
     </File>
     <File Include="bin/WebsiteFreshFood.dll">
-      <publishTime>12/25/2020 16:41:35</publishTime>
+      <publishTime>12/29/2020 07:26:27</publishTime>
     </File>
     <File Include="bin/WebsiteFreshFood.pdb">
-      <publishTime>12/25/2020 16:41:35</publishTime>
+      <publishTime>12/29/2020 07:26:27</publishTime>
     </File>
     <File Include="Content/bootstrap-grid.css">
       <publishTime>11/12/2020 15:36:47</publishTime>
@@ -5908,7 +5914,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/25/2020 09:25:59</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>12/25/2020 09:51:40</publishTime>
+      <publishTime>12/26/2020 09:56:59</publishTime>
     </File>
     <File Include="Content/TinTuc.css">
       <publishTime>12/25/2020 09:56:26</publishTime>
@@ -18618,11 +18624,8 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/bootstrap.min.js.map">
       <publishTime>11/12/2020 15:36:46</publishTime>
     </File>
-    <File Include="Scripts/Controllers/HomeAJS.js">
-      <publishTime>10/28/2020 16:03:35</publishTime>
-    </File>
     <File Include="Scripts/Controllers/SanPhamAngularJS.js">
-      <publishTime>12/25/2020 10:15:19</publishTime>
+      <publishTime>12/28/2020 15:59:47</publishTime>
     </File>
     <File Include="Scripts/dirPagination.js">
       <publishTime>12/24/2020 09:32:52</publishTime>
@@ -18985,7 +18988,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/25/2020 10:55:25</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>12/16/2020 21:14:42</publishTime>
+      <publishTime>12/27/2020 07:15:38</publishTime>
     </File>
     <File Include="Views/SanPham/Index.cshtml">
       <publishTime>12/25/2020 09:21:41</publishTime>
@@ -18997,7 +19000,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/09/2020 17:22:24</publishTime>
     </File>
     <File Include="Views/Shared/GioHang.cshtml">
-      <publishTime>12/20/2020 15:46:10</publishTime>
+      <publishTime>12/27/2020 10:20:25</publishTime>
     </File>
     <File Include="Views/Shared/Header_Search.cshtml">
       <publishTime>12/25/2020 09:13:26</publishTime>
@@ -19006,7 +19009,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/16/2020 18:07:52</publishTime>
     </File>
     <File Include="Views/Shared/TopMenu.cshtml">
-      <publishTime>12/25/2020 09:13:26</publishTime>
+      <publishTime>12/26/2020 23:27:26</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>12/25/2020 10:24:12</publishTime>
@@ -19021,7 +19024,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/09/2020 17:22:24</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/25/2020 16:41:39</publishTime>
+      <publishTime>12/29/2020 07:26:33</publishTime>
     </File>
   </ItemGroup>
 </Project>

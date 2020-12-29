@@ -246,7 +246,7 @@ function HomeController($rootScope, $scope, $http, $window) {
                 }
                 else { //Hiển thị giao diện đăng nhập
                     $rootScope.dathang = "/Admin/Login/Index";
-                    //$window.location.href = '';
+                    $window.location.href = '/Admin/Login/Index';
                 }
             }, function (e) { })
     };

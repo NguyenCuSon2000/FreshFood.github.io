@@ -15,6 +15,21 @@ namespace WebsiteFreshFood.Bussiness
             return usDAL.GetAllUser();
         }
 
+        public string ThemUser(Users us)
+        {
+            return usDAL.ThemUser(us);
+        }
+      
+        public string SuaUser(Users us)
+        {
+            return usDAL.SuaUser(us);
+        }
+        public List<Users> TimKiemUser(string userName) // Search Admin
+        {
+            return usDAL.Search(userName);
+        }
+
+
         public string XoaUser(string id)
         {
             return usDAL.XoaUser(id);

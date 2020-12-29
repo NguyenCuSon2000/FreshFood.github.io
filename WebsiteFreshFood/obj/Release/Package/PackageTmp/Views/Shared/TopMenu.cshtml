@@ -8,14 +8,8 @@
                         <a class="active" href="SanPham.html" title="Sản phẩm">Sản phẩm <i class="fas fa-sort-down"></i></a>
                         <ul ng-controller="MenuController">
                             <li ng-repeat="l in listloai">
-                                @*<a href="">Rau củ quả</a>*@
                                 <a href="/SanPham/Index?maloai={{l.MaLoaiSP}}" title="{{l.TenLoai}}">{{l.TenLoai}}</a>
                             </li>
-                            @*<li>
-                             <a href="">Thực phẩm tươi sống</a>
-                        </li>
-                        <li><a href="">Thực phẩm khô</a></li>
-                        <li><a href="">Thực phẩm bổ dưỡng</a></li>*@
                         </ul>
                     </li>
                     <li><a class="active" href="/GioiThieu/Index" title="Giới thiệu">Giới thiệu</a></li>

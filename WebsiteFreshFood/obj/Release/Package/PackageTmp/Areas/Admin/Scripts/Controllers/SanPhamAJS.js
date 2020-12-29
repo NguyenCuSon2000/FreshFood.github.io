@@ -144,12 +144,16 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload)
         $scope.pageIndex = 1;
         $scope.GetSanPhamList();
     };  
+
+    //Thống kê số lượng sản phẩm
+    $scope.maloai = "";
+    $http.get("http://localhost:64769/Admin/ThongKe/GetThongKe?maloai=" + $scope.maloai).then(
+        function (d) {
+            $rootScope.ListLoaiSP = d.data.ThongKeSLSP;
+            $scope.SLSP = d.data.SLSP;
+    }, function (error) { alert('Lỗi'); });
+
 });
-
-
-//app.controller("SanPhamController", function ($scope, $rootScope, $http) {
-//   
-//})
 
 // KHÁCH HÀNG
 
@@ -491,30 +495,10 @@ app.controller("LogoutController", function ($scope, $rootScope, $http, $window)
 });
 
 
+
 // QUẢN LÝ USER
 app.controller("UserController", UserController);
 function UserController($scope, $rootScope, $http, $window) {
-
-    $scope.Signup = function () {
-        $http({
-            method: 'POST',
-            datatype: 'json',
-            url: '/Admin/Signup/Signup',
-            data: JSON.stringify($scope.us)
-        }).then(function (d) {
-            //alert($scope.s.MaSP);
-            if (d.data == "") {
-                $scope.ListUser.push($scope.us);
-                $scope.us = null;
-                alert("Đăng ký thành công...!");
-            }
-            else {
-                alert(d.data);
-            }
-        }, function (e) {
-            alert("Lỗi nhập...!");
-        });
-    };
 
     //Danh sách user
     $http.get('/Admin/QLUser/GetUsers').then(function (d) {
@@ -522,14 +506,95 @@ function UserController($scope, $rootScope, $http, $window) {
     }, function (error) { alert('Failed'); });
 
     $scope.Them = function () {
-        $scope._function = "Thêm sản phẩm";
+        $scope._function = "Thêm người dùng";
         $scope.buttext = "Save";
-        $scope.s = null;
+        $scope.u = null;
     };
 
-   
-};
+    $scope.Sua = function (u) {
+        $scope._function = "Sửa người dùng";
+        $scope.buttext = "Save changes";
+        $scope.u = u;
+    };
 
+    $scope.Save = function () {
+        //Sửa user
+        if ($scope.buttext != "Save") {
+            $http({
+                method: 'Post',
+                datatype: 'Json',
+                data: JSON.stringify($scope.k),
+                url: '/Admin/QLUser/Update'
+            }).then(function (d) {
+                if (d.data == "") {
+                    var index = $scope.ListUser;
+                    for (var i = 0; i < $scope.ListUser.length; i++) {
+                        //Sửa thành công thì tiến hành sửa trên $scope
+                        if ($scope.ListUser[i].UserID == $scope.u.UserID) {
+                            $scope.ListUser[i].UserName = $scope.u.UserName;
+                            $scope.ListUser[i].Pass = $scope.u.Pass;
+                            $scope.ListUser[i].Role = $scope.u.Role;
+                            $scope.ListUser[i].Active = $scope.u.Active;
+                            break;
+                        }
+                    }
+                    alert("Update success...!")
+                }
+            }, function (e) { alert(e); });
+        }
+        else //Thêm user
+        {
+            $http({
+                method: 'POST',
+                datatype: 'json',
+                url: '/Admin/QLUser/Insert',
+                data: JSON.stringify($scope.u)
+            }).then(function (d) {
+                if (d.data == "") {
+                    $scope.ListUser.push($scope.u);
+                    $scope.u = null;
+                    alert("Data Submitted...!");
+                }
+                else {
+                    alert(d.data);
+                }
+            }, function (e) {
+                alert("Lỗi nhập...!");
+            });
+        }
+    };
+
+
+    $rootScope.UserName = "";
+    $rootScope.Search = function (userName) {
+        $rootScope.ListUser = null;
+        $http.get('/Admin/QLUser/Search', {
+            params: {
+                UserName: userName
+            }
+        }).then(function (d) {
+            if (d.data == "") {
+                alert("Người dùng không tồn tại");
+            }
+            else {
+                $rootScope.ListUser = d.data;
+            }
+        }, function (e) { });
+    };
+
+    $scope.XoaUser = function (u) {
+        $http({
+            method: 'Post',
+            url: '/Admin/QLUser/Delete',
+            datatype: 'Json',
+            data: { id: u.UserID }
+        }).then(function (d) {
+            var vt = $scope.ListUser.indexOf(u);
+            $scope.ListUser.splice(vt, 1);
+        }, function (e) { alert(e) });
+    };
+
+};
 
 
 
