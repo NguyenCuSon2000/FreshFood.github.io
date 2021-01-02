@@ -15,6 +15,8 @@
         [StringLength(100)]
         public string TenLoai { get; set; }
 
+        public LoaiSanPham() { }
+
         public LoaiSanPham(string maloaisp, string tenloai)
         {
             this.MaLoaiSP = maloaisp;

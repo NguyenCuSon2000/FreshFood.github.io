@@ -37,8 +37,22 @@ namespace WebsiteFreshFood.Areas.Admin.Controllers
             }
             else  //Tài khoản đúng
             {
-                //Session.Add("User_Session", u);
-                FormsAuthentication.SetAuthCookie(us, false);
+                //b1 tạo cook lưu thông tin về User name
+                HttpCookie ck = new HttpCookie("un", u.UserName);
+                //b2 thiết lập thời gian tồn tại
+                ck.Expires = DateTime.Now.AddDays(2);
+                //b3 ghi biến cook về brower
+                Response.Cookies.Add(ck);
+
+                //b1 tạo cook lưu thông tin về trạng thái login
+                HttpCookie ckl = new HttpCookie("login", "1");
+                //b2 thiết lập thời gian tồn tại
+                ck.Expires = DateTime.Now.AddDays(2);
+                //b3 ghi biến cook về brower
+                Response.Cookies.Add(ckl);
+               
+                Session.Add("User_Session", u);
+                //FormsAuthentication.SetAuthCookie(us, false);
                 return Json(u, JsonRequestBehavior.AllowGet);
                 // return RedirectToAction("index", "Home");
             }

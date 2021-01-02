@@ -32,7 +32,8 @@ namespace WebsiteFreshFood.DataAccess
         {
             string sqlselect = "select * from SanPham where MaSP ='" + masp + "'";
             DataTable dt = dc.GetDataTable(sqlselect);
-
+            //SanPham s = new SanPham(int.Parse(dt.Rows[0][0].ToString()), dt.Rows[0][1].ToString(), dt.Rows[0][2].ToString(), dt.Rows[0][3].ToString(), dt.Rows[0][4].ToString(), dt.Rows[0][5].ToString(), double.Parse(dt.Rows[0][6].ToString()));
+            //return s;
             return ToList(dt);
         }
 

@@ -3,57 +3,60 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 using WebsiteFreshFood.Models;
 using WebsiteFreshFood.Bussiness;
 
+
 namespace WebsiteFreshFood.Areas.Admin.Controllers
 {
-    public class QLNhaCungCapController : BaseController
+    public class QLLoaiSanPhamController : Controller
     {
-        QLNhaCungCapBus qlncc = new QLNhaCungCapBus();
-        // GET: Admin/QLNhaCungCap
+        QLLoaiSanPhamBus qllsp = new QLLoaiSanPhamBus();
+        // GET: Admin/QLLoaiSanPham
         public ActionResult Index()
         {
             return View("Index");
         }
 
-        [HttpGet]
-        public JsonResult GetNhaCungCap()
+        public JsonResult GetAllLoaiSP()
         {
-            List<NhaCungCap> lsp = qlncc.LayAllNhaCungCap();
-            return Json(lsp, JsonRequestBehavior.AllowGet);
+            List <LoaiSanPham> list = qllsp.LayLoaiSanPham();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Search(string tenncc)
+        public JsonResult Search(string tenLoai)
         {
-            if (tenncc == "")
+            if (tenLoai == "")
             {
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                List<NhaCungCap> lncc = qlncc.TimKiemNCC(tenncc);
-                return Json(lncc, JsonRequestBehavior.AllowGet);
+                List<LoaiSanPham> lsp = qllsp.TimKiemLoaiSanPham(tenLoai);
+                return Json(lsp, JsonRequestBehavior.AllowGet);
             }
         }
 
         [HttpPost]
-        public JsonResult Insert(NhaCungCap n)
+        public JsonResult Insert(LoaiSanPham l)
         {
-            string res = qlncc.ThemNhaCungCap(n);
+            string res = qllsp.ThemLoaiSanPham(l);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
-        public JsonResult Update(NhaCungCap n)
+        public JsonResult Update(LoaiSanPham l)
         {
-            string res = qlncc.SuaNhaCungCap(n);
+            string res = qllsp.SuaLoaiSanPham(l);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public JsonResult Delete(string id)
         {
-            string st = qlncc.XoaNhaCungCap(id);
+            string st = qllsp.XoaLoaiSanPham(id);
             return Json(st, JsonRequestBehavior.AllowGet);
         }
+      
     }
 }

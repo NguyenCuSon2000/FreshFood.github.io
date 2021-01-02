@@ -8,7 +8,7 @@ using WebsiteFreshFood.Models;
 
 namespace WebsiteFreshFood.Areas.Admin.Controllers
 {
-    public class QLKhachHangController : Controller
+    public class QLKhachHangController : BaseController
     {
         QLKhachHangBus qlkh = new QLKhachHangBus();
         // GET: Admin/QLKhachHang

@@ -19,5 +19,21 @@ namespace WebsiteFreshFood.Bussiness
         {
             return lspDAL.LayLoaiSanPham();
         }
+        public string ThemLoaiSanPham(LoaiSanPham l)
+        {
+            return lspDAL.ThemLoaiSP(l);
+        }
+        public string XoaLoaiSanPham(string id)
+        {
+            return lspDAL.XoaLoaiSanPham(id);
+        }
+        public string SuaLoaiSanPham(LoaiSanPham l)
+        {
+            return lspDAL.SuaLoaiSanPham(l);
+        }
+        public List<LoaiSanPham> TimKiemLoaiSanPham(string tenLoai) // Search Admin
+        {
+            return lspDAL.Search(tenLoai);
+        }
     }
 }

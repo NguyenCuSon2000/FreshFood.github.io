@@ -125,6 +125,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLHoaDonNhapController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLKhachHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QLLoaiSanPhamController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLNhaCungCapController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLSanPhamController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLTinTucController.cs" />
@@ -6335,6 +6336,7 @@
     <Content Include="Scripts\angular-1.3.9\errors.json" />
     <Content Include="Scripts\angular-1.3.9\version.json" />
     <Content Include="Areas\Admin\Views\ThongKe\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QLLoaiSanPham\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />

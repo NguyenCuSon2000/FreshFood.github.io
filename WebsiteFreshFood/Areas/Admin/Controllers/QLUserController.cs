@@ -8,7 +8,7 @@ using WebsiteFreshFood.Bussiness;
 
 namespace WebsiteFreshFood.Areas.Admin.Controllers
 {
-    public class QLUserController : Controller
+    public class QLUserController : BaseController
     {
         QLUserBus qlus = new QLUserBus();
         // GET: Admin/QLUser

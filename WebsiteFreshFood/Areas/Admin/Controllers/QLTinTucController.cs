@@ -9,7 +9,7 @@ using System.IO;
 
 namespace WebsiteFreshFood.Areas.Admin.Controllers
 {
-    public class QLTinTucController : Controller
+    public class QLTinTucController : BaseController
     {
         TinTucBus TinTucBus = new TinTucBus();
         // GET: Admin/QLTinTuc

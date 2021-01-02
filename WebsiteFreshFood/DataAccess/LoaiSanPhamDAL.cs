@@ -27,8 +27,26 @@ namespace WebsiteFreshFood.DataAccess
         }
         public string ThemLoaiSP(LoaiSanPham loai)
         {
-            string st = "Insert into LoaiSanPham value('" + loai.MaLoaiSP + "','" + loai.TenLoai + "','" + ")";
+            string st = "Insert into LoaiSanPham values('" + loai.MaLoaiSP + "',N'" + loai.TenLoai + "')";
             return dth.ExcuteNonQuery(st);
+        }
+        public string XoaLoaiSanPham(string id)
+        {
+            string st = "delete from LoaiSanPham where maloaisp='" + id + "'";
+            return dth.ExcuteNonQuery(st);
+
+        }
+        public string SuaLoaiSanPham(LoaiSanPham l)
+        {
+            string st = "Update LoaiSanPham SET TenLoai=N'" + l.TenLoai + "' where MaLoaiSP='" + l.MaLoaiSP + "'";
+            return dth.ExcuteNonQuery(st);
+        }
+        public List<LoaiSanPham> Search(string tenLoai) // Search Admin
+        {
+            string st;
+            st = "select * from LoaiSanPham where TenLoai like N'%" + tenLoai + "%'";
+            DataTable dt = dth.GetDataTable(st);
+            return ToList(dt);
         }
     }
 }

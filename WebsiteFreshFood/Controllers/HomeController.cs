@@ -37,6 +37,7 @@ namespace WebsiteFreshFood.Controllers
             return PartialView("GioHang");
         }
 
+        //Lấy sản phẩm theo loại
         public JsonResult GetLoaiSanPham()
         {
             QLLoaiSanPhamBus bl = new QLLoaiSanPhamBus();

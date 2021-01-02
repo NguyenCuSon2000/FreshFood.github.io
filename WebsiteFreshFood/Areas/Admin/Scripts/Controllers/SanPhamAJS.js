@@ -93,6 +93,7 @@ app.controller("SanPhamController", function ($scope, $rootScope, $http, Upload)
             datatype: 'Json',
             data: { id: s.MaSP }
         }).then(function (d) {
+            alert("Bạn có chắc chắn muốn xóa không?");
             var vt = $scope.ListSanPham.indexOf(s);
             $scope.ListSanPham.splice(vt, 1);
         }, function (e) { alert(e) });
@@ -523,7 +524,7 @@ function UserController($scope, $rootScope, $http, $window) {
             $http({
                 method: 'Post',
                 datatype: 'Json',
-                data: JSON.stringify($scope.k),
+                data: JSON.stringify($scope.u),
                 url: '/Admin/QLUser/Update'
             }).then(function (d) {
                 if (d.data == "") {
@@ -598,3 +599,96 @@ function UserController($scope, $rootScope, $http, $window) {
 
 
 
+app.controller("LoaiSPController", function ($scope, $rootScope, $http, $window) {
+    //Danh sách user
+    $http.get('/Admin/QLLoaiSanPham/GetAllLoaiSP').then(function (d) {
+        $rootScope.ListLoaiSP = d.data;
+    }, function (error) { alert('Failed'); });
+
+    $scope.Them = function () {
+        $scope._function = "Thêm loại sản phẩm";
+        $scope.buttext = "Save";
+        $scope.l = null;
+    };
+
+    $scope.Sua = function (l) {
+        $scope._function = "Sửa loại sản phẩm";
+        $scope.buttext = "Save changes";
+        $scope.l = l;
+    };
+
+    $scope.Save = function () {
+        //Sửa loại sản phẩm
+        if ($scope.buttext != "Save") {
+            $http({
+                method: 'Post',
+                datatype: 'Json',
+                data: JSON.stringify($scope.l),
+                url: '/Admin/QLLoaiSanPham/Update'
+            }).then(function (d) {
+                if (d.data == "") {
+                    var index = $scope.ListLoaiSP;
+                    for (var i = 0; i < $scope.ListLoaiSP.length; i++) {
+                        //Sửa thành công thì tiến hành sửa trên $scope
+                        if ($scope.ListLoaiSP[i].MaLoaiSP == $scope.l.MaLoaiSP) {
+                            $scope.ListLoaiSP[i].TenLoai = $scope.l.TenLoai;
+                            break;
+                        }
+                    }
+                    alert("Update success...!")
+                }
+            }, function (e) { alert(e); });
+        }
+        else //Thêm loại sản phẩm
+        {
+            $http({
+                method: 'POST',
+                datatype: 'json',
+                url: '/Admin/QLLoaiSanPham/Insert',
+                data: JSON.stringify($scope.l)
+            }).then(function (d) {
+                if (d.data == "") {
+                    $scope.ListLoaiSP.push($scope.l);
+                    $scope.l = null;
+                    alert("Data Submitted...!");
+                }
+                else {
+                    alert(d.data);
+                }
+            }, function (e) {
+                alert("Lỗi nhập...!");
+            });
+        }
+    };
+
+
+    $rootScope.TenLoai = "";
+    $rootScope.Search = function (tenLoai) {
+        $rootScope.ListLoaiSP = null;
+        $http.get('/Admin/QLLoaiSanPham/Search', {
+            params: {
+                TenLoai: tenLoai
+            }
+        }).then(function (d) {
+            if (d.data == "") {
+                alert("Tên loại không tồn tại");
+            }
+            else {
+                $rootScope.ListLoaiSP = d.data;
+            }
+        }, function (e) { });
+    };
+
+    $scope.XoaLoaiSanPham = function (l) {
+        $http({
+            method: 'Post',
+            url: '/Admin/QLLoaiSanPham/Delete',
+            datatype: 'Json',
+            data: { id: l.MaLoaiSP }
+        }).then(function (d) {
+            var vt = $scope.ListLoaiSP.indexOf(l);
+            $scope.ListLoaiSP.splice(vt, 1);
+        }, function (e) { alert(e) });
+    };
+
+})
