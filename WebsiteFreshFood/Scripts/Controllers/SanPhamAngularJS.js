@@ -50,6 +50,10 @@ function SanPhamController($scope, $rootScope, $http) {
         $rootScope.listloai = d.data;
     }, function (e) { alert("Lỗi lấy loại"); });
 
+    $http.get('/GioiThieu/GetLoaiSanPham').then(function (d) {
+        $rootScope.listloaisp = d.data;
+    }, function (e) { alert("Lỗi lấy loại"); });
+
     //Sắp xếp dữ liệu
     $rootScope.sortcolumn = "TenSP";
     $rootScope.reverse = true;
@@ -331,6 +335,19 @@ function TinTucController($rootScope, $scope, $http, $window) {
         $scope.pageIndex = 1;
         $scope.GetTinTucList();
     };  
-}
+};
+
+
+app.controller("GioiThieuController", function ($rootScope, $scope, $http) {
+    $http.get('/SanPham/GetLoaiSanPham').then(function (d) {
+        $rootScope.listloai = d.data;
+    }, function (e) { alert("Lỗi lấy loại"); });
+
+    // DS sản phẩm nổi bật
+    $http.get('/SanPham/GetSanPhamNoiBat').then(function (d) {
+        $rootScope.ListSPNoiBat = d.data;
+    }, function (error) { alert('Failed'); });
+
+})
 
 

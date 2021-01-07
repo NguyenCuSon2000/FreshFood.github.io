@@ -10,7 +10,7 @@ using WebsiteFreshFood.Bussiness;
 
 namespace WebsiteFreshFood.Areas.Admin.Controllers
 {
-    public class QLLoaiSanPhamController : Controller
+    public class QLLoaiSanPhamController : BaseController
     {
         QLLoaiSanPhamBus qllsp = new QLLoaiSanPhamBus();
         // GET: Admin/QLLoaiSanPham

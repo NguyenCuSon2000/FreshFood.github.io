@@ -691,4 +691,7 @@ app.controller("LoaiSPController", function ($scope, $rootScope, $http, $window)
         }, function (e) { alert(e) });
     };
 
-})
+});
+
+
+

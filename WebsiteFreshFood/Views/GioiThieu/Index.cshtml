@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/SanPham.css" rel="stylesheet" />
+<link href="~/Content/TinTuc.css" rel="stylesheet" />
+
+<div class="wrap-breadcrumb">
+    <div class="clearfix container">
+        <div class="row main-header">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5  ">
+                <ol class="breadcrumb breadcrumb-arrows">
+                    <li><a href="/Home/Index" target="_self">Trang chủ</a></li>
+                    <li class="active"><a href="/GioiThieu/Index"><span>Giới thiệu</span></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="container content" ng-controller="GioiThieuController">
+    <div class="row">
+        <div class="col-md-3 col-sm-12 col-xs-12 leftsidebar-col">
+            <div class="group_sidebar">
+                <div class="list-group navbar-inner">
+                    <div class="mega-left-title btn-navbar title-hidden-sm">
+                        <h3 class="sb-title">Danh mục</h3>
+                    </div>
+                    <ul class="nav" id="menu-blog">
+                        <li class="current active" ng-repeat="l in listloai">
+                            <a href="/SanPham/Index?maloai={{l.MaLoaiSP}}" title="{{l.TenLoai}}"><span>{{l.TenLoai}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-group_l banner-left hidden-sm hidden-xs">
+                    <a href=""><img src="~/img/quangcao4.png" alt=""></a>
+                </div>
+                <!--SẢN PHẨM NỔI BẬT-->
+                <div class="list-group_2 navbar-product">
+                    <div class="mega-left-title btn-navbar title-hidden-sm">
+                        <h3 class="product-title">Sản phẩm nổi bật</h3>
+                    </div>
+                    <div class="article seller-item" ng-repeat="a in ListSPNoiBat">
+                        <div class="sellers-img">
+                            <a href="/CTSanPham/Index?masp={{a.MaSP}}" title="{{a.TenSP}}" class="products-block-image content_img clearfix">
+                                <img src="~/img/{{a.MaLoaiSP}}/{{a.HinhAnh}}" alt="">
+                            </a>
+                        </div>
+                        <div class="post-content has-sellers-img ">
+                            <a href="/CTSanPham/Index?masp={{a.MaSP}}" title="{{a.TenSP}}">{{a.TenSP}}</a><br>
+                            <span class="price">{{a.DonGia}} VND</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-12 col-xs-12 " id="blog-container" data-sticky_column="">
+            <div class="row">
+                <div class="articles clearfix" id="layout-page">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h1>Giới thiệu</h1>
+                    </div>
+                    <!-- Begin: Nội dung giới thiệu -->
+                    <p>
+                        Là trung tâm văn hoá – kinh tế - chính trị lâu đời, trải qua nhiều thế kỷ, ăn uống của người Hà Nội là nét văn hoá, nét sống và là khả năng cảm thụ ẩm thực của người dân kinh kỳ. Bếp ăn của người Hà Nội chứa đựng nhiều khẩu vị của nhiều vùng miền: mặn, ngọt, béo, bùi, chát...
+                        Người Hà Nội thích tất cả các vị mặc dù khẩu vị chính của họ là ít cay, ít chua, ít ngọt.
+                        Khác với miền Trung là cay nhiều, hơi ngọt, hơi mặn và với người miền Nam là chua, cay nhiều và ngọt đậm.
+                        Phong cách vốn có của người Hà Nội là thanh lịch, tao nhã, không vùng miền nào có thể lẫn vào được. Vậy nên, những “bún mắng”, “cháo chửi” kia không thể đại diện cho tinh hoa ẩm thực của Hà Nội.
+                    </p>
+                    <img src="~/img/GioiThieu.jpg" alt="">
+                    <p>Có lời lý giải rằng, đó là mặt trái của một một thành phố đang thay đổi diện mạo quá nhanh, người bán hàng cũng trở nên vội vàng với nhiều áp lực, không còn thảnh thơi, cẩn thận như ngày xưa. Mà chính người mua cũng thờ ơ, dễ dãi, ngay cả trước những ứng xử tệ hại của người bán. Theo đó, một phần văn hóa ẩm thực đã bị bình dân hóa, cuốn theo những xô bồ của cuộc sống. </p>
+                    <p>Vì sao nói ẩm thực không chỉ là nét ứng xử, thói quen ăn uống còn là một nét văn hoá tinh tuý của người Hà Nội? Bởi lẽ, đằng sau mỗi món ăn đều có câu chuyện đáng để bàn luận và suy ngẫm về con người đất Bắc, về những thăng trầm của thời gian đối với cuộc sống người dân Thủ đô.</p>
+                    <b>Chả rươi - Món quà của mùa thu Hà Nội</b>
+                    <p>“Hỡi các bà nội trợ, đừng có lần chần lắm mà lỡ việc, vì rươi không phải là một món ăn ngày nào cũng có đâu. Cả một năm chỉ có mấy ngày có rươi thôi. Mà những ngày có rươi đó nếu bà không mua nhanh lên thì hết đấy. Cả một mùa không được ăn một miếng rươi vào miệng, không những bà ân hận mà người chồng yêu quý của bà lại làu nhàu” - Trích đoạn Miếng ngon Hà Nội (1952) của nhà văn Vũ Bằng.</p>
+                    <p> Lại nhớ, dân gian cũng có câu ca dao truyền rằng: </p>
+                    <pre> “Tháng chín ăn rươi, tháng mười ăn nhộng,
+                            Bao giờ cho đến tháng mười, bát cơm thì trắng bát rươi thì đầy”
+                        </pre>
+                    <p>Cũng giống như bánh chưng, bánh dày, … món chả rươi cũng lưu truyền một sự tích kỳ lạ. Xưa kia, rươi là một tiên nữ vô cùng xinh đẹp bị giáng xuống trần gian chỉ mùa thu hàng năm (khoảng tháng chín đến tháng mười) là rươi lại được về trời.   </p>
+                    <p>Câu chuyện nhằm gợi nhắc thời điểm rươi xuất hiện trong năm. Rươi là một họ giun nhiều tơ, có màu xanh, nâu, hoặc vàng…. còn được dân gian gọi là “rồng đất”. Khi nhiệt độ giảm vào khoảng tháng 10, loài rươi bắt đầu được tìm thấy nhiều trong những đồng ruộng của nông dân.</p>
+                    <p> Rươi có thể chế biến thành nhiều món ngon như chả rươi, mắm rươi, rươi hấp, rươi xào lá gấc… nhưng phổ biến nhất vẫn là món chả rươi. Những nguyên liệu để làm chả rươi rất đơn giản; là rươi, thịt lợn nạc băm nhỏ, trứng gà, hành hoa, thì là, ớt tươi giã nhỏ. Gia vị thường có hạt tiêu bột, nước mắm pha chanh, ớt. Chả rươi ăn cùng vỏ quýt là một bí quyết vừa làm dậy mùi thơm vừa hài hoà món ăn.</p>
+                    <p> Chính vì sự giản đơn ấy, món rươi phổ biến từ những hàng quán ven đường đến bếp ăn của người dân Hà thành, cũng là món ăn yêu thích được lưu truyền qua nhiều thế hệ ở đất Bắc. Song, nhắc tới những món ăn liên quan đến rươi, rất nhiều người, thường thấy là các cô gái, không khỏi tỏ ra sợ hãi, e ngại khi thấy những rổ rươi trước khi chế biến nên không dám ăn. </p>
+                    <img src="~/img/Cha-Ruoi.jpg" alt="">
+                    <b>Bún thang – tinh hoa Tràng An đọng lại </b>
+                    <p>Có người bạn phương xa từng nói rằng: “Bất đáo bún thang phi sành điệu. Kiểu gì đến Hà Nội, cũng muốn thưởng thức một tô bún thang của người Hà Nội”. Lại nói, cũng nghe kể rằng, có những chuyên gia ẩm thực, học giả đã gọi bún thang là “Thăng Long đệ nhất bún” bởi đây từng là loại ẩm thực đẳng cấp của giới quý tộc đất Hà thành, chứ không phải mấy thứ bún “đầu hè, xó chợ” như bún ốc, bún riêu…</p>
+                    <p>Một nhà nghiên cứu ẩm thực cho rằng từ “thang” trong tiếng Hán nghĩa là canh, “bún thang” nghĩa là “bún chan bởi canh”; ám chỉ nguồn gốc của bún thang bắt nguồn từ món canh thượng thang của người Hà Nội xưa. Từ “thang” cũng có thể để chỉ nhiều thành phần cùng phối hợp, như thang thuốc Đông y vậy. Dù theo ý kiến nào, tựu trung lại, bún thang Hà Nội trong cảm nhận của nhiều người “đồng nghĩa với sự tinh tế, thanh cao, mỹ vị, cầu kỳ, và kiểu cách”, từ nguyên liệu tới cách thưởng thức.</p>
+                    <p>Ví dụ như ở khâu chế biến. Bún thang có rất nhiều nguyên liệu, căn bản là bún, thịt gà, giò lụa, trứng, tôm, củ cải, mắm tôm, rau thơm... Yêu cầu từng nguyên liệu cũng nhiêu khê lắm. Bún phải là loại bún nhỏ, dai chứ không phải bún sợi to thô kệch.</p>
+                    <img src="~/img/BunThangHN.jpg" alt="">
+                    <p>Làm bún thang đã thế, ăn bún cũng không thể xuề xòa được. Là một món ăn lâu đời của người Hà Nội, xưa kia người ta thường chỉ có cơ hội được thưởng thức bún thang vào dịp Tết hoặc những dịp đặc biệt. Bún thang gỡ bỏ “lớp áo khoác” đẳng cấp lại lưu truyền một câu chuyện bình dị hơn. Đúng là bún thang trước đây thường được nấu vào dịp Tết là bởi nó có tính chất “tổng kết Tết”.</p>
+                    <p>Thường rằng, chỉ tới ngày tết, mỗi gia đình mới có đề huề đồ ăn đủ sắc, đủ vị. Nhưng hết tết, đồ ăn vẫn còn nhưng chỉ mỗi thứ một chút, vụn vặt nguyên liệu. Chính vì thế, người phụ nữ Hà thành đã “sáng tạo” tận dụng những thực phẩm còn dư sau Tết Nguyên đán, thái chỉ hoặc xé nhỏ cho hài hoà tổng thể, làm ra một món ăn vừa ngon, vừa tiết kiệm. Ngoài ra, người ta kết hợp mắm tôm chanh ớt, rau răm, tinh dầu cà cuống chính để khử mùi thức ăn để lâu ngày còn sót lại. </p>
+                    <p>Bún thang thực chất là thế nào, là món ăn tinh tế bậc nhất của giới quý tộc Hà thành hay là món ăn “chữa cháy” của các bà nội trợ vừa dân dã mà cũng chẳng quý tộc chút nào? Ngày nay, cuộc sống của người dân đã khá hơn trước, các nguyên liệu tươi mới luôn có thể tìm thấy ở các khu chợ, siêu thị, món bún thang có thể không đầy đủ các nguyên liệu truyền thống.</p>
+                    <p>Tinh thần “tổng kết Tết” và “ăn hết không bỏ phí nguyên liệu” cũng không còn được nhiều người biết đến từ món ăn này. Dù vậy, bún thang vẫn được coi là một món ăn “rất Hà Nội”, được người dân Thủ đô và du khách tứ phương yêu thích. Cũng như lời tâm sự của người bạn phương xa ở phần dẫn đề: “Người trở về hay đến Hà Nội đều không thể quên món ăn thanh nhã, tinh tế bậc nhất ẩm thực Hà thành ấy”.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SCROLL TO TOP -->
+    <div class="Scroll">
+        <a href="#top" id="scrollToTop" title="Lên trên" style="display: block;" onclick="scrollToTop();return false">
+            <i class="fas fa-arrow-alt-circle-up"></i>
+        </a>
+    </div>
+</section>
+
+<div class="clear-fix"></div>
+

@@ -274,8 +274,8 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-            @{ Html.RenderAction("LeftMenu", "Home");}
-
+                @{ Html.RenderAction("LeftMenu", "Home");}
+           
             <!-- /.navbar-static-side -->
         </nav>
     </div>
@@ -283,7 +283,9 @@
     <div>
         @RenderBody()
     </div>
-
+    <footer style="text-align: center">
+        Trang quản trị &copy;NguyenCuSon
+    </footer>
  
 
     <script src="~/assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
